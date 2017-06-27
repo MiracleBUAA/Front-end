@@ -1,5 +1,27 @@
 extends layout
 
+block scripts
+
 block content
-  h1= title
-  p Welcome to #{title}
+  .page-heading
+    h3
+      | Dashboard
+    ul.breadcrumb
+      li
+        a(href='#') Dashboard
+      li.active  My Dashboard
+    .state-info
+      section.panel
+        .panel-body
+          .summary
+            span yearly expense
+            h3.red-txt $ 45,600
+          #income.chart-bar
+      section.panel
+        .panel-body
+          .summary
+            span yearly  income
+            h3.green-txt $ 45,600
+          #expense.chart-bar
+  // page heading end
+
