@@ -70,7 +70,7 @@ html(lang='en')
                             },
                             type: "POST",
                             timeout: 36000,
-                            dataType: "text",
+                            dataType: "json",
                             success: function (data, textStatus) {
                                 var dataJson = eval("(" + data + ")");
                                 if (dataJson.code == 200) {
