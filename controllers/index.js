@@ -3,3 +3,5 @@
  */
 
 exports.layout = require('./layout');
+
+exports.login = require('./login');

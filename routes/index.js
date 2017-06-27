@@ -8,5 +8,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.use('/layout',controller.layout);
+router.use('/login', controller.login);
 
 module.exports = router;
