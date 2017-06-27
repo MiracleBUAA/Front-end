@@ -5,7 +5,7 @@ head
   meta(name='description', content='')
   meta(name='author', content='ThemeBucket')
 
-  link(rel='shortcut icon', href='#', type='image/png')
+  link(rel='shortcut icon', href='images/icon-logo.png', type='image/png')
 
   // icheck
   link(href='/js/iCheck/skins/minimal/minimal.css', rel='stylesheet')
@@ -19,6 +19,10 @@ head
   // common
   link(href='/css/style.css', rel='stylesheet')
   link(href='/css/style-responsive.css', rel='stylesheet')
+
+  link(rel='stylesheet',href='css/bootstrap-table.css')
+
+  block styles
 
 
 body.sticky-header
@@ -56,164 +60,9 @@ body.sticky-header
               a(href='#')
                 i.fa.fa-sign-out
                 span Sign Out
-        // sidebar nav start
-        ul.nav.nav-pills.nav-stacked.custom-nav
-          li.active
-            a(href='index.html')
-              i.fa.fa-home
-              span Dashboard
-          li.menu-list
-            a(href='')
-              i.fa.fa-laptop
-              span Layouts
-            ul.sub-menu-list
-              li
-                a(href='blank_page.html')  Blank Page
-              li
-                a(href='boxed_view.html')  Boxed Page
-              li
-                a(href='leftmenu_collapsed_view.html')  Sidebar Collapsed
-              li
-                a(href='horizontal_menu.html')  Horizontal Menu
-          li.menu-list
-            a(href='')
-              i.fa.fa-book
-              span UI Elements
-            ul.sub-menu-list
-              li
-                a(href='general.html')  General
-              li
-                a(href='buttons.html')  Buttons
-              li
-                a(href='tabs-accordions.html')  Tabs & Accordions
-              li
-                a(href='typography.html')  Typography
-              li
-                a(href='slider.html')  Slider
-              li
-                a(href='panels.html')  Panels
-          li.menu-list
-            a(href='')
-              i.fa.fa-cogs
-              span Components
-            ul.sub-menu-list
-              li
-                a(href='grids.html')  Grids
-              li
-                a(href='gallery.html')  Media Gallery
-              li
-                a(href='calendar.html')  Calendar
-              li
-                a(href='tree_view.html')  Tree View
-              li
-                a(href='nestable.html')  Nestable
-          li
-            a(href='fontawesome.html')
-              i.fa.fa-bullhorn
-              span Fontawesome
-          li.menu-list
-            a(href='')
-              i.fa.fa-envelope
-              span Mail
-            ul.sub-menu-list
-              li
-                a(href='mail.html')  Inbox
-              li
-                a(href='mail_compose.html')  Compose Mail
-              li
-                a(href='mail_view.html')  View Mail
-          li.menu-list
-            a(href='')
-              i.fa.fa-tasks
-              span Forms
-            ul.sub-menu-list
-              li
-                a(href='form_layouts.html')  Form Layouts
-              li
-                a(href='form_advanced_components.html')  Advanced Components
-              li
-                a(href='form_wizard.html')  Form Wizards
-              li
-                a(href='form_validation.html')  Form Validation
-              li
-                a(href='editors.html')  Editors
-              li
-                a(href='inline_editors.html')  Inline Editors
-              li
-                a(href='pickers.html')  Pickers
-              li
-                a(href='dropzone.html')  Dropzone
-              li
-                a(href='http://www.weidea.net')  More
-          li.menu-list
-            a(href='')
-              i.fa.fa-bar-chart-o
-              span Charts
-            ul.sub-menu-list
-              li
-                a(href='flot_chart.html')  Flot Charts
-              li
-                a(href='morris.html')  Morris Charts
-              li
-                a(href='chartjs.html')  Chartjs
-              li
-                a(href='c3chart.html')  C3 Charts
-          li.menu-list
-            a(href='#')
-              i.fa.fa-th-list
-              span Data Tables
-            ul.sub-menu-list
-              li
-                a(href='basic_table.html')  Basic Table
-              li
-                a(href='dynamic_table.html')  Advanced Table
-              li
-                a(href='responsive_table.html')  Responsive Table
-              li
-                a(href='editable_table.html')  Edit Table
-          li.menu-list
-            a(href='#')
-              i.fa.fa-map-marker
-              span Maps
-            ul.sub-menu-list
-              li
-                a(href='google_map.html')  Google Map
-              li
-                a(href='vector_map.html')  Vector Map
-          li.menu-list
-            a(href='')
-              i.fa.fa-file-text
-              span Extra Pages
-            ul.sub-menu-list
-              li
-                a(href='profile.html')  Profile
-              li
-                a(href='invoice.html')  Invoice
-              li
-                a(href='pricing_table.html')  Pricing Table
-              li
-                a(href='timeline.html')  Timeline
-              li
-                a(href='blog_list.html')  Blog List
-              li
-                a(href='blog_details.html')  Blog Details
-              li
-                a(href='directory.html')  Directory
-              li
-                a(href='chat.html')  Chat
-              li
-                a(href='404.html')  404 Error
-              li
-                a(href='500.html')  500 Error
-              li
-                a(href='registration.html')  Registration Page
-              li
-                a(href='lock_screen.html')  Lockscreen
-          li
-            a(href='login.html')
-              i.fa.fa-sign-in
-              span Login Page
-        // sidebar nav end
+
+        block sidebar
+
     // left side end
     // main content start
     .main-content
@@ -406,5 +255,8 @@ body.sticky-header
   script(src='js/scripts.js')
   // Dashboard Charts
   script(src='js/dashboard-chart-init.js')
+  script(src='js/bootstrap-table.js')
+
+
   block scripts
 
