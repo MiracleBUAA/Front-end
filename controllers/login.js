@@ -13,21 +13,23 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/check', function(req, res, next){
-    var result = {code: 0,errmsg:''};
-    var url = 'http://www.miracleoctts.com/auth/login?uid='+ req.body.username + '&password='+req.body.password;
+    var url = 'http://localhost:8080/login?uid='+ req.body.username + '&password='+req.body.password;
     request(url,function (error,response,body) {
         if(!error && response.statusCode == 200){
-            if(body.errno == 1){
+            var dataJson = eval("(" + body + ")");
+            var result = {code: 0,errmsg:''};
+            if(dataJson.errno == 0){
                 result.code = 200;
-                result.errmsg = body.errmsg;
+                result.errmsg = dataJson.errmsg;
             }
             else{
                 result.code = 400;
-                result.errmsg = body.errmsg;
+                result.errmsg = dataJson.errmsg;
             }
+            console.log(result);
+            res.json(result);
         }
     });
-    res.json(result);
 });
 
 module.exports = router;
