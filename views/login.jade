@@ -63,18 +63,19 @@ html(lang='en')
                     }
                     else {
                         $.ajax({
-                            url: '/login/check',
+                            url: "/login/check",
                             data: {
                                 username: $("#username").val(),
                                 password: $("#password").val()
                             },
-                            type: 'POST',
+                            type: "POST",
                             timeout: 36000,
-                            dataType: 'json',
+                            dataType: "text",
                             success: function (data, textStatus) {
                                 var dataJson = eval("(" + data + ")");
                                 if (dataJson.code == 200) {
                                     alert("登录成功");
+                                    window.location.href = "/";
                                 }
                                 else{
                                     alert("密码错误");
