@@ -13,21 +13,19 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/check', function(req, res, next){
-    var url = 'http://localhost:8080/login?uid='+ req.body.username + '&password='+req.body.password;
+    //console.log(req.body);
+    var url = 'http://localhost:8080/login?urank='+req.body.rank+'uid='+ req.body.username + '&password='+req.body.password;
     request(url,function (error,response,body) {
         if(!error && response.statusCode == 200){
-            var dataJson = eval("(" + body + ")");
-            var result = {code: 0,errmsg:''};
+            var dataJson = eval("(" + body + ")")
             if(dataJson.errno == 0){
-                result.code = 200;
-                result.errmsg = dataJson.errmsg;
+                if(req.body.rank == 1){
+                    res.render('layout_student');
+                }
+                else{
+                    res.render('layout_teacher');
+                }
             }
-            else{
-                result.code = 400;
-                result.errmsg = dataJson.errmsg;
-            }
-            console.log(result);
-            res.json(result);
         }
     });
 });
