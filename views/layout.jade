@@ -1,262 +1,234 @@
-head
-  meta(charset='utf-8')
-  meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0')
-  meta(name='keywords', content='admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3')
-  meta(name='description', content='')
-  meta(name='author', content='ThemeBucket')
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0')
+    meta(name='keywords', content='admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3')
+    meta(name='description', content='')
+    meta(name='author', content='ThemeBucket')
 
-  link(rel='shortcut icon', href='images/icon-logo.png', type='image/png')
+    link(rel='shortcut icon', href='images/icon-logo.png', type='image/png')
+    // common
+    link(href='/css/style.css', rel='stylesheet')
+    link(href='/css/style-responsive.css', rel='stylesheet')
 
-  // icheck
-  link(href='/js/iCheck/skins/minimal/minimal.css', rel='stylesheet')
-  link(href='/js/iCheck/skins/square/square.css', rel='stylesheet')
-  link(href='/js/iCheck/skins/square/red.css', rel='stylesheet')
-  link(href='/js/iCheck/skins/square/blue.css', rel='stylesheet')
-  // dashboard calendar
-  link(href='/css/clndr.css', rel='stylesheet')
-  // Morris Chart CSS
-  link(rel='stylesheet', href='/js/morris-chart/morris.css')
-  // common
-  link(href='/css/style.css', rel='stylesheet')
-  link(href='/css/style-responsive.css', rel='stylesheet')
+    link(rel='stylesheet',href='css/bootstrap-table.css')
 
-  link(rel='stylesheet',href='css/bootstrap-table.css')
-
-  block styles
+    block styles
 
 
-body.sticky-header
-  section
-    // left side start
-    .left-side.sticky-left-side
-      // logo and iconic logo start
-      .logo
-        a(href='index.html')
-          img(src='images/logo.png', alt='')
-      .logo-icon.text-center
-        a(href='index.html')
-          img(src='images/logo_icon.png', alt='')
-      // logo and iconic logo end
-      .left-side-inner
-        // visible to small devices only
-        .visible-xs.hidden-sm.hidden-md.hidden-lg
-          .media.logged-user
-            img.media-object(alt='', src='images/photos/user-avatar.png')
-            .media-body
-              h4
-                a(href='#') John Doe
-              span "Hello There..."
-          h5.left-nav-title Account Information
-          ul.nav.nav-pills.nav-stacked.custom-nav
-            li
-              a(href='#')
-                i.fa.fa-user
-                span Profile
-            li
-              a(href='#')
-                i.fa.fa-cog
-                span Settings
-            li
-              a(href='#')
-                i.fa.fa-sign-out
-                span Sign Out
+  body.sticky-header
+    section
+      // left side start
+      .left-side.sticky-left-side
+        // logo and iconic logo start
+        .logo
+          a(href='index.html')
+            img(src='images/logo.png', alt='')
+        .logo-icon.text-center
+          a(href='index.html')
+            img(src='images/logo_icon.png', alt='')
+        // logo and iconic logo end
+        .left-side-inner
+          // visible to small devices only
+          .visible-xs.hidden-sm.hidden-md.hidden-lg
+            .media.logged-user
+              img.media-object(alt='', src='images/photos/user-avatar.png')
+              .media-body
+                h4
+                  a(href='#') John Doe
+                span "Hello There..."
+            h5.left-nav-title Account Information
+            ul.nav.nav-pills.nav-stacked.custom-nav
+              li
+                a(href='#')
+                  i.fa.fa-user
+                  span Profile
+              li
+                a(href='#')
+                  i.fa.fa-cog
+                  span Settings
+              li
+                a(href='#')
+                  i.fa.fa-sign-out
+                  span Sign Out
 
-        block sidebar
+          block sidebar
 
-    // left side end
-    // main content start
-    .main-content
-      // header section start
-      .header-section
-        // toggle button start
-        a.toggle-btn
-          i.fa.fa-bars
-        // toggle button end
-        // search start
-        form.searchform(action='index.html', method='post')
-          input.form-control(type='text', name='keyword', placeholder='Search here...')
-        // search end
-        // notification menu start
-        .menu-right
-          ul.notification-menu
-            li
-              a.btn.btn-default.dropdown-toggle.info-number(href='#', data-toggle='dropdown')
-                i.fa.fa-tasks
-                span.badge 8
-              .dropdown-menu.dropdown-menu-head.pull-right
-                h5.title You have 8 pending task
-                ul.dropdown-list.user-list
-                  li.new
-                    a(href='#')
-                      .task-info
-                        div Database update
-                      .progress.progress-striped
-                        .progress-bar.progress-bar-warning(style='width: 40%', aria-valuemax='100', aria-valuemin='0', aria-valuenow='40', role='progressbar')
-                          span 40%
-                  li.new
-                    a(href='#')
-                      .task-info
-                        div Dashboard done
-                      .progress.progress-striped
-                        .progress-bar.progress-bar-success(style='width: 90%', aria-valuemax='100', aria-valuemin='0', aria-valuenow='90', role='progressbar')
-                          span 90%
+      // left side end
+      // main content start
+      .main-content
+        // header section start
+        .header-section
+          // toggle button start
+          a.toggle-btn
+            i.fa.fa-bars
+          // toggle button end
+          // search start
+          form.searchform(action='index.html', method='post')
+            input.form-control(type='text', name='keyword', placeholder='Search here...')
+          // search end
+          // notification menu start
+          .menu-right
+            ul.notification-menu
+              li
+                a.btn.btn-default.dropdown-toggle.info-number(href='#', data-toggle='dropdown')
+                  i.fa.fa-tasks
+                  span.badge 8
+                .dropdown-menu.dropdown-menu-head.pull-right
+                  h5.title You have 8 pending task
+                  ul.dropdown-list.user-list
+                    li.new
+                      a(href='#')
+                        .task-info
+                          div Database update
+                        .progress.progress-striped
+                          .progress-bar.progress-bar-warning(style='width: 40%', aria-valuemax='100', aria-valuemin='0', aria-valuenow='40', role='progressbar')
+                            span 40%
+                    li.new
+                      a(href='#')
+                        .task-info
+                          div Dashboard done
+                        .progress.progress-striped
+                          .progress-bar.progress-bar-success(style='width: 90%', aria-valuemax='100', aria-valuemin='0', aria-valuenow='90', role='progressbar')
+                            span 90%
+                    li
+                      a(href='#')
+                        .task-info
+                          div Web Development
+                        .progress.progress-striped
+                          .progress-bar.progress-bar-info(style='width: 66%', aria-valuemax='100', aria-valuemin='0', aria-valuenow='66', role='progressbar')
+                            span 66%
+                    li
+                      a(href='#')
+                        .task-info
+                          div Mobile App
+                        .progress.progress-striped
+                          .progress-bar.progress-bar-danger(style='width: 33%', aria-valuemax='100', aria-valuemin='0', aria-valuenow='33', role='progressbar')
+                            span 33%
+                    li
+                      a(href='#')
+                        .task-info
+                          div Issues fixed
+                        .progress.progress-striped
+                          .progress-bar(style='width: 80%', aria-valuemax='100', aria-valuemin='0', aria-valuenow='80', role='progressbar')
+                            span 80%
+                    li.new
+                      a(href='') See All Pending Task
+              li
+                a.btn.btn-default.dropdown-toggle.info-number(href='#', data-toggle='dropdown')
+                  i.fa.fa-envelope-o
+                  span.badge 5
+                .dropdown-menu.dropdown-menu-head.pull-right
+                  h5.title You have 5 Mails
+                  ul.dropdown-list.normal-list
+                    li.new
+                      a(href='')
+                        span.thumb
+                          img(src='images/photos/user1.png', alt='')
+                        span.desc
+                          span.name
+                            | John Doe
+                            span.badge.badge-success new
+                          span.msg Lorem ipsum dolor sit amet...
+                    li
+                      a(href='')
+                        span.thumb
+                          img(src='images/photos/user2.png', alt='')
+                        span.desc
+                          span.name Jonathan Smith
+                          span.msg Lorem ipsum dolor sit amet...
+                    li
+                      a(href='')
+                        span.thumb
+                          img(src='images/photos/user3.png', alt='')
+                        span.desc
+                          span.name Jane Doe
+                          span.msg Lorem ipsum dolor sit amet...
+                    li
+                      a(href='')
+                        span.thumb
+                          img(src='images/photos/user4.png', alt='')
+                        span.desc
+                          span.name Mark Henry
+                          span.msg Lorem ipsum dolor sit amet...
+                    li
+                      a(href='')
+                        span.thumb
+                          img(src='images/photos/user5.png', alt='')
+                        span.desc
+                          span.name Jim Doe
+                          span.msg Lorem ipsum dolor sit amet...
+                    li.new
+                      a(href='') Read All Mails
+              li
+                a.btn.btn-default.dropdown-toggle.info-number(href='#', data-toggle='dropdown')
+                  i.fa.fa-bell-o
+                  span.badge 4
+                .dropdown-menu.dropdown-menu-head.pull-right
+                  h5.title Notifications
+                  ul.dropdown-list.normal-list
+                    li.new
+                      a(href='')
+                        span.label.label-danger
+                          i.fa.fa-bolt
+                        span.name Server #1 overloaded.
+                        em.small 34 mins
+                    li.new
+                      a(href='')
+                        span.label.label-danger
+                          i.fa.fa-bolt
+                        span.name Server #3 overloaded.
+                        em.small 1 hrs
+                    li.new
+                      a(href='')
+                        span.label.label-danger
+                          i.fa.fa-bolt
+                        span.name Server #5 overloaded.
+                        em.small 4 hrs
+                    li.new
+                      a(href='')
+                        span.label.label-danger
+                          i.fa.fa-bolt
+                        span.name Server #31 overloaded.
+                        em.small 4 hrs
+                    li.new
+                      a(href='') See All Notifications
+              li
+                a.btn.btn-default.dropdown-toggle(href='#', data-toggle='dropdown')
+                  img(src='images/photos/user-avatar.png', alt='')
+                  |                             John Doe
+                  span.caret
+                ul.dropdown-menu.dropdown-menu-usermenu.pull-right
                   li
                     a(href='#')
-                      .task-info
-                        div Web Development
-                      .progress.progress-striped
-                        .progress-bar.progress-bar-info(style='width: 66%', aria-valuemax='100', aria-valuemin='0', aria-valuenow='66', role='progressbar')
-                          span 66%
+                      i.fa.fa-user
+                      |   Profile
                   li
                     a(href='#')
-                      .task-info
-                        div Mobile App
-                      .progress.progress-striped
-                        .progress-bar.progress-bar-danger(style='width: 33%', aria-valuemax='100', aria-valuemin='0', aria-valuenow='33', role='progressbar')
-                          span 33%
+                      i.fa.fa-cog
+                      |   Settings
                   li
                     a(href='#')
-                      .task-info
-                        div Issues fixed
-                      .progress.progress-striped
-                        .progress-bar(style='width: 80%', aria-valuemax='100', aria-valuemin='0', aria-valuenow='80', role='progressbar')
-                          span 80%
-                  li.new
-                    a(href='') See All Pending Task
-            li
-              a.btn.btn-default.dropdown-toggle.info-number(href='#', data-toggle='dropdown')
-                i.fa.fa-envelope-o
-                span.badge 5
-              .dropdown-menu.dropdown-menu-head.pull-right
-                h5.title You have 5 Mails
-                ul.dropdown-list.normal-list
-                  li.new
-                    a(href='')
-                      span.thumb
-                        img(src='images/photos/user1.png', alt='')
-                      span.desc
-                        span.name
-                          | John Doe
-                          span.badge.badge-success new
-                        span.msg Lorem ipsum dolor sit amet...
-                  li
-                    a(href='')
-                      span.thumb
-                        img(src='images/photos/user2.png', alt='')
-                      span.desc
-                        span.name Jonathan Smith
-                        span.msg Lorem ipsum dolor sit amet...
-                  li
-                    a(href='')
-                      span.thumb
-                        img(src='images/photos/user3.png', alt='')
-                      span.desc
-                        span.name Jane Doe
-                        span.msg Lorem ipsum dolor sit amet...
-                  li
-                    a(href='')
-                      span.thumb
-                        img(src='images/photos/user4.png', alt='')
-                      span.desc
-                        span.name Mark Henry
-                        span.msg Lorem ipsum dolor sit amet...
-                  li
-                    a(href='')
-                      span.thumb
-                        img(src='images/photos/user5.png', alt='')
-                      span.desc
-                        span.name Jim Doe
-                        span.msg Lorem ipsum dolor sit amet...
-                  li.new
-                    a(href='') Read All Mails
-            li
-              a.btn.btn-default.dropdown-toggle.info-number(href='#', data-toggle='dropdown')
-                i.fa.fa-bell-o
-                span.badge 4
-              .dropdown-menu.dropdown-menu-head.pull-right
-                h5.title Notifications
-                ul.dropdown-list.normal-list
-                  li.new
-                    a(href='')
-                      span.label.label-danger
-                        i.fa.fa-bolt
-                      span.name Server #1 overloaded.
-                      em.small 34 mins
-                  li.new
-                    a(href='')
-                      span.label.label-danger
-                        i.fa.fa-bolt
-                      span.name Server #3 overloaded.
-                      em.small 1 hrs
-                  li.new
-                    a(href='')
-                      span.label.label-danger
-                        i.fa.fa-bolt
-                      span.name Server #5 overloaded.
-                      em.small 4 hrs
-                  li.new
-                    a(href='')
-                      span.label.label-danger
-                        i.fa.fa-bolt
-                      span.name Server #31 overloaded.
-                      em.small 4 hrs
-                  li.new
-                    a(href='') See All Notifications
-            li
-              a.btn.btn-default.dropdown-toggle(href='#', data-toggle='dropdown')
-                img(src='images/photos/user-avatar.png', alt='')
-                |                             John Doe
-                span.caret
-              ul.dropdown-menu.dropdown-menu-usermenu.pull-right
-                li
-                  a(href='#')
-                    i.fa.fa-user
-                    |   Profile
-                li
-                  a(href='#')
-                    i.fa.fa-cog
-                    |   Settings
-                li
-                  a(href='#')
-                    i.fa.fa-sign-out
-                    |  Log Out
-        // notification menu end
-      // header section end
-      block content
-    // main content end
-  script(src='js/jquery-1.10.2.min.js')
-  script(src='js/jquery-ui-1.9.2.custom.min.js')
-  script(src='js/jquery-migrate-1.2.1.min.js')
-  script(src='js/bootstrap.min.js')
-  script(src='js/modernizr.min.js')
-  script(src='js/jquery.nicescroll.js')
-  // easy pie chart
-  script(src='js/easypiechart/jquery.easypiechart.js')
-  script(src='js/easypiechart/easypiechart-init.js')
-  // Sparkline Chart
-  script(src='js/sparkline/jquery.sparkline.js')
-  script(src='js/sparkline/sparkline-init.js')
-  // icheck
-  script(src='js/iCheck/jquery.icheck.js')
-  script(src='js/icheck-init.js')
-  // jQuery Flot Chart
-  script(src='js/flot-chart/jquery.flot.js')
-  script(src='js/flot-chart/jquery.flot.tooltip.js')
-  script(src='js/flot-chart/jquery.flot.resize.js')
-  // Morris Chart
-  script(src='js/morris-chart/morris.js')
-  script(src='js/morris-chart/raphael-min.js')
-  // Calendar
-  script(src='js/calendar/clndr.js')
-  script(src='js/calendar/evnt.calendar.init.js')
-  script(src='js/calendar/moment-2.2.1.js')
-  script(src='http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js')
-  // common scripts for all pages
-  script(src='js/scripts.js')
-  // Dashboard Charts
-  script(src='js/dashboard-chart-init.js')
-  script(src='js/bootstrap-table.js')
+                      i.fa.fa-sign-out
+                      |  Log Out
+          // notification menu end
+        // header section end
+        block content
+      // main content end
+    script(src='js/jquery-1.10.2.min.js')
+    script(src='js/jquery-ui-1.9.2.custom.min.js')
+    script(src='js/jquery-migrate-1.2.1.min.js')
+    script(src='js/bootstrap.min.js')
+    script(src='js/modernizr.min.js')
+    script(src='js/jquery.nicescroll.js')
 
 
-  block scripts
+    // common scripts for all pages
+    script(src='js/scripts.js')
+
+    script(src='js/bootstrap-table.js')
+
+
+    block scripts
 
