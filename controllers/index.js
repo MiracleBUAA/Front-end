@@ -5,3 +5,7 @@
 exports.layout = require('./layout');
 
 exports.login = require('./login');
+
+exports.Courseinfo_Teacher = require('./Courseinfo_Teacher');
+
+exports.Studentlist_Teacher = require('./Studentlist_Teacher');

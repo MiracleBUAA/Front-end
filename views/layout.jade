@@ -1,5 +1,6 @@
 head
   meta(charset='utf-8')
+  title #{title}
   meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0')
   meta(name='keywords', content='admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3')
   meta(name='description', content='')
@@ -20,10 +21,11 @@ head
   link(href='/css/style.css', rel='stylesheet')
   link(href='/css/style-responsive.css', rel='stylesheet')
 
-  link(rel='stylesheet',href='css/bootstrap-table.css')
+  // link(rel='stylesheet', href='css/bootstrap.min.css')
+  link(rel='stylesheet', href='css/bootstrap-table.css')
+  link(rel='stylesheet', href='css/bootstrap-editable.css')
 
   block styles
-
 
 body.sticky-header
   section
@@ -224,6 +226,7 @@ body.sticky-header
       // header section end
       block content
     // main content end
+
   script(src='js/jquery-1.10.2.min.js')
   script(src='js/jquery-ui-1.9.2.custom.min.js')
   script(src='js/jquery-migrate-1.2.1.min.js')
@@ -256,7 +259,6 @@ body.sticky-header
   // Dashboard Charts
   script(src='js/dashboard-chart-init.js')
   script(src='js/bootstrap-table.js')
-
+  script(src='js/bootstrap-editable.js')
 
   block scripts
-
