@@ -2,14 +2,14 @@ extends layout
 
 block sidebar
         ul.nav.nav-pills.nav-stacked.custom-nav
-          li.menu-list
+          li.menu-list#course_info
             a(href='' )
               i.fa.fa-home
               span 课程信息
             ul.sub-menu-list
               li
                 a(href='#')  设置课程信息
-              li
+              li#student_list
                 a(href='/teacher/student_list')  学生名单
               li
                 a(href='#')  开始新学期
