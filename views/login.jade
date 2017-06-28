@@ -30,7 +30,7 @@ html(lang='en')
                     //    |&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                     //    input(type="radio",name='rank',data-value='teacher')
                     //    | 教师登录
-                    input(type='radio', name='rank',data-value='1',checked='true')
+                    input(type='radio', name='rank',data-value='1')
                     |  学生登录
                     |&nbsp&nbsp&nbsp&nbsp
                     input(type='radio', name='rank',data-value='2')
@@ -69,10 +69,17 @@ html(lang='en')
                             data: {
                                 username: username.val(),
                                 password: password.val(),
-                                rank:$("input:radio:checked").attr("data-value")
+                                urank:$("input:radio:checked").attr("data-value")
                             },
                             type: "POST",
-                            dataType: "json"
+                            dataType: "json",
+                            success: function (response) {
+                                alert(response.msg);
+                                window.location.href = response.url;
+                            },
+                            error: function (response) {
+                                console.log(response);
+                            }
                         });
                     }
                 });

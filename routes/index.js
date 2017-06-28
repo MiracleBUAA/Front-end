@@ -4,16 +4,15 @@ var controller = require('../controllers');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    var user = req.cookies.user;
-    if(user){
-        if(user.urank==1){
-            res.render('layout_student',{title:'Ottcs学生版',username:user.username});
-        }else{
-            res.render('layout_teacher',{title:'Ottcs教师版',username:user.username});
-        }
-    } else{
-        res.render('login', { title: 'Octts团队平台' });
+    var student = req.cookies.student;
+    if(student){
+        res.render('layout_student',{title:'Ottcs学生版',username:user.uid});
     }
+    var teacher = req.cookies.teacher;
+    if(teacher){
+        res.render('layout_student',{title:'Ottcs学生版',username:user.uid});
+    }
+    res.render('login', { title: 'Octts团队平台' });
 });
 
 router.use('/layout',controller.layout);

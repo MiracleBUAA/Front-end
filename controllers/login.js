@@ -14,34 +14,35 @@ router.get('/', function(req, res, next) {
 
 //处理登录密码核定
 router.post('/check', function(req, res, next){
-    //console.log(req.body);
-    var url = 'http://localhost:8080/login?urank='+req.body.rank+'uid='+ req.body.username + '&password='+req.body.password;
+    console.log(req.body);
+    var url = 'http://localhost:8080/login?urank='+req.body.urank+'&uid='+ req.body.username + '&password='+req.body.password;
     request(url,function (error,response,body) {
         if(!error && response.statusCode == 200){
             var dataJson = eval("(" + body + ")");
-            //console.log(dataJson);
-            if(dataJson.errno == 0){
-                if(req.body.rank == 1){
-                    res.cookie('user',{
+            console.log(dataJson);
+            if(dataJson.errorNo == 0){
+                if(req.body.urank == 1){
+                    res.cookie('student',{
                         urank:req.body.urank,
-                        uid:req.body.uid,
-                        username:req.body.username
+                        uid:req.body.username
                     }, {
                             maxAge: 900000
                         }
                     );
-                    res.render('layout_student',{title:'Ottcs学生版'});
+                    res.json(200,{msg:"Login success",url:"/student"});
                 } else{
-                    res.cookie('user',{
-                            urank:req.body.urank,
-                            uid:req.body.uid,
-                            username:req.body.username
-                        }, {
+                    res.cookie('teacher',{
+                        urank:req.body.urank,
+                        uid:req.body.username
+                    }, {
                             maxAge: 900000
                         }
                     );
-                    res.render('layout_teacher',{title:'Ottcs教师版'});
+                    res.json(200,{msg:"登录成功",url:"/teacher"});
                 }
+            }
+            else{
+                res.json(200,{msg:dataJson.errorMsg,url:"/login"});
             }
         }
     });
