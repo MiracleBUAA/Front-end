@@ -10,18 +10,18 @@ $(document).ready(function () {
 
 
 // 点击上传按钮
-$('#upload_button').click(function () {
-    $.ajax({
-        url: '/teacher/student_list',
-        type: 'POST',
-        cache: false,
-        data: new FormData($('#upload_form')[0]),
-        processData: false,
-        contentType: false,
-
-        success : function(res) {
-            alert("上传成功！");
-        }
-
-    });
-});
+// $('#upload_button').click(function () {
+//     $.ajax({
+//         url: '/teacher/student_list',
+//         type: 'POST',
+//         cache: false,
+//         data: new FormData($('#upload_form')[0]),
+//         processData: false,
+//         contentType: false,
+//
+//         success : function(res) {
+//             alert("上传成功！");
+//         }
+//
+//     });
+// });

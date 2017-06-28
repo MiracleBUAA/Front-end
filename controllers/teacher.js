@@ -56,15 +56,16 @@ router.get('/student_list',function (req,res,next) {
     //     }
     // })
 }).post('/student_list',function (req,res,next) {
-    var url = "http://localhost:8080/teacher/student_list";
-    var formData = {
-        file: fs.createReadStream(req.body.formData),
-    };
-    request.post({url:url, formdata:formData}, function(error, response, body) {
-        if (!error && response.statusCode == 200) {
-            res.redirect('/teacher/student_list');
-        }
-    })
+    console.log(req.body);
+    // var url = "http://localhost:8080/teacher/student_list";
+    // var formData = {
+    //     file: fs.createReadStream(req.body.formData),
+    // };
+    // request.post({url:url, formdata:formData}, function(error, response, body) {
+    //     if (!error && response.statusCode == 200) {
+    //         res.redirect('/teacher/student_list');
+    //     }
+    // })
 });
 
 router.get('/resource',function (req,res,next) {
