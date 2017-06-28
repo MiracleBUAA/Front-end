@@ -6,7 +6,7 @@ var router =  express.Router();
 
 router.get('/', function(req, res, next) {
     res.render('layout_student',{title:'Ottcs学生版'});
-    // var student = req.cookies.student;
+    // var student = req.cookies.user;
     // if(student) {
     //     res.render('layout_student', {title: 'Ottcs学生版', username: student.username});
     // }

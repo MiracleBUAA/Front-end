@@ -4,7 +4,16 @@ var controller = require('../controllers');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Octts团队平台' });
+    var user = req.cookies.user;
+    if(user){
+        if(user.urank==1){
+            res.render('layout_student',{title:'Ottcs学生版',username:user.username});
+        }else{
+            res.render('layout_teacher',{title:'Ottcs教师版',username:user.username});
+        }
+    } else{
+        res.render('login', { title: 'Octts团队平台' });
+    }
 });
 
 router.use('/layout',controller.layout);

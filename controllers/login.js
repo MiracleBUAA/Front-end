@@ -22,7 +22,8 @@ router.post('/check', function(req, res, next){
             //console.log(dataJson);
             if(dataJson.errno == 0){
                 if(req.body.rank == 1){
-                    res.cookie('student',{
+                    res.cookie('user',{
+                        urank:req.body.urank,
                         uid:req.body.uid,
                         username:req.body.username
                     }, {
@@ -30,9 +31,9 @@ router.post('/check', function(req, res, next){
                         }
                     );
                     res.render('layout_student',{title:'Ottcs学生版'});
-                }
-                else{
-                    res.cookie('teacher',{
+                } else{
+                    res.cookie('user',{
+                            urank:req.body.urank,
                             uid:req.body.uid,
                             username:req.body.username
                         }, {
