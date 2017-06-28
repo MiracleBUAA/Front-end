@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/notice_student',function (req,res,next) {
     console.log("enter");
-    res.render('student/notice_student',{title:'Ottcs教师版'});
+    res.render('student/notice_student',{title:'Ottcs学生版'});
 });
 
 module.exports = router;
