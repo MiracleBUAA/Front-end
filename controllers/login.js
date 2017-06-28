@@ -22,9 +22,23 @@ router.post('/check', function(req, res, next){
             //console.log(dataJson);
             if(dataJson.errno == 0){
                 if(req.body.rank == 1){
+                    res.cookie('student',{
+                        uid:req.body.uid,
+                        username:req.body.username
+                    }, {
+                            maxAge: 900000
+                        }
+                    );
                     res.render('layout_student',{title:'Ottcs学生版'});
                 }
                 else{
+                    res.cookie('teacher',{
+                            uid:req.body.uid,
+                            username:req.body.username
+                        }, {
+                            maxAge: 900000
+                        }
+                    );
                     res.render('layout_teacher',{title:'Ottcs教师版'});
                 }
             }
