@@ -4,5 +4,5 @@
 
 exports.layout = require('./layout');
 exports.login = require('./login');
-exports.student_list = require('./student_list');
-exports.course_info = require('./course_info');
+exports.student = require('./student');
+exports.teacher = require('./teacher');

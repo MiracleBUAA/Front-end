@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 
 router.use('/layout',controller.layout);
 router.use('/login', controller.login);
-router.use('/student_list', controller.student_list);
-router.use('/course_info',controller.course_info);
+router.use('/teacher', controller.teacher);
+router.use('/student',controller.student);
 
 module.exports = router;
