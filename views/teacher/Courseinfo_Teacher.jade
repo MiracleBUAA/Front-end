@@ -1,6 +1,6 @@
 // By ZhuFu on 20170627
 
-extends ../layout_teacher
+extends layout_teacher
 
 block styles
 
@@ -19,35 +19,191 @@ block content
             tr
               td(width="30%") 课程名称
               td(width="30%")
-                a#task.editable.editable-click(href="#", data-type="text", data-pk="1", data-title="编辑") 完成团队敏捷开发项目
+                a#task.editable.editable-click(href="#") 团队敏捷开发项目
             tr
               td(width="30%") 开始时间
               td(width="30%")
-                a#startTime.editable.editable-click(href='#', data-type="text", data-pk="1", data-title="编辑") 2017-06-25
+                a#startTime.editable.editable-click(href='#') 2017-06-25
             tr
               td(width="30%") 结束时间
               td(width="30%")
-                a#endTime.editable.editable-click(href='#', data-type="text", data-pk="1", data-title="编辑") 2017-07-05
+                a#endTime.editable.editable-click(href='#') 2017-07-05
             tr
               td(width="30%") 学时
               td(width="30%")
-                a#teachHours.editable.editable-click(href='#', data-type="text", data-pk="1", data-title="编辑") 20&nbsp学时
+                a#teachHours.editable.editable-click(href='#') 20&nbsp学时
             tr
               td(width="30%") 学分
               td(width="30%")
-                a#point.editable.editable-click(href='#', data-type="text", data-pk="1", data-title="编辑") 2 学分
+                a#point.editable.editable-click(href='#') 2 学分
             tr
               td(width="30%") 上课地点
               td(width="30%")
-                a#place.editable.editable-click(href='#', data-type="text", data-pk="1", data-title="编辑") 北航学院路工训中心317
+                a#place.editable.editable-click(href='#') 北航学院路工训中心317
 
 block scripts
         script(type='text/javascript').
           $(document).ready(function () {
-            $('#task').editable();
-            $('#startTime').editable();
-            $('#endTime').editable();
-            $('#teachHours').editable();
-            $('#point').editable();
-            $('#place').editable();
+            /////////////////////////////////////////////////////////////////
+            $('#task').editable({
+                type: 'text',
+                pk: 1,
+                title: "编辑",
+                url: function(value){
+                    return $.post('url', {
+                        task:value
+                      }
+                    );
+                },
+                validate: function(value){
+                    value = $.trim(value);
+                    if(!value){
+                        alert('不能为空！');
+                    }
+                },
+                success:function(response){
+                    if(response == false){
+                        alert('Remote error!');
+                        return 'Remote error!';
+                    }
+                },
+                error: function(response){
+                    alert('Fail to submit!');
+                }
+            });
+            ///////////////////////////////////////////////////////////
+              $('#startTime').editable({
+                  type: 'text',
+                  pk: 1,
+                  title: "编辑",
+                  url: function (value) {
+                      return $.post('url', {
+                              startTime: value
+                          }
+                      );
+                  },
+                  validate: function (value) {
+                      value = $.trim(value);
+                      if (!value) {
+                          alert('不能为空！');
+                      }
+                  },
+                  success: function (response) {
+                      if (response == false) {
+                          alert('Remote error!');
+                          return 'Remote error!';
+                      }
+                  },
+                  error: function (response) {
+                      alert('Fail to submit!');
+                  }
+              });
+            /////////////////////////////////////////////////////
+              $('#endTime').editable({
+                  type: 'text',
+                  pk: 1,
+                  title: "编辑",
+                  url: function (value) {
+                      return $.post('url', {
+                              endTime: value
+                          }
+                      );
+                  },
+                  validate: function (value) {
+                      value = $.trim(value);
+                      if (!value) {
+                          alert('不能为空！');
+                      }
+                  },
+                  success: function (response) {
+                      if (response == false) {
+                          alert('Remote error!');
+                          return 'Remote error!';
+                      }
+                  },
+                  error: function (response) {
+                      alert('Fail to submit!');
+                  }
+              });
+            ///////////////////////////////////////////////////////////
+              $('#teachHours').editable({
+                  type: 'text',
+                  pk: 1,
+                  title: "编辑",
+                  url: function (value) {
+                      return $.post('url', {
+                              teachHours: value
+                          }
+                      );
+                  },
+                  validate: function (value) {
+                      value = $.trim(value);
+                      if (!value) {
+                          alert('不能为空！');
+                      }
+                  },
+                  success: function (response) {
+                      if (response == false) {
+                          alert('Remote error!');
+                          return 'Remote error!';
+                      }
+                  },
+                  error: function (response) {
+                      alert('Fail to submit!');
+                  }
+              });
+            /////////////////////////////////////////////////////////////////
+              $('#point').editable({
+                  type: 'text',
+                  pk: 1,
+                  title: "编辑",
+                  url: function (value) {
+                      return $.post('url', {
+                              point: value
+                          }
+                      );
+                  },
+                  validate: function (value) {
+                      value = $.trim(value);
+                      if (!value) {
+                          alert('不能为空！');
+                      }
+                  },
+                  success: function (response) {
+                      if (response == false) {
+                          alert('Remote error!');
+                          return 'Remote error!';
+                      }
+                  },
+                  error: function (response) {
+                      alert('Fail to submit!');
+                  }
+              });
+            ////////////////////////////////////////////////////
+              $('#place').editable({
+                  type: 'text',
+                  pk: 1,
+                  title: "编辑",
+                  url: function (value) {
+                      return $.post('url', {
+                              place: value
+                          }
+                      );
+                  },
+                  validate: function (value) {
+                      value = $.trim(value);
+                      if (!value) {
+                          alert('不能为空！');
+                      }
+                  },
+                  success: function (response) {
+                      if (response == false) {
+                          alert('Remote error!');
+                          return 'Remote error!';
+                      }
+                  },
+                  error: function (response) {
+                      alert('Fail to submit!');
+                  }
+              });
           });
