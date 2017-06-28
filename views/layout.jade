@@ -8,13 +8,13 @@ html(lang='en')
     meta(name='description', content='')
     meta(name='author', content='ThemeBucket')
 
-    link(rel='shortcut icon', href='images/icon-logo.png', type='image/png')
+    link(rel='shortcut icon', href='/images/icon-logo.png', type='image/png')
     // common
     link(href='/css/style.css', rel='stylesheet')
     link(href='/css/style-responsive.css', rel='stylesheet')
 
-    link(rel='stylesheet',href='css/bootstrap-table.css')
-    link(rel='stylesheet',href='css/bootstrap-editable.css')
+    link(rel='stylesheet',href='/css/bootstrap-table.css')
+    link(rel='stylesheet',href='/css/bootstrap-editable.css')
 
     block styles
 
@@ -25,17 +25,17 @@ html(lang='en')
       .left-side.sticky-left-side
         // logo and iconic logo start
         .logo
-          a(href='index.html')
-            img(src='images/logo.png', alt='')
+          a(href='#')
+            img(src='/images/logo.png', alt='')
         .logo-icon.text-center
-          a(href='index.html')
-            img(src='images/logo_icon.png', alt='')
+          a(href='#')
+            img(src='/images/logo_icon.png', alt='')
         // logo and iconic logo end
         .left-side-inner
           // visible to small devices only
           .visible-xs.hidden-sm.hidden-md.hidden-lg
             .media.logged-user
-              img.media-object(alt='', src='images/photos/user-avatar.png')
+              img.media-object(alt='', src='/images/photos/user-avatar.png')
               .media-body
                 h4
                   a(href='#') John Doe
@@ -127,7 +127,7 @@ html(lang='en')
                     li.new
                       a(href='')
                         span.thumb
-                          img(src='images/photos/user1.png', alt='')
+                          img(src='/images/photos/user1.png', alt='')
                         span.desc
                           span.name
                             | John Doe
@@ -136,28 +136,28 @@ html(lang='en')
                     li
                       a(href='')
                         span.thumb
-                          img(src='images/photos/user2.png', alt='')
+                          img(src='/images/photos/user2.png', alt='')
                         span.desc
                           span.name Jonathan Smith
                           span.msg Lorem ipsum dolor sit amet...
                     li
                       a(href='')
                         span.thumb
-                          img(src='images/photos/user3.png', alt='')
+                          img(src='/images/photos/user3.png', alt='')
                         span.desc
                           span.name Jane Doe
                           span.msg Lorem ipsum dolor sit amet...
                     li
                       a(href='')
                         span.thumb
-                          img(src='images/photos/user4.png', alt='')
+                          img(src='/images/photos/user4.png', alt='')
                         span.desc
                           span.name Mark Henry
                           span.msg Lorem ipsum dolor sit amet...
                     li
                       a(href='')
                         span.thumb
-                          img(src='images/photos/user5.png', alt='')
+                          img(src='/images/photos/user5.png', alt='')
                         span.desc
                           span.name Jim Doe
                           span.msg Lorem ipsum dolor sit amet...
@@ -198,7 +198,7 @@ html(lang='en')
                       a(href='') See All Notifications
               li
                 a.btn.btn-default.dropdown-toggle(href='#', data-toggle='dropdown')
-                  img(src='images/photos/user-avatar.png', alt='')
+                  img(src='/images/photos/user-avatar.png', alt='')
                   |                             John Doe
                   span.caret
                 ul.dropdown-menu.dropdown-menu-usermenu.pull-right
@@ -218,19 +218,19 @@ html(lang='en')
         // header section end
         block content
       // main content end
-    script(src='js/jquery-1.10.2.min.js')
-    script(src='js/jquery-ui-1.9.2.custom.min.js')
-    script(src='js/jquery-migrate-1.2.1.min.js')
-    script(src='js/bootstrap.min.js')
-    script(src='js/modernizr.min.js')
-    script(src='js/jquery.nicescroll.js')
+    script(src='/js/jquery-1.10.2.min.js')
+    script(src='/js/jquery-ui-1.9.2.custom.min.js')
+    script(src='/js/jquery-migrate-1.2.1.min.js')
+    script(src='/js/bootstrap.min.js')
+    script(src='/js/modernizr.min.js')
+    script(src='/js/jquery.nicescroll.js')
 
 
     // common scripts for all pages
-    script(src='js/scripts.js')
+    script(src='/js/scripts.js')
 
-    script(src='js/bootstrap-table.js')
-    script(src='js/bootstrap-editable.js')
+    script(src='/js/bootstrap-table.js')
+    script(src='/js/bootstrap-editable.js')
 
 
     block scripts
