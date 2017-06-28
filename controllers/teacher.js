@@ -9,6 +9,13 @@ var fs = require('fs');
 
 router.get('/', function(req, res, next) {
     res.render('layout_teacher',{title:'Ottcs教师版'});
+    // var teacher = req.cookies.user;
+    // if(teacher){
+    //     res.render('layout_teacher',{title:'Ottcs教师版',username:teacher.username});
+    // }
+    // else{
+    //     res.redirect('/login');
+    // }
 });
 
 router.get('/course_info',function (req,res,next) {
