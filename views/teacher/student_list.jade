@@ -1,0 +1,127 @@
+//
+   Created by 胡晟 on 2017/6/28.
+
+extends ../layout_teacher
+
+block styles
+    // dynamic table
+    link(href='/js/advanced-datatable/css/demo_page.css', rel='stylesheet')
+    link(href='/js/advanced-datatable/css/demo_table.css', rel='stylesheet')
+    link(rel='stylesheet', href='/js/data-tables/DT_bootstrap.css')
+    link(href='/css/style.css', rel='stylesheet')
+    link(href='/css/style-responsive.css', rel='stylesheet')
+    // icheck
+    link(href='/js/iCheck/skins/minimal/minimal.css', rel='stylesheet')
+    link(href='/js/iCheck/skins/minimal/red.css', rel='stylesheet')
+    link(href='/js/iCheck/skins/minimal/green.css', rel='stylesheet')
+    link(href='/js/iCheck/skins/minimal/blue.css', rel='stylesheet')
+    link(href='/js/iCheck/skins/minimal/yellow.css', rel='stylesheet')
+    link(href='/js/iCheck/skins/minimal/purple.css', rel='stylesheet')
+    link(href='/js/iCheck/skins/square/square.css', rel='stylesheet')
+    link(href='/js/iCheck/skins/square/red.css', rel='stylesheet')
+    link(href='/js/iCheck/skins/square/green.css', rel='stylesheet')
+    link(href='/js/iCheck/skins/square/blue.css', rel='stylesheet')
+    link(href='/js/iCheck/skins/square/yellow.css', rel='stylesheet')
+    link(href='/js/iCheck/skins/square/purple.css', rel='stylesheet')
+    link(href='/js/iCheck/skins/flat/grey.css', rel='stylesheet')
+    link(href='/js/iCheck/skins/flat/red.css', rel='stylesheet')
+    link(href='/js/iCheck/skins/flat/green.css', rel='stylesheet')
+    link(href='/js/iCheck/skins/flat/blue.css', rel='stylesheet')
+    link(href='/js/iCheck/skins/flat/yellow.css', rel='stylesheet')
+    link(href='/js/iCheck/skins/flat/purple.css', rel='stylesheet')
+    // file upload
+    link(rel='stylesheet', type='text/css', href='/css/bootstrap-fileupload.min.css')
+
+
+block scripts
+    // icheck
+    script(src='/js/iCheck/jquery.icheck.js')
+    script(src='/js/icheck-init.js')
+    // spinner
+    script(type='text/javascript', src='/js/fuelux/js/spinner.min.js')
+    script(src='/js/spinner-init.js')
+    // file upload
+    script(type='text/javascript', src='/js/bootstrap-fileupload.min.js')
+    // dynamic table
+    script(type='text/javascript', language='javascript', src='/js/advanced-datatable/js/jquery.dataTables.js')
+    script(type='text/javascript', src='/js/data-tables/DT_bootstrap.js')
+    // dynamic table initialization
+    script(src='/js/dynamic_table_init.js')
+
+block content
+    // page heading start
+    .page-heading
+        h3
+            | 学生名单
+        ul.breadcrumb
+            li
+                a(href='#') 课程信息
+
+            li.active  学生名单
+    // page heading end
+    // body wrapper start
+    .wrapper
+        .row
+            .col-sm-12
+                section.panel
+                    header.panel-heading
+                        | 名单
+                        span.pull-right(style='margin-bottom: -50px')
+                            .form-group
+                                button.btn.btn-default(type='button', style='height: 25px;margin-right: 10px;padding-top: 2px; ')
+                                    i.fa.fa-cloud-upload
+                                    |  Upload
+                                input(type='file', style='float:right;width: 200px;')
+                    .panel-body
+                        .adv-table
+                            table#dynamic-table.display.table.table-bordered.table-striped
+                                thead
+                                    tr
+                                        th 学号
+                                        th 姓名
+                                        th 性别
+                                        th 班级
+
+                                tbody
+                                    tr.gradeA
+                                        td 14211093
+                                        td 胡晟
+                                        td 男
+                                        td 4
+                                    tr.gradeA
+                                        td 14211093
+                                        td 胡晟
+                                        td 男
+                                        td 4
+                                    tr.gradeA
+                                        td 14211093
+                                        td 胡晟
+                                        td 男
+                                        td 4
+                                    tr.gradeA
+                                        td 14211093
+                                        td 胡晟
+                                        td 男
+                                        td 4
+
+                                    tr.gradeA
+                                        td 14212333
+                                        td 啊大大
+                                        td 男
+                                        td 5
+                                    tr.gradeA
+                                        td 14212532
+                                        td 大蒜豆腐
+                                        td 女
+                                        td 3
+
+
+                                tfoot
+                                    tr
+                                        th 学号
+                                        th 姓名
+                                        th 性别
+                                        th 班级
+
+    // body wrapper end
+
