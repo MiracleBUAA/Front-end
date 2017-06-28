@@ -1,7 +1,6 @@
 /**
  * Created by lenovo on 2017/6/28.
  */
-
 $(document).ready(function () {
 
             var x;
@@ -349,3 +348,14 @@ $(document).ready(function () {
                   }
               });
           });
+
+
+
+
+
+
+//  页面侧边栏选中 by 胡晟
+$(document).ready(function () {
+    document.getElementById("course_li").className += " nav-active";
+    document.getElementById("course_info_li").className += " active";
+});
