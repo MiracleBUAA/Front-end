@@ -89,6 +89,8 @@ router.get('/homework_new',function (req,res,next) {
     res.render('teacher/homework_new',{title:'Ottcs教师版'});
 }).post('/homework_new',function (req,res,next) {
 
+    console.log(req.body);
+
 })
 
 module.exports = router;

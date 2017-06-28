@@ -8,3 +8,7 @@ $(document).ready(function () {
     document.getElementById("homework_li").className += " nav-active";
     document.getElementById("homework_new_li").className += " active";
 });
+
+
+
+
