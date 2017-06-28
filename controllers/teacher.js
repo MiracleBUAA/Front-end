@@ -8,7 +8,34 @@ var request = require('request');
 var fs = require('fs');
 
 router.get('/', function(req, res, next) {
-    res.render('index', { title: 'teacher' });
+    res.render('layout_teacher',{title:'Ottcs教师版'});
+});
+
+router.get('/course_info',function (req,res,next) {
+    console.log("enter");
+    res.render('teacher/course_info',{title:'Ottcs教师版'});
+    // res.render('teacher/student_list', { title: 'student_list' });
+    // var url = "http://localhost:8080/teacher/course_info"
+    // request(url,function (error,response,body) {
+    //     var dataJson = eval("(" + body + ")");
+    //     if(!error && response.statusCode == 200){
+    //         res.render('teacher/course_info',{ course_info : dataJson });
+    //     }
+    // })
+}).post('/course_info',function (req,res,next) {
+    var url = "http://localhost:8080/teacher/course_info";
+    request(url,function (error,response,body) {
+        if(!error && response.statusCode == 200){
+            var dataJson = eval("(" + body + ")");
+
+        }
+    });
+
+    request.post({url:url, formdata:formData}, function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            res.redirect('/teacher/student_list');
+        }
+    })
 });
 
 router.get('/student_list',function (req,res,next) {
@@ -38,7 +65,7 @@ router.get('/resource',function (req,res,next) {
     request(url,function (error,response,body) {
         var dataJson = eval("(" + body + ")");
         if(!error && response.statusCode == 200){
-            res.render('teacher/student_list',{ students : dataJson });
+            res.render('teacher/resource',{ students : dataJson });
         }
     })
 }).post('/resource',function (req,res,next) {
