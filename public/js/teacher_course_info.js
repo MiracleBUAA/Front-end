@@ -1,64 +1,11 @@
-// By ZhuFu on 20170627
+/**
+ * Created by lenovo on 2017/6/28.
+ */
 
-extends ../layout_teacher
-
-
-block styles
-
-block content
-        .page-heading
-          h3
-            | 设置课程信息
-            small 软件工程敏捷开发实践
-          ul.breadcrumb
-            li
-              a(href='#') 课程信息
-            li.active 设置课程信息
-
-        table#info.table.table-bordered.table-striped(style="clear: both")
-          tbody
-            tr
-              td(width="30%") 课程名称
-              td(width="30%")
-                a#course_name.editable.editable-click(href="#") 软件工程敏捷开发实践
-            tr
-              td(width="30%") 开始时间
-              td(width="30%")
-                a#course_start_time.editable.editable-click(href='#') 2017-06-25
-            tr
-              td(width="30%") 结束时间
-              td(width="30%")
-                a#course_end_time.editable.editable-click(href='#') 2017-07-05
-            tr
-              td(width="30%") 学时
-              td(width="30%")
-                a#course_hours.editable.editable-click(href='#') 20&nbsp学时
-            tr
-              td(width="30%") 学分
-              td(width="30%")
-                a#credit.editable.editable-click(href='#') 2 学分
-            tr
-              td(width="30%") 上课地点
-              td(width="30%")
-                a#course_location.editable.editable-click(href='#') 北航学院路工训中心317
-            tr
-              td(width="30%") 团队限制信息
-              td(width="30%")
-                a#team_limit_information.editable.editable-click(href='#') 6-8人，一个女生
-            tr
-              td(width="30%") 教师信息
-              td(width="30%")
-                a#teacher_information.editable.editable-click(href='#') 林广艳，贾经冬
-            tr
-              td(width="30%") 课程信息
-              td(width="30%")
-                a#course_information.editable.editable-click(href='#') 敏捷过程Scrum模型与教务系统开发
-
-block scripts
-        script(type='text/javascript').
-          $(document).ready(function () {
+$(document).ready(function () {
 
             var x;
+            var path = '/teacher/course_info';
             // 1
             $('#course_name').editable({
                 type: 'text',
@@ -66,7 +13,7 @@ block scripts
                 title: "编辑",
                 url: function(para){
                     x = para.value;
-                    return $.post('http:/127.0.0.1/teacher/information', {
+                    return $.post(path, {
                         course_id: "1",
                         course_name:x,
                         course_start_time: $('#course_start_time').text(),
@@ -104,7 +51,7 @@ block scripts
                   title: "编辑",
                   url: function (para) {
                       x = para.value;
-                      return $.post('http:/127.0.0.1/teacher/information', {
+                      return $.post(path, {
                               course_id: "1",
                               course_name: $('#course_name').text(),
                               course_start_time: x,
@@ -142,7 +89,7 @@ block scripts
                   title: "编辑",
                   url: function (para) {
                       x = para.value;
-                      return $.post('http:/127.0.0.1/teacher/information', {
+                      return $.post(path, {
                               course_id: "1",
                               course_name: $('#course_name').text(),
                               course_start_time: $('#course_start_time').text(),
@@ -180,7 +127,7 @@ block scripts
                   title: "编辑",
                   url: function (para) {
                       x = para.value;
-                      return $.post('http:/127.0.0.1/teacher/information', {
+                      return $.post(path, {
                               course_id: "1",
                               course_name: $('#course_name').text(),
                               course_start_time: $('#course_start_time').text(),
@@ -218,7 +165,7 @@ block scripts
                   title: "编辑",
                   url: function (para) {
                       x = para.value;
-                      return $.post('http:/127.0.0.1/teacher/information', {
+                      return $.post(path, {
                               course_id: "1",
                               course_name: $('#course_name').text(),
                               course_start_time: $('#course_start_time').text(),
@@ -256,7 +203,7 @@ block scripts
                   title: "编辑",
                   url: function (para) {
                       x = para.value;
-                      return $.post('http:/127.0.0.1/teacher/information', {
+                      return $.post(path, {
                               course_id: "1",
                               course_name: $('#course_name').text(),
                               course_start_time: $('#course_start_time').text(),
@@ -294,7 +241,7 @@ block scripts
                   title: "编辑",
                   url: function (para) {
                       x = para.value;
-                      return $.post('http:/127.0.0.1/teacher/information', {
+                      return $.post(path, {
                               course_id: "1",
                               course_name: $('#course_name').text(),
                               course_start_time: $('#course_start_time').text(),
@@ -332,7 +279,7 @@ block scripts
                   title: "编辑",
                   url: function (para) {
                       x = para.value;
-                      return $.post('http:/127.0.0.1/teacher/information', {
+                      return $.post(path, {
                               course_id: "1",
                               course_name: $('#course_name').text(),
                               course_start_time: $('#course_start_time').text(),
@@ -370,7 +317,7 @@ block scripts
                   title: "编辑",
                   url: function (para) {
                       x = para.value;
-                      return $.post('http:/127.0.0.1/teacher/information', {
+                      return $.post(path, {
                               course_id: "1",
                               course_name: $('#course_name').text(),
                               course_start_time: $('#course_start_time').text(),

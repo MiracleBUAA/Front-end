@@ -5,7 +5,7 @@ var express = require('express');
 var router =  express.Router();
 
 router.get('/', function(req, res, next) {
-    res.render('index', { title: 'student' });
+    res.render('layout_student',{title:'Ottcs学生版'});
 });
 
 module.exports = router;
