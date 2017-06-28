@@ -1,0 +1,53 @@
+// By ZhuFu on 20170627
+
+extends layout_teacher
+
+block styles
+
+block content
+        .page-heading
+          h3
+            | 设置课程信息
+            small 软件工程敏捷开发实践
+          ul.breadcrumb
+            li
+              a(href='#') 课程信息
+            li.active 设置课程信息
+
+        table#info.table.table-bordered.table-striped(style="clear: both")
+          tbody
+            tr
+              td(width="30%") 课程名称
+              td(width="30%")
+                a#task.editable.editable-click(href="#", data-type="text", data-pk="1", data-title="编辑") 完成团队敏捷开发项目
+            tr
+              td(width="30%") 开始时间
+              td(width="30%")
+                a#startTime.editable.editable-click(href='#', data-type="text", data-pk="1", data-title="编辑") 2017-06-25
+            tr
+              td(width="30%") 结束时间
+              td(width="30%")
+                a#endTime.editable.editable-click(href='#', data-type="text", data-pk="1", data-title="编辑") 2017-07-05
+            tr
+              td(width="30%") 学时
+              td(width="30%")
+                a#teachHours.editable.editable-click(href='#', data-type="text", data-pk="1", data-title="编辑") 20&nbsp学时
+            tr
+              td(width="30%") 学分
+              td(width="30%")
+                a#point.editable.editable-click(href='#', data-type="text", data-pk="1", data-title="编辑") 2 学分
+            tr
+              td(width="30%") 上课地点
+              td(width="30%")
+                a#place.editable.editable-click(href='#', data-type="text", data-pk="1", data-title="编辑") 北航学院路工训中心317
+
+block scripts
+        script(type='text/javascript').
+          $(document).ready(function () {
+            $('#task').editable();
+            $('#startTime').editable();
+            $('#endTime').editable();
+            $('#teachHours').editable();
+            $('#point').editable();
+            $('#place').editable();
+          });
