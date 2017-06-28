@@ -1,0 +1,122 @@
+//
+   Created by 胡晟 on 2017/6/28.
+
+extends ../layout_teacher
+
+
+block styles
+  link(href='/css/jquery.stepy.css', rel='stylesheet')
+  // pickers css
+  link(rel='stylesheet', type='text/css', href='/js/bootstrap-datepicker/css/datepicker-custom.css')
+  link(rel='stylesheet', type='text/css', href='/js/bootstrap-timepicker/css/timepicker.css')
+  link(rel='stylesheet', type='text/css', href='/js/bootstrap-colorpicker/css/colorpicker.css')
+  link(rel='stylesheet', type='text/css', href='/js/bootstrap-daterangepicker/daterangepicker-bs3.css')
+  link(rel='stylesheet', type='text/css', href='/js/bootstrap-datetimepicker/css/datetimepicker-custom.css')
+
+block scripts
+
+  script.
+    /*=====STEPY WIZARD====*/
+    $(function () {
+        $('#default').stepy({
+            backLabel: 'Previous',
+            block: true,
+            nextLabel: 'Next',
+            titleClick: true,
+            titleTarget: '.stepy-tab'
+        });
+    });
+
+  //pickers plugins
+  script(type='text/javascript', src='/js/bootstrap-datepicker/js/bootstrap-datepicker.js')
+  script(type='text/javascript', src='/js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js')
+  script(type='text/javascript', src='/js/bootstrap-daterangepicker/moment.min.js')
+  script(type='text/javascript', src='/js/bootstrap-daterangepicker/daterangepicker.js')
+  script(type='text/javascript', src='/js/bootstrap-colorpicker/js/bootstrap-colorpicker.js')
+  script(type='text/javascript', src='/js/bootstrap-timepicker/js/bootstrap-timepicker.js')
+  // pickers initialization
+  script(src='/js/pickers-init.js')
+
+  //wizard
+  script(src='/js/jquery.validate.min.js')
+  script(src='/js/jquery.stepy.js')
+
+
+
+  script(src='/js/homework_new.js')
+
+
+
+
+
+
+
+
+
+
+
+block content
+  // page heading start
+  .page-heading
+    h3
+      | Form Wizard
+    ul.breadcrumb
+      li
+        a(href='#') Forms
+      li.active Form Wizard
+  // page heading end
+  hr
+  // body wrapper start
+  .wrapper
+    .row
+      .col-md-12
+        .square-widget
+          .widget-container
+            .stepy-tab
+            form#default.form-horizontal
+              fieldset(title='Initial Info')
+                legend Personal Information
+                .form-group
+                  label.col-md-2.col-sm-2.control-label 作业标题
+                  .col-md-6.col-sm-6
+                    input.form-control(type='text', placeholder='Full Name')
+                .form-group
+                  label.col-md-2.col-sm-2.control-label 开始时间
+                  .col-md-4
+                    .input-group.date.form_datetime-component
+                      input.form-control(type='text', readonly='', size='16')
+                      span.input-group-btn
+                        button.btn.btn-primary.date-set(type='button')
+                          i.fa.fa-calendar
+                .form-group
+                  label.col-md-2.col-sm-2.control-label 截止时间
+                  .col-md-4
+                    .input-group.date.form_datetime-component
+                      input.form-control(type='text', readonly='', size='16')
+                      span.input-group-btn
+                        button.btn.btn-primary.date-set(type='button')
+                          i.fa.fa-calendar
+              fieldset(title='Contact Info')
+                legend Contact Details
+                .form-group
+                  label.col-md-2.col-sm-2.control-label 作业分值
+                  .col-md-6.col-sm-6
+                    input.form-control(type='text', placeholder='Phone')
+                .form-group
+                  label.col-md-2.col-sm-2.control-label 允许提交次数
+                  .col-md-6.col-sm-6
+                    input.form-control(type='text', placeholder='Mobile')
+                .form-group
+                  label.col-md-2.col-sm-2.control-label 要求和指导
+                  .col-md-6.col-sm-6
+                    textarea.form-control(rows='5', cols='60')
+              fieldset(title='Final Step')
+                legend Final Step Information
+                .form-group
+                  .col-md-12
+                    p Congratulations This is the Final Step
+              button.btn.btn-info.finish
+                | Finish
+  // body wrapper end
+
+

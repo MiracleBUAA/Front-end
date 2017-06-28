@@ -4,8 +4,8 @@
 
 //  页面侧边栏选中
 $(document).ready(function () {
-    document.getElementById("course_info").className += " nav-active";
-    document.getElementById("student_list").className += " active";
+    document.getElementById("course_li").className += " nav-active";
+    document.getElementById("student_list_li").className += " active";
 });
 
 
