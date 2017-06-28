@@ -73,7 +73,7 @@ block content
                     header.panel-heading
                         | 名单
                         span.pull-right(style='margin-bottom: -50px')
-                            .form-group
+                            form#upload_form.form-group(enctype="multipart/form-data")
                                 button#upload_button.btn.btn-default(type='button', style='height: 25px;margin-right: 10px;padding-top: 2px; ')
                                     i.fa.fa-cloud-upload
                                     |  Upload

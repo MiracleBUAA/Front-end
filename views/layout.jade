@@ -38,7 +38,7 @@ html(lang='en')
               img.media-object(alt='', src='/images/photos/user-avatar.png')
               .media-body
                 h4
-                  a(href='#') John Doe
+                  a(href='#') #{username}
                 span "Hello There..."
             h5.left-nav-title Account Information
             ul.nav.nav-pills.nav-stacked.custom-nav
@@ -130,7 +130,7 @@ html(lang='en')
                           img(src='/images/photos/user1.png', alt='')
                         span.desc
                           span.name
-                            | John Doe
+                            | #{username}
                             span.badge.badge-success new
                           span.msg Lorem ipsum dolor sit amet...
                     li
@@ -199,7 +199,7 @@ html(lang='en')
               li
                 a.btn.btn-default.dropdown-toggle(href='#', data-toggle='dropdown')
                   img(src='/images/photos/user-avatar.png', alt='')
-                  |                             John Doe
+                  |                             #{username}
                   span.caret
                 ul.dropdown-menu.dropdown-menu-usermenu.pull-right
                   li

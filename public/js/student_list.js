@@ -6,23 +6,22 @@
 $(document).ready(function () {
     document.getElementById("course_info").className += " nav-active";
     document.getElementById("student_list").className += " active";
-})
+});
+
+
 // 点击上传按钮
-$(document).ready(function(){
-    $("#upload_button").on("click",function(){
-        console.log("111");
-        var oFiles = document.querySelector("#upload_file").files;
-        var formData = new FormData();
+$('#upload_button').click(function () {
+    $.ajax({
+        url: '/teacher/student_list',
+        type: 'POST',
+        cache: false,
+        data: new FormData($('#upload_form')[0]),
+        processData: false,
+        contentType: false,
 
-        for (var i = 0, file; file = oFiles[i]; i++) {
-            formData.append(file.name, file);
+        success : function(res) {
+            alert("上传成功！");
         }
-
-        var xhr = new XMLHttpRequest();
-
-        xhr.open("POST", "/teacher/student_list", true);
-        // 发送表单数据
-        xhr.send(formData);
 
     });
 });
