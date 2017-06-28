@@ -9,5 +9,6 @@ router.get('/', function(req, res, next) {
 
 router.use('/layout',controller.layout);
 router.use('/login', controller.login);
+router.use('/student_list', controller.student_list);
 
 module.exports = router;
