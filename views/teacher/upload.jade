@@ -5,7 +5,7 @@ block styles
 block content
         .page-heading
           h3
-            | 上传课程资源
+            | 上传课程资源x
             small 软件工程敏捷开发实践
           ul.breadcrumb
             li
@@ -196,7 +196,4 @@ block content
 block scripts
   script(src="/js/amazeui.js", type="text/javascript")
   script(type="text/javascript").
-    $(document).ready(function() {
-      document.getElementById("stickyleftside").style.backgroundColor = "#424f65";
-    });
-  // script(src="/js/app.js", type="text/javascript")
+    setTimeout(function(){document.getElementById("stickyleftside").style.backgroundColor = "#424f65";},0);
