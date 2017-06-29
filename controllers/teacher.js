@@ -73,10 +73,12 @@ router.get('/student_list',function (req,res,next) {
     //     }
     // })
 }).post('/student_list',function (req,res,next) {
-    var url = "http://localhost:8080/teacher/student_list";
+    var url = "http://localhost:8080/teacher/student_list?uid=";
+    var teacher = req.cookies.teacher;
+    url += teacher.uid
     // console.log(req.body.file);
     // res.redirect('/teacher/student_list');
-    var r = request.post('http://localhost:8080/teacher/student_list',function (error,response,body) {
+    var r = request.post(url,function (error,response,body) {
         if(error) console.log(error);
         console.log(response.statusCode);
         if (!error && response.statusCode == 200) {

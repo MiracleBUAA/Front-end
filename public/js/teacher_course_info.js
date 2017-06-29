@@ -39,9 +39,10 @@ $(document).ready(function () {
                     else
                         $('#course_name').html(x);
                 },
-                error: function(response){
-                    alert('Fail to submit!');
-                }
+                // error: function(response){
+                //     alert(response);
+                //     alert('Fail to submit!');
+                // }
             });
             // 2
               $('#course_start_time').editable({
@@ -77,9 +78,10 @@ $(document).ready(function () {
                       else
                           $('#course_start_time').html(x);
                   },
-                  error: function (response) {
-                      alert('Fail to submit!');
-                  }
+                  // error: function (response) {
+                  //     alert(response);alert(response);
+                  //     alert('Fail to submit!');
+                  // }
               });
               // 3
               $('#course_end_time').editable({
@@ -115,9 +117,10 @@ $(document).ready(function () {
                       else
                           $('#course_end_time').html(x);
                   },
-                  error: function (response) {
-                      alert('Fail to submit!');
-                  }
+                  // error: function (response) {
+                  //     alert(response);
+                  //     alert('Fail to submit!');
+                  // }
               });
               // 4
               $('#course_hours').editable({
@@ -153,9 +156,10 @@ $(document).ready(function () {
                       else
                           $('#course_hours').html(x);
                   },
-                  error: function (response) {
-                      alert('Fail to submit!');
-                  }
+                  // error: function (response) {
+                  //     alert(response);
+                  //     alert('Fail to submit!');
+                  // }
               });
               // 5
               $('#credit').editable({
@@ -191,9 +195,10 @@ $(document).ready(function () {
                       else
                           $('#credit').html(x);
                   },
-                  error: function (response) {
-                      alert('Fail to submit!');
-                  }
+                  // error: function (response) {
+                  //     alert(response);
+                  //     alert('Fail to submit!');
+                  // }
               });
               // 6
               $('#course_location').editable({
@@ -229,9 +234,10 @@ $(document).ready(function () {
                       else
                           $('#course_location').html(x);
                   },
-                  error: function (response) {
-                      alert('Fail to submit!');
-                  }
+                  // error: function (response) {
+                  //     alert(response);
+                  //     alert('Fail to submit!');
+                  // }
               });
               // 7
               $('#team_limit_information').editable({
@@ -267,9 +273,10 @@ $(document).ready(function () {
                       else
                           $('#team_limit_information').html(x);
                   },
-                  error: function (response) {
-                      alert('Fail to submit!');
-                  }
+                  // error: function (response) {
+                  //     alert(response);
+                  //     alert('Fail to submit!');
+                  // }
               });
               // 8
               $('#teacher_information').editable({
@@ -305,9 +312,10 @@ $(document).ready(function () {
                       else
                           $('#teacher_information').html(x);
                   },
-                  error: function (response) {
-                      alert('Fail to submit!');
-                  }
+                  // error: function (response) {
+                  //     alert(response);
+                  //     alert('Fail to submit!');
+                  // }
               });
               // 9
               $('#course_information').editable({
@@ -343,9 +351,10 @@ $(document).ready(function () {
                       else
                           $('#course_information').html(x);
                   },
-                  error: function (response) {
-                      alert('Fail to submit!');
-                  }
+                  // error: function (response) {
+                  //     alert(response);
+                  //     alert('Fail to submit!');
+                  // }
               });
           });
 
