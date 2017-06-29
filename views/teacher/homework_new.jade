@@ -28,17 +28,6 @@ block scripts
         });
     });
 
-
-    function sub() {
-        var x= $("#h_title").attr("value");
-
-        alert(x);
-    }
-
-    $()
-
-
-
   //pickers plugins
   script(type='text/javascript', src='/js/bootstrap-datepicker/js/bootstrap-datepicker.js')
   script(type='text/javascript', src='/js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js')
@@ -118,7 +107,8 @@ block content
                 .form-group
                   .col-md-12
                     p 点击“确认发布”后，全体学生可以看到作业要求。
-              input.btn.btn-info.finish(type='submit')
+              button.btn.btn-info.finish(type='submit')
+                |确认发布
 
 
   // body wrapper end
