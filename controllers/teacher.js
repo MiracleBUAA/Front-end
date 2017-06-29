@@ -117,4 +117,7 @@ router.get('/homework_new',function (req,res,next) {
 
 })
 
+router.get("/upload",function (req, res, next) {
+    res.render("teacher/upload",{title:"上传课程资源"});
+})
 module.exports = router;

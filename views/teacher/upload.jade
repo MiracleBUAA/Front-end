@@ -1,0 +1,202 @@
+extends  ../layout_teacher
+
+block styles
+  link(rel="stylesheet", href="/css/amazeui.css")
+block content
+        .page-heading
+          h3
+            | 上传课程资源
+            small 软件工程敏捷开发实践
+          ul.breadcrumb
+            li
+              a(href='#') 课程资源
+            li.active 文件列表
+
+        .admin-content
+          .am-cf.am-padding
+            .am-fl.am-cf
+              strong.am-text-primary.am-text-lg 表格
+              |  /
+              small Table
+
+          .am-g
+            .am-u-md-6.am-cf
+              .am-fl.am-cf
+                .am-btn-toolbar.am-fl
+                  .am-btn-group.am-btn-group-xs
+                    input#nosee(type="file", style="display: none;")
+                    button.am-btn.am-btn-default(type="button", onclick="nosee.click()")
+                      span.am-icon-plus
+                      |  新增
+                    button.am-btn.am-btn-default(type="button")
+                      span.am-icon-save
+                      |  保存
+                    button.am-btn.am-btn-default(type="button")
+                      span.am-icon-archive
+                      |  审核
+                    button.am-btn.am-btn-default(type="button")
+                      span.am-icon-trash-o
+                      |  删除
+                  script(type="text/javascript").
+                    function getFileName(s){
+                    var pos=s.lastIndexOf("\\");
+                    return s.substring(pos+1);
+                    }
+                    function getSuffix(s){
+                    var pos=s.lastIndexOf(".");
+                    s = s.substring(pos+1);
+                    if(s == "doc" || s == "docx" || s == "txt" || s == "pdf"){
+                    return "文本文档";
+                    }
+                    if(s == "xls" || s == "xlsx" || s == "csv"){
+                    return "电子表格";
+                    }
+                    if(s == "ppt" || s == "pptx"){
+                    return "幻灯片";
+                    }
+                    if(s == "png" || s == "jpg" || s == "gif" || s == "bmp"){
+                    return "图片";
+                    }
+                    if(s == "mp3"){
+                    return "音频";
+                    }
+                    return s;
+                    }
+                    function getNowFormatDate() {
+                    var date = new Date();
+                    var seperator1 = "-";
+                    var seperator2 = ":";
+                    var month = date.getMonth() + 1;
+                    var strDate = date.getDate();
+                    if (month >= 1 && month <= 9) {
+                    month = "0" + month;
+                    }
+                    if (strDate >= 0 && strDate <= 9) {
+                    strDate = "0" + strDate;
+                    }
+                    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+                    + " " + date.getHours() + seperator2 + date.getMinutes()
+                    + seperator2 + date.getSeconds();
+                    return currentdate;
+                    }
+                    var nosee = document.getElementById("nosee");
+                    nosee.onchange=function(){
+                    var list = document.getElementById("list");
+                    var tot = list.children.length;
+                    var na = getFileName(this.value);
+                    var flag = getSuffix(na);
+                    var id = ++ tot;
+                    var time = getNowFormatDate();
+                    var tr=document.createElement("tr");
+                    tr.innerHTML="<td><input type='checkbox'></td><td>"+id+"</td><td><a href='#''>"+na+"</a></td><td>"+flag+"</td><td>林老师</td><td>"+time+"</td><td><div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'><button class='am-btn am-btn-default am-btn-xs am-text-secondary'><span class='am-icon-pencil-square-o'></span> 编辑</button><button class='am-btn am-btn-default am-btn-xs'><span class='am-icon-copy'></span> 复制</button><button class='am-btn am-btn-default am-btn-xs am-text-danger' onclick='delRow(this)'><span class='am-icon-trash-o'></span> 删除</button></div></div></td>";
+                    document.getElementById("list").appendChild(tr);
+                    document.getElementById("am-cf").innerHTML = "共"+tot+"条记录";
+                    }
+                    function getRowObj(obj){
+                    var i = 0;
+                    while(obj.tagName.toLowerCase() != "tr"){
+                    obj = obj.parentNode;
+                    if(obj.tagName.toLowerCase() == "table")return null;
+                    }
+                    return obj;
+                    }
+                    //根据得到的行对象得到所在的行数
+                    function getRowNo(obj){
+                    var trObj = getRowObj(obj);
+                    var trArr = trObj.parentNode.children;
+                    for(var trNo= 0; trNo < trArr.length; trNo++){
+                    if(trObj == trObj.parentNode.children[trNo]){
+                    alert(trNo+1);
+                    }
+                    }
+                    }
+                    //删除行
+                    function delRow(obj){
+                    var tr = this.getRowObj(obj);
+                    if(tr != null){
+                    tr.parentNode.removeChild(tr);
+                    var list = document.getElementById("list");
+                    var tot = list.children.length;
+                    document.getElementById("am-cf").innerHTML = "共"+tot+"条记录";
+                    }else{
+                    throw new Error("the given object is not contained by the table");
+                    }
+                    }
+                  .am-form-group.am-margin-left.am-fl
+                    select
+                      option(value="option1", selected="selected") 所有类别
+                      option(value="option2") 文本文档
+                      option(value="option3") 音频
+                      option(value="option3") 图片
+                      option(value="option3") 电子表格
+                      option(value="option3") 幻灯片
+                      option(value="option3") 超极本
+            .am-u-md-3.am-cf
+              .am-fr
+                .am-input-group.am-input-group-sm
+                  input.am-form-field(type="text")
+                  span.am-input-group-btn
+                    button.am-btn.am-btn-default(type="button") 搜索
+          .am-g
+            .am-u-sm-12
+              form.am-form
+                table.am-table.am-table-striped.am-table-hover.table-main
+                  thead
+                    tr
+                      th.table-check
+                        input(type="checkbox")
+                      th.table-id ID
+                      th.table-title 标题
+                      th.table-type 类别
+                      th.table-author 作者
+                      th.table-date 修改日期
+                      th.table-set 操作
+                  tbody#list
+                    tr
+                      td
+                        input(type="checkbox")
+                      td 1
+                      td
+                        a(href="#") 在线协同教学平台-原始业务需求20170622.docx
+                      td 文本文档
+                      td 林老师
+                      td 2017年06月25日 10:28:47
+                      td
+                        .am-btn-toolbar
+                          .am-btn-group.am-btn-group-xs
+                            button.am-btn.am-btn-default.am-btn-xs.am-text-secondary
+                              span.am-icon-pencil-square-o
+                              |  编辑
+                            button.am-btn.am-btn-default.am-btn-xs
+                              span.am-icon-copy
+                              |  复制
+                            button.am-btn.am-btn-default.am-btn-xs.am-text-danger(onclick="delRow(this)")
+                              span.am-icon-trash-o
+                              |  删除
+                #am-cf.am-cf
+                  | 共 1 条记录
+                  .am-fr
+                    ul.am-pagination
+                      li.am-disabled
+                        a(href="#") «
+                      li.am-active
+                        a(href="#") 1
+                      li
+                        a(href="#") 2
+                      li
+                        a(href="#") 3
+                      li
+                        a(href="#") 4
+                      li
+                        a(href="#") 5
+                      li
+                        a(href="#") »
+
+
+block scripts
+  script(src="/js/amazeui.js", type="text/javascript")
+  script(type="text/javascript").
+    $(document).ready(function() {
+      document.getElementById("stickyleftside").style.backgroundColor = "#424f65";
+    });
+  // script(src="/js/app.js", type="text/javascript")
