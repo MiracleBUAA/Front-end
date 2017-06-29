@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
     //res.render('layout_teacher',{title:'Ottcs教师版'});
     var teacher = req.cookies.teacher;
     if(teacher){
-        res.render('layout_teacher',{title:'Ottcs教师版',username:teacher.username});
+        res.render('layout_teacher',{title:'Ottcs教师版',username:teacher.uid});
     }
     else{
         res.redirect('/login');
@@ -24,7 +24,12 @@ router.get('/course_info',function (req,res,next) {
     request(url,function (error,response,body) {
         var dataJson = eval("(" + body + ")");
         if(!error && response.statusCode == 200){
-            res.render('teacher/course_info',{ data : dataJson.data });
+            var teacher = req.cookies.teacher;
+            if(teacher){
+                res.render('teacher/course_info',{data : dataJson.data,title:'Ottcs教师版',username:teacher.uid});
+            }else{
+                res.redirect('/login');
+            }
         }
     })
 }).post('/course_info',function (req,res,next) {
@@ -61,7 +66,12 @@ router.get('/course_info',function (req,res,next) {
 });
 
 router.get('/student_list',function (req,res,next) {
-    res.render('teacher/student_list');
+    var teacher = req.cookies.teacher;
+    if(teacher){
+        res.render('teacher/student_list',{title:'Ottcs教师版',username:teacher.uid});
+    } else{
+        res.redirect('/login');
+    }
     // var url = "http://localhost:8080/teacher/student_list"
     // request(url,function (error,response,body) {
     //     var dataJson = eval("(" + body + ")");
@@ -104,7 +114,12 @@ router.get('/student_list',function (req,res,next) {
 });
 
 router.get('/resource',function (req,res,next) {
-    res.render('teacher/upload',{title:"Octts教师版"});
+    var teacher = req.cookies.teacher;
+    if(teacher){
+        res.render('teacher/upload',{title:'Ottcs教师版',username:teacher.uid});
+    } else{
+        res.redirect('/login');
+    }
     // var url = "http://localhost:8080/teacher/resource";
     // request(url,function (error,response,body) {
     //     var dataJson = eval("(" + body + ")");
@@ -123,12 +138,22 @@ router.get('/homework_list',function (req,res,next) {
 })
 
 router.get('/homework_new',function (req,res,next) {
-    res.render('teacher/homework_new',{title:'Ottcs教师版'});
+    var teacher = req.cookies.teacher;
+    if(teacher){
+        res.render('teacher/homework_new',{title:'Ottcs教师版',username:teacher.uid});
+    } else{
+        res.redirect('/login');
+    }
 }).post('/homework_new',function (req,res,next) {
 
 })
 
 router.get("/upload",function (req, res, next) {
-    res.render("teacher/upload",{title:"上传课程资源"});
+    var teacher = req.cookies.teacher;
+    if(teacher){
+        res.render('teacher/upload',{title:'Ottcs教师版',username:teacher.uid});
+    } else{
+        res.redirect('/login');
+    }
 })
 module.exports = router;

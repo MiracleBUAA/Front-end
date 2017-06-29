@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
     }
     var teacher = req.cookies.teacher;
     if(teacher){
-        res.render('layout_student',{title:'Ottcs教师版',username:teacher.uid});
+        res.render('layout_teacher',{title:'Ottcs教师版',username:teacher.uid});
     }
     res.render('login', { title: 'Octts团队平台' });
 });
