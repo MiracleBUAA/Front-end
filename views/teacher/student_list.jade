@@ -35,6 +35,20 @@ block styles
 
 
 block scripts
+
+    //script.
+    //
+    //    $(function () {
+    //        $('#dynamic-table').DataTable({
+    //            "oLanguage": {
+    //                "sSearch": "搜索"
+    //            }
+    //
+    //       });
+    //    });
+
+
+
     // icheck
     script(src='/js/iCheck/jquery.icheck.js')
     script(src='/js/icheck-init.js')
@@ -81,7 +95,7 @@ block content
                     .panel-body
                         .adv-table
                             table#dynamic-table.display.table.table-bordered.table-striped
-                                -var students=[{id:'14211093',name:"胡晟",sex:"男",class_id:'142114'},{id:'14211091',name:"孙一峰",sex:"男",class_id:'F91'},{id:'14211092',name : "孙一峰他儿子",sex:"男",class_id:'F92'},{id:'14211094',name:"黄旭东",sex:"男",class_id:'142115'}];
+                                -var students=[{id:'14211093',name:"胡晟",sex:"男",class_id:'142114'},{id:'14211093',name:"胡晟",sex:"男",class_id:'142114'},{id:'14211093',name:"胡晟",sex:"男",class_id:'142114'},{id:'14211093',name:"胡晟",sex:"男",class_id:'142114'},{id:'14211093',name:"胡晟",sex:"男",class_id:'142114'},{id:'14211093',name:"胡晟",sex:"男",class_id:'142114'},{id:'14211093',name:"胡晟",sex:"男",class_id:'142114'},{id:'14211093',name:"胡晟",sex:"男",class_id:'142114'},{id:'14211093',name:"胡晟",sex:"男",class_id:'142114'},{id:'14211091',name:"孙一峰",sex:"男",class_id:'F91'},{id:'14211092',name : "孙一峰他儿子",sex:"男",class_id:'F92'},{id:'14211094',name:"黄旭东",sex:"男",class_id:'142115'}];
                                 thead
                                     tr
                                         th 学号
@@ -97,12 +111,12 @@ block content
                                             td #{item.sex}
                                             td #{item.class_id}
 
-                                tfoot
-                                    tr
-                                        th 学号
-                                        th 姓名
-                                        th 性别
-                                        th 班级
+                                //tfoot
+                                //    tr
+                                //        th 学号
+                                //        th 姓名
+                                //        th 性别
+                                //        th 班级
 
     // body wrapper end
 

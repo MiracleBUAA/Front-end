@@ -48,9 +48,11 @@ function fire_ajax_submit() {
 
     var data = new FormData(form);
 
+/*
     for (var value11 of data.values()) {
         console.log(value11);
     }
+*/
 
 
     $("#upload_button").prop("disabled", true);
