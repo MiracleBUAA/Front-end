@@ -48,9 +48,7 @@ router.post('/check', function(req, res, next){
     });
 });
 //处理登出路由
-router.get('/logout',function (req,res,next) {
-    res.clearCookie('student',{ path: '/' });
-    res.clearCookie('teacher',{ path: '/' });
+router.post('/logout',function (req,res,next) {
     res.redirect('/login');
 })
 
