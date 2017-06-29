@@ -5,7 +5,7 @@ block styles
 block content
         .page-heading
           h3
-            | 上传课程资源
+            | 上传课程资源x
             small 软件工程敏捷开发实践
           ul.breadcrumb
             li
@@ -39,90 +39,101 @@ block content
                       |  删除
                   script(type="text/javascript").
                     function getFileName(s){
-                    var pos=s.lastIndexOf("\\");
-                    return s.substring(pos+1);
+                      var pos=s.lastIndexOf("\\");
+                      return s.substring(pos+1);
                     }
                     function getSuffix(s){
-                    var pos=s.lastIndexOf(".");
-                    s = s.substring(pos+1);
-                    if(s == "doc" || s == "docx" || s == "txt" || s == "pdf"){
-                    return "文本文档";
-                    }
-                    if(s == "xls" || s == "xlsx" || s == "csv"){
-                    return "电子表格";
-                    }
-                    if(s == "ppt" || s == "pptx"){
-                    return "幻灯片";
-                    }
-                    if(s == "png" || s == "jpg" || s == "gif" || s == "bmp"){
-                    return "图片";
-                    }
-                    if(s == "mp3"){
-                    return "音频";
-                    }
-                    return s;
+                      var pos=s.lastIndexOf(".");
+                      s = s.substring(pos+1);
+                      if(s == "doc" || s == "docx" || s == "txt" || s == "pdf"){
+                        return "文本文档";
+                      }
+                      if(s == "xls" || s == "xlsx" || s == "csv"){
+                        return "电子表格";
+                      }
+                      if(s == "ppt" || s == "pptx"){
+                        return "幻灯片";
+                      }
+                      if(s == "png" || s == "jpg" || s == "gif" || s == "bmp"){
+                        return "图片";
+                      }
+                      if(s == "mp3"){
+                        return "音频";
+                      }
+                      return s;
                     }
                     function getNowFormatDate() {
-                    var date = new Date();
-                    var seperator1 = "-";
-                    var seperator2 = ":";
-                    var month = date.getMonth() + 1;
-                    var strDate = date.getDate();
-                    if (month >= 1 && month <= 9) {
-                    month = "0" + month;
-                    }
-                    if (strDate >= 0 && strDate <= 9) {
-                    strDate = "0" + strDate;
-                    }
-                    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
-                    + " " + date.getHours() + seperator2 + date.getMinutes()
-                    + seperator2 + date.getSeconds();
-                    return currentdate;
+                      var date = new Date();
+                      var seperator1 = "-";
+                      var seperator2 = ":";
+                      var month = date.getMonth() + 1;
+                      var strDate = date.getDate();
+                      if (month >= 1 && month <= 9) {
+                        month = "0" + month;
+                      }
+                      if (strDate >= 0 && strDate <= 9) {
+                        strDate = "0" + strDate;
+                      }
+                      var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+                      + " " + date.getHours() + seperator2 + date.getMinutes()
+                      + seperator2 + date.getSeconds();
+                      return currentdate;
                     }
                     var nosee = document.getElementById("nosee");
-                    nosee.onchange=function(){
-                    var list = document.getElementById("list");
-                    var tot = list.children.length;
-                    var na = getFileName(this.value);
-                    var flag = getSuffix(na);
-                    var id = ++ tot;
-                    var time = getNowFormatDate();
-                    var tr=document.createElement("tr");
-                    tr.innerHTML="<td><input type='checkbox'></td><td>"+id+"</td><td><a href='#''>"+na+"</a></td><td>"+flag+"</td><td>林老师</td><td>"+time+"</td><td><div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'><button class='am-btn am-btn-default am-btn-xs am-text-secondary'><span class='am-icon-pencil-square-o'></span> 编辑</button><button class='am-btn am-btn-default am-btn-xs'><span class='am-icon-copy'></span> 复制</button><button class='am-btn am-btn-default am-btn-xs am-text-danger' onclick='delRow(this)'><span class='am-icon-trash-o'></span> 删除</button></div></div></td>";
-                    document.getElementById("list").appendChild(tr);
-                    document.getElementById("am-cf").innerHTML = "共"+tot+"条记录";
+                      nosee.onchange=function(){
+                      var list = document.getElementById("list");
+                      var tot = list.children.length;
+                      var na = getFileName(this.value);
+                      var flag = getSuffix(na);
+                      var id = ++ tot;
+                      var time = getNowFormatDate();
+                      var tr=document.createElement("tr");
+                      tr.innerHTML="<td><input type='checkbox'></td><td>"+id+"</td><td><a href='#''>"+na+"</a></td><td>"+flag+"</td><td>林老师</td><td>"+time+"</td><td><div class='am-btn-toolbar'><div class='am-btn-group am-btn-group-xs'><button class='am-btn am-btn-default am-btn-xs am-text-secondary'><span class='am-icon-pencil-square-o'></span> 编辑</button><button class='am-btn am-btn-default am-btn-xs'><span class='am-icon-copy'></span> 复制</button><button class='am-btn am-btn-default am-btn-xs am-text-danger' onclick='delRow(this)'><span class='am-icon-trash-o'></span> 删除</button></div></div></td>";
+                      document.getElementById("list").appendChild(tr);
+                      tick();
                     }
                     function getRowObj(obj){
-                    var i = 0;
-                    while(obj.tagName.toLowerCase() != "tr"){
-                    obj = obj.parentNode;
-                    if(obj.tagName.toLowerCase() == "table")return null;
-                    }
-                    return obj;
+                      var i = 0;
+                      while(obj.tagName.toLowerCase() != "tr"){
+                        obj = obj.parentNode;
+                        if(obj.tagName.toLowerCase() == "table")return null;
+                      }
+                      return obj;
                     }
                     //根据得到的行对象得到所在的行数
                     function getRowNo(obj){
-                    var trObj = getRowObj(obj);
-                    var trArr = trObj.parentNode.children;
-                    for(var trNo= 0; trNo < trArr.length; trNo++){
-                    if(trObj == trObj.parentNode.children[trNo]){
-                    alert(trNo+1);
-                    }
-                    }
+                      var trObj = getRowObj(obj);
+                      var trArr = trObj.parentNode.children;
+                      for(var trNo= 0; trNo < trArr.length; trNo++){
+                        if(trObj == trObj.parentNode.children[trNo]){
+                          alert(trNo+1);
+                        }
+                      }
                     }
                     //删除行
                     function delRow(obj){
-                    var tr = this.getRowObj(obj);
-                    if(tr != null){
-                    tr.parentNode.removeChild(tr);
-                    var list = document.getElementById("list");
-                    var tot = list.children.length;
-                    document.getElementById("am-cf").innerHTML = "共"+tot+"条记录";
-                    }else{
-                    throw new Error("the given object is not contained by the table");
+                      var tr = this.getRowObj(obj);
+                      if(tr != null){
+                        tr.parentNode.removeChild(tr);
+                        tick();
+                      }else{
+                        throw new Error("the given object is not contained by the table");
+                      }
                     }
+                    function tick() {
+                        through();
                     }
-                  .am-form-group.am-margin-left.am-fl
+                    //遍历
+                    function through() {
+                      var tr = document.getElementById("list").children;
+                      var t = 0;
+                      for(var i = 0; i < tr.length; i++){
+                          tr[i].children[1].innerHTML = ++ t;
+                      }
+                      document.getElementById("am-cf").innerHTML = "共" + t + "条记录";
+                    }
+
+                 .am-form-group.am-margin-left.am-fl
                     select
                       option(value="option1", selected="selected") 所有类别
                       option(value="option2") 文本文档
@@ -166,10 +177,10 @@ block content
                           .am-btn-group.am-btn-group-xs
                             button.am-btn.am-btn-default.am-btn-xs.am-text-secondary
                               span.am-icon-pencil-square-o
-                              |  编辑
+                              |  分类
                             button.am-btn.am-btn-default.am-btn-xs
                               span.am-icon-copy
-                              |  复制
+                              |  下载
                             button.am-btn.am-btn-default.am-btn-xs.am-text-danger(onclick="delRow(this)")
                               span.am-icon-trash-o
                               |  删除
@@ -182,18 +193,17 @@ block content
                       li.am-active
                         a(href="#") 1
                       li
-                        a(href="#") 2
-                      li
-                        a(href="#") 3
-                      li
-                        a(href="#") 4
-                      li
-                        a(href="#") 5
-                      li
                         a(href="#") »
 
 
 block scripts
-  script(src="/js/amazeui.js", type="text/javascript")
+  //script(src="/js/amazeui.js", type="text/javascript")
   script(type="text/javascript").
-    setTimeout(function(){document.getElementById("stickyleftside").style.backgroundColor = "#424f65";},0);
+    setTimeout(function() {
+        $("#stickyleftside").css({
+            "background-color": "#424f65",
+            "fontFamily": "'Helvetica Neue',Helvetica,Arial,sans-serif",
+            "lineHeight": "20px",
+            "fontSize": "14px"
+        }, 0)
+    });
