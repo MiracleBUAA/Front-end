@@ -9287,7 +9287,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfo": "_START_ ~ _END_  &nbsp;&nbsp;&nbsp; 合计_TOTAL_ 人",
+			"sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
 		
 		
 			/**
@@ -9481,7 +9481,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sSearch": "检索：",
+			"sSearch": "Search:",
 		
 		
 			/**
