@@ -23,7 +23,6 @@ router.get('/course_info',function (req,res,next) {
     var url = "http://localhost:8080/teacher/course_information?course_id=1"
     request(url,function (error,response,body) {
         var dataJson = eval("(" + body + ")");
-        console.log(dataJson.data);
         if(!error && response.statusCode == 200){
             res.render('teacher/course_info',{ data : dataJson.data });
         }
@@ -50,12 +49,12 @@ router.get('/course_info',function (req,res,next) {
             +"&teacher_information=" + AsciiToUnicode(req.body.teacher_information)
             +"&course_information=" + AsciiToUnicode(req.body.course_information);
         console.log(url);
-
         request.post({url:url}, function(error, response, body) {
             console.log(response.statusCode);
             if(error) console.log(error);
             if (!error && response.statusCode == 200) {
                 console.log("111");
+                res.redirect('/teacher/course_info')
             }
         })
     }
@@ -73,10 +72,12 @@ router.get('/student_list',function (req,res,next) {
     //     }
     // })
 }).post('/student_list',function (req,res,next) {
-    var url = "http://localhost:8080/teacher/student_list";
+    var url = "http://localhost:8080/teacher/student_list?uid=";
+    var teacher = req.cookies.teacher;
+    url += teacher.uid
     // console.log(req.body.file);
     // res.redirect('/teacher/student_list');
-    var r = request.post('http://localhost:8080/teacher/student_list',function (error,response,body) {
+    var r = request.post(url,function (error,response,body) {
         if(error) console.log(error);
         console.log(response.statusCode);
         if (!error && response.statusCode == 200) {
@@ -103,7 +104,7 @@ router.get('/student_list',function (req,res,next) {
 });
 
 router.get('/resource',function (req,res,next) {
-    res.render('teacher/upload',{ title : "Octts教师版" });
+    res.render('teacher/upload',{title:"Octts教师版"});
     // var url = "http://localhost:8080/teacher/resource";
     // request(url,function (error,response,body) {
     //     var dataJson = eval("(" + body + ")");
@@ -124,7 +125,7 @@ router.get('/homework_list',function (req,res,next) {
 router.get('/homework_new',function (req,res,next) {
     res.render('teacher/homework_new',{title:'Ottcs教师版'});
 }).post('/homework_new',function (req,res,next) {
-    console.log(req.body);
+
 })
 
 router.get("/upload",function (req, res, next) {
