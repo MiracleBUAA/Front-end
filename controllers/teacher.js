@@ -20,36 +20,44 @@ router.get('/', function(req, res, next) {
 
 router.get('/course_info',function (req,res,next) {
     console.log("enter");
-    res.render('teacher/course_info',{title:'Ottcs教师版'});
-    // res.render('teacher/student_list', { title: 'student_list' });
-    // var url = "http://localhost:8080/teacher/course_infomation"
-    // request(url,function (error,response,body) {
-    //     var dataJson = eval("(" + body + ")");
-    //     if(!error && response.statusCode == 200){
-    //         res.render('teacher/course_info',{ course_info : dataJson });
-    //     }
-    // })
-}).post('/course_info',function (req,res,next) {
-    console.log("enter");
-    var url = "http://localhost:8080/teacher/course_information?course_id=1";
-    url += "&course_name=" + req.body.course_name
-        +"&course_start_time=" + req.body.course_start_time
-        +"&course_end_time=" + req.body.course_end_time
-        +"&course_hour=" + req.body.course_hours
-        +"&course_location=" + req.body.course_location
-        +"&credit=" + req.body.credit
-        +"&team_limit_information=" + req.body.team_limit_information
-        +"&teacher_information=" + req.body.teacher_information
-        +"&course_information=" + req.course_information;
-    console.log(url);
-
-    request.post({url:url}, function(error, response, body) {
-        console.log(response.statusCode);
-        if (!error && response.statusCode == 200) {
-            console.log("111");
-            res.redirect('/teacher/student_list');
+    var url = "http://localhost:8080/teacher/course_information?course_id=1"
+    request(url,function (error,response,body) {
+        var dataJson = eval("(" + body + ")");
+        if(!error && response.statusCode == 200){
+            res.render('teacher/course_info',{ data : dataJson.data });
         }
     })
+}).post('/course_info',function (req,res,next) {
+    function AsciiToUnicode(content) {
+        var result = '';
+        for (var i=0; i<content.length; i++)
+            result+='\\u' + parseInt(content[i].charCodeAt(0),10).toString(16)
+        return result;
+    }
+
+    console.log(req.body);
+    var teacher = req.cookies.teacher;
+    if(teacher) {
+        var url = "http://localhost:8080/teacher/course_information?uid="+teacher.uid+"&course_id=1";
+        url += "&course_name=" + AsciiToUnicode(req.body.course_name)
+            +"&course_start_time=" + req.body.course_start_time
+            +"&course_end_time=" + req.body.course_end_time
+            +"&course_hour=" + req.body.course_hours
+            +"&course_location=" + AsciiToUnicode(req.body.course_location)
+            +"&credit=" + req.body.credit
+            +"&team_limit_information=" + AsciiToUnicode(req.body.team_limit_information)
+            +"&teacher_information=" + AsciiToUnicode(req.body.teacher_information)
+            +"&course_information=" + AsciiToUnicode(req.body.course_information);
+        console.log(url);
+        request.post({url:url}, function(error, response, body) {
+            console.log(response.statusCode);
+            if(error) console.log(error);
+            if (!error && response.statusCode == 200) {
+                console.log("111");
+                res.redirect('/teacher/course_info')
+            }
+        })
+    }
 });
 
 router.get('/student_list',function (req,res,next) {
@@ -96,13 +104,14 @@ router.get('/student_list',function (req,res,next) {
 });
 
 router.get('/resource',function (req,res,next) {
-    var url = "http://localhost:8080/teacher/resource";
-    request(url,function (error,response,body) {
-        var dataJson = eval("(" + body + ")");
-        if(!error && response.statusCode == 200){
-            res.render('teacher/resource',{ students : dataJson });
-        }
-    })
+    res.render('teacher/upload',{title:"Octts教师版"});
+    // var url = "http://localhost:8080/teacher/resource";
+    // request(url,function (error,response,body) {
+    //     var dataJson = eval("(" + body + ")");
+    //     if(!error && response.statusCode == 200){
+    //         res.render('teacher/resource',{ students : dataJson });
+    //     }
+    // })
 }).post('/resource',function (req,res,next) {
 
 })
