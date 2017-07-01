@@ -130,17 +130,26 @@ router.get('/course_end',function (req,res,next) {
 
 //上传学生名单
 router.get('/student_list',function (req,res,next) {
+    // res.render('admin/student_list',{title:'Ottcs教务版'});
     var admin = check_Cookie(req,res);
     var url = URL+ "/student_list";
     request(url,function (error,response,body) {
         var dataJson = eval("(" + body + ")");
         console.log(dataJson);
         if(!error && response.statusCode == 200){
-            res.render('admin/course_information',{data : dataJson.data,title:'Ottcs教务版',username:admin.uid});
+            res.render('admin/student_list',{data : dataJson.data,title:'Ottcs教务版',username:admin.uid});
         }
     })
 }).post('/student_list',function (req,res,next){
     //文件上传使用ajax自己解决跳转
+    var admin = check_Cookie(req,res);
+    var url = URL + '/student_list?uid=' + admin.uid
+        +'&course_id=' + admin.course_id;
+    console.log("URL:"+url);
+
+    res.json({
+        url:url
+    })
 })
 
 module.exports = router;

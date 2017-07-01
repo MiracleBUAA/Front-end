@@ -9,6 +9,7 @@
 // });
 
 
+var URL;//文件上传URL
 //表格初始化
 function fnFormatDetails ( oTable, nTr )
 {
@@ -35,6 +36,15 @@ $(document).ready(function() {
             "sInfoFiltered": "",
         },
     } );
+    $.ajax({
+        url : '/admin/student_list',
+        dataType : 'json',
+        type : 'post',
+        success : function (res) {
+            alert(res.url);
+            URL = res.url;
+        }
+    })
 
     /*
      * Insert a 'details' column to the table
@@ -126,8 +136,9 @@ function fire_ajax_submit() {
         type: "POST",
         enctype: 'multipart/form-data',
         //url直接通到黄老板
-        url:"http://localhost:8080/admin/student_list?uid=1",
+        // url:"http://localhost:8080/admin/student_list?uid=1",
         // url: "/teacher/student_list",
+        url: URL,
         data: data,
         //http://api.jquery.com/jQuery.ajax/
         //http://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects
