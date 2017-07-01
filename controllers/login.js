@@ -16,6 +16,7 @@ router.get('/', function(req, res, next) {
 router.post('/check', function(req, res, next){
     console.log(req.body);
     var url = 'http://localhost:8080/login?urank='+req.body.urank+'&uid='+ req.body.username + '&password='+req.body.password;
+    //console.log(url);
     request(url,function (error,response,body) {
         if(!error && response.statusCode == 200){
             var dataJson = eval("(" + body + ")");
@@ -66,6 +67,7 @@ router.post('/check', function(req, res, next){
 router.get('/logout',function (req,res,next) {
     res.clearCookie('student');
     res.clearCookie('teacher');
+    res.clearCookie('admin');
     res.redirect('/login');
 })
 

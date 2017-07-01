@@ -8,7 +8,8 @@ block styles
 block content
         .page-heading
           h3
-            | 添加新学期
+            | 课程信息
+            |&nbsp&nbsp&nbsp&nbsp
             small 软件工程敏捷开发实践
           ul.breadcrumb
             li
@@ -28,18 +29,19 @@ block content
                       table.table.table-hover.general-table
                         thead
                           tr
-                            th  编号
+                            th 学年
                             th.hidden-phone 学期名称
                             th 学期状态
                             th 重新编辑
                             th 结束学期
                             th 上传学生名单
+                            th(style="display:none")  编号
                         tbody#term
-                          - var data = [{course_id: 1,course_name:"2017年春",course_status:1},{course_id: 2,course_name:"2017年夏",course_status:0}];
+                          //- var data = [{course_id: 1,course_name:"2017年春",course_status:1},{course_id: 2,course_name:"2017年夏",course_status:0}];
                           - var x = 0;
                           - for i in data
                             tr
-                              td #{i.course_id}
+                              td #{i.course_year}
                               td #{i.course_name}
                               - if(i.course_status == 0)
                                 td(style="color: red") 已结束
@@ -55,6 +57,7 @@ block content
                                   button.btn.btn-success(type="button", onclick="goto_list(this)" disabled="true")
                                     span.glyphicon.glyphicon-download
                                     i &nbsp;上传学生名单
+                                td(style="display:none") #{i.course_id}
                               - else
                                 td(style="color: green") 进行中
                                 td
@@ -69,6 +72,7 @@ block content
                                   button.btn.btn-success(type="button", onclick="goto_list(this)")
                                     span.glyphicon.glyphicon-download
                                     i &nbsp;上传学生名单
+                                td(style="display:none") #{i.course_id}
                           tr
                             td#last(colspan="7")
                                   button#add.btn.btn-block.btn-success(type="button",onclick="show('提交')")
