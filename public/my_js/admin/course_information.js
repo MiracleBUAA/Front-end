@@ -40,13 +40,14 @@ function show(s){
                 },
                 dataType: 'json',
                 type: 'post',
-                success: function (res, errno) {
-                    if (res == 0) {
+                error:function () {
+                    alert("error");
+                },
+                success: function (res) {
                         var x = document.createElement("tr");
                         var tot = document.getElementById("term").children.length;
                         x.innerHTML = "<td>" + tot + "</td><td>" + _year + "</td><td>进行中</td></tr><td><button type='button' onclick='edit(this)' class='btn btn-info'><span class='glyphicon glyphicon-edit'></span><i>&nbsp;编辑信息</i></button></td><td><button type='button' class='btn btn-danger' onclick='end_course(this)'><span class='glyphicon glyphicon-stop'></span><i>&nbsp;结束学期</i></button></td><td><button type = 'button' class = 'btn btn-success' onclick='goto_list(this)'><span class = 'glyphicon glyphicon-download'></span><i>&nbsp;上传学生名单</i></button></td>";
                         document.getElementById("term").insertBefore(x, document.getElementById("term").children[tot - 1]);
-                    }
                 }
             });
         }else{
@@ -65,13 +66,14 @@ function show(s){
                 },
                 dataType: 'json',
                 type: 'post',
+                error:function () {
+                  alert('error');
+                },
                 success: function (res) {
-                    if (res == 0) {
                         var x = document.createElement("tr");
                         var tot = document.getElementById("term").children.length;
                         x.innerHTML = "<td>" + tot + "</td><td>" + _year + "</td><td>进行中</td></tr><td><button type='button' onclick='edit(this)' class='btn btn-info'><span class='glyphicon glyphicon-edit'></span><i>&nbsp;编辑信息</i></button></td><td><button type='button' class='btn btn-danger'  onclick='end_course(this)'><span class='glyphicon glyphicon-stop'></span><i>&nbsp;结束学期</i></button></td><td><button type = 'button' class = 'btn btn-success'onclick='goto_list(this)'><span class = 'glyphicon glyphicon-download'></span><i>&nbsp;上传学生名单</i></button></td>";
                         document.getElementById("term").insertBefore(x, document.getElementById("term").children[tot - 1]);
-                    }
                 }
             });
         }
@@ -82,6 +84,9 @@ function show(s){
         $.ajax({
             url: '/admin/course_information',
             dataType: 'json',
+            error: function () {
+                alert('error');
+            },
             success: function (data) {
                 var ID = e.parentNode.parentNode.children[0].innerHTML;
                 var res = data.course_list;
@@ -108,6 +113,9 @@ function show(s){
                 course_id: e.parentNode.parentNode.children[0].innerHTML
             },
             dataType: 'post',
+            error:function () {
+                alert('error');
+            },
             success: function () {
                 e.parentNode.parentNode.children[2].innerHTML = "已结束";
             }
