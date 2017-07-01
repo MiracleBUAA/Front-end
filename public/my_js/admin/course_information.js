@@ -137,5 +137,5 @@ function end_course(e){
 }
 function goto_list(e) {
     var ID = e.parentNode.parentNode.children[0].innerHTML;
-    window.location = 'teacher/student_list';
+    window.location = 'student_list';
 }
