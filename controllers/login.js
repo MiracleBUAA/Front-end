@@ -22,23 +22,38 @@ router.post('/check', function(req, res, next){
             console.log(dataJson);
             if(dataJson.errorNo == 0){
                 if(req.body.urank == 1){
+                    //学生登录
                     res.cookie('student',{
-                        urank:req.body.urank,
+                        urank:dataJson.data.urank,//普通学生为1，团队负责人为2
+                        course_id:dataJson.data.course_id,//学期标识符
                         uid:req.body.username
                     }, {
                             maxAge: 900000
                         }
                     );
-                    res.json(200,{msg:"Login success",url:"/student"});
-                } else{
+                    res.json(200,{msg:"登录成功",url:"/student"});
+                } else if(req.body.urank == 3){
+                    //老师登录
                     res.cookie('teacher',{
-                        urank:req.body.urank,
+                        urank:req.body.urank, //教师为3
+                        course_id:dataJson.data.course_id,//学期标识符
                         uid:req.body.username
                     }, {
                             maxAge: 900000
                         }
                     );
                     res.json(200,{msg:"登录成功",url:"/teacher"});
+                }else{
+                    //教务登录
+                    res.cookie('admin',{
+                        urank:req.body.urank, //教务为4
+                        course_id:dataJson.data.course_id,//学期标识符
+                        uid:req.body.username
+                    }, {
+                            maxAge: 900000
+                        }
+                    );
+                    res.json(200,{msg:"登录成功",url:"/admin"});
                 }
             }
             else{

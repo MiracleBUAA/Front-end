@@ -12,11 +12,16 @@ router.get('/', function(req, res, next) {
     if(teacher){
         res.render('layout_teacher',{title:'Ottcs教师版',username:teacher.uid});
     }
+    var admin = req.cookies.admin;
+    if(admin){
+        res.render('layout_admin',{title:'Ottcs教务版',username:teacher.uid});
+    }
     res.render('login', { title: 'Octts团队平台' });
 });
 
 router.use('/layout',controller.layout);
 router.use('/login', controller.login);
+router.use('/admin',controller.admin);
 router.use('/teacher', controller.teacher);
 router.use('/student',controller.student);
 

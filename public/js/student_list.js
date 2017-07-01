@@ -48,11 +48,11 @@ function fire_ajax_submit() {
 
     var data = new FormData(form);
 
-/*
-    for (var value11 of data.values()) {
-        console.log(value11);
-    }
-*/
+
+    // for (var value11 of data.values()) {
+    //     console.log(value11);
+    // }
+
 
 
     $("#upload_button").prop("disabled", true);
@@ -60,7 +60,9 @@ function fire_ajax_submit() {
     $.ajax({
         type: "POST",
         enctype: 'multipart/form-data',
-        url: "/teacher/student_list",
+        //url直接通到黄老板
+        url:"http://localhost:8080/teacher/student_list?uid=1",
+        // url: "/teacher/student_list",
         data: data,
         //http://api.jquery.com/jQuery.ajax/
         //http://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects

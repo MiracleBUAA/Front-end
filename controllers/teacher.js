@@ -6,16 +6,28 @@ var router =  express.Router();
 var url = require('url');
 var request = require('request');
 var fs = require('fs');
+var multiparty = require('multiparty');
+
+function check_Cookie(req,res) {
+    var teacher = req.cookies.teacher;
+    if(teacher) {
+        return teacher;
+    } else{
+        res.redirect('/login');
+    }
+}
 
 router.get('/', function(req, res, next) {
     //res.render('layout_teacher',{title:'Ottcs教师版'});
-    var teacher = req.cookies.teacher;
-    if(teacher){
-        res.render('layout_teacher',{title:'Ottcs教师版',username:teacher.uid});
-    }
-    else{
-        res.redirect('/login');
-    }
+    var teacher = check_Cookie(req,res);
+    res.render('layout_teacher',{title:'Ottcs教师版',username:teacher.uid});
+    // var teacher = req.cookies.teacher;
+    // if(teacher){
+    //     res.render('layout_teacher',{title:'Ottcs教师版',username:teacher.uid});
+    // }
+    // else{
+    //     res.redirect('/login');
+    // }
 });
 
 router.get('/course_info',function (req,res,next) {
@@ -82,23 +94,39 @@ router.get('/student_list',function (req,res,next) {
     //     }
     // })
 }).post('/student_list',function (req,res,next) {
-    var url = "http://localhost:8080/teacher/student_list?uid=";
-    var teacher = req.cookies.teacher;
-    url += teacher.uid
-    // console.log(req.body.file);
+    var form = new multiparty.Form({uploadDir: './public'});
+    form.parse(req, function(err, fields, files) {
+        var url = "http://localhost:8080/teacher/student_list?uid=";
+        var teacher = req.cookies.teacher;
+        url += teacher.uid;
+        var r = request.post(url,function (error,response,body) {
+            if(error) console.log(error);
+            console.log(response.statusCode);
+            if (!error && response.statusCode == 200) {
+                res.redirect('/teacher/student_list');
+            }
+        })
+        var form = r.form();
+        console.log("111");
+        //这里使用的静态路径，实际测试需要修改
+        form.append('file', fs.createReadStream(files));
+    });
     // res.redirect('/teacher/student_list');
-    var r = request.post(url,function (error,response,body) {
-        if(error) console.log(error);
-        console.log(response.statusCode);
-        if (!error && response.statusCode == 200) {
-            res.redirect('/teacher/student_list');
-        }
-    })
-    var form = r.form();
-    console.log("111");
-    //fs.createReadStream(req.body);
-    //这里使用的静态路径，实际测试需要修改
-    form.append('file', fs.createReadStream('student_list.xls'));
+    // var url = "http://localhost:8080/teacher/student_list?uid=";
+    // var teacher = req.cookies.teacher;
+    // url += teacher.uid
+    //
+    // var r = request.post(url,function (error,response,body) {
+    //     if(error) console.log(error);
+    //     console.log(response.statusCode);
+    //     if (!error && response.statusCode == 200) {
+    //         res.redirect('/teacher/student_list');
+    //     }
+    // })
+    // var form = r.form();
+    // console.log("111");
+    // //这里使用的静态路径，实际测试需要修改
+    // form.append('file', fs.createReadStream('student_list.xls'));
     // res.redirect('/teacher/student_list');
     // console.log(formData);
     // var formData = {
@@ -145,7 +173,13 @@ router.get('/homework_new',function (req,res,next) {
         res.redirect('/login');
     }
 }).post('/homework_new',function (req,res,next) {
-
+    console.log(req.body);
+    var teacher = req.cookies.teacher;
+    if(teacher){
+        res.render('teacher/homework_new',{title:'Ottcs教师版',username:teacher.uid});
+    } else{
+        res.redirect('/login');
+    }
 })
 
 router.get("/upload",function (req, res, next) {
