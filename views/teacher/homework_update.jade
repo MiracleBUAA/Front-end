@@ -37,7 +37,7 @@ block scripts
     script(type='text/javascript', src='/js/bootstrap-colorpicker/js/bootstrap-colorpicker.js')
     script(type='text/javascript', src='/js/bootstrap-timepicker/js/bootstrap-timepicker.js')
     // pickers initialization
-    script(src='/js/pickers-init.js')
+    //script(src='/js/pickers-init.js')
 
     //wizard
     script(src='/js/jquery.validate.min.js')
@@ -65,18 +65,20 @@ block content
             .col-lg-12
                 section.panel
                     header.panel-heading
-                        | 作业信息
+                        | 作业要求
                     .panel-body
-                        form.form-horizontal.adminex-form(method='get')
+                        form.form-horizontal.adminex-form(action='/teacher/homework_update',method='post')
+                            -var data={homework_id:'1',homework_title:'罚抄十遍',homework_start_time:'2017-07-04 21:25:10',homework_end_time:'2017-07-06 06:45:10',homework_score:"12",resubmit_limit:'6',homework_message:'快抄！'};
+                            input(name='homework_id',value=data.homework_id,type='hidden')
                             .form-group
                                 label.col-md-2.col-sm-2.control-label 作业标题
                                 .col-md-6.col-sm-6
-                                    input.form-control#h_title(type='text', placeholder='标题' name='homework_title' )
+                                    input.form-control#h_title(type='text', placeholder='标题' name='homework_title',value=data.homework_title )
                             .form-group
                                 label.col-md-2.col-sm-2.control-label 开始时间
                                 .col-md-4
                                     .input-group.date.form_datetime-component
-                                        input.form-control(type='text', readonly='', size='16' name='homework_start_time')
+                                        input.form-control(type='text', readonly='', size='16' name='homework_start_time',value=data.homework_start_time)
                                         span.input-group-btn
                                             button.btn.btn-primary.date-set(type='button')
                                                 i.fa.fa-calendar
@@ -84,22 +86,22 @@ block content
                                 label.col-md-2.col-sm-2.control-label 截止时间
                                 .col-md-4
                                     .input-group.date.form_datetime-component
-                                        input.form-control(type='text', readonly='', size='16' name='homework_end_time')
+                                        input.form-control(type='text', readonly='', size='16' name='homework_end_time',value=data.homework_end_time)
                                         span.input-group-btn
                                             button.btn.btn-primary.date-set(type='button')
                                                 i.fa.fa-calendar
                             .form-group
                                 label.col-md-2.col-sm-2.control-label 作业分值
                                 .col-md-6.col-sm-6
-                                    input.form-control(type='text', placeholder='分值' name='homework_score')
+                                    input.form-control(type='text', placeholder='分值' name='homework_score',value=data.homework_score)
                             .form-group
                                 label.col-md-2.col-sm-2.control-label 允许提交次数
                                 .col-md-6.col-sm-6
-                                    input.form-control(type='text', placeholder='提交次数' name='resubmit_limit')
+                                    input.form-control(type='text', placeholder='提交次数' name='resubmit_limit',value=data.resubmit_limit)
                             .form-group
                                 label.col-md-2.col-sm-2.control-label 要求以及指导
                                 .col-md-6.col-sm-6
-                                    textarea.form-control(rows='5', cols='60' name='homework_message')
+                                    textarea.form-control(rows='5', cols='60' name='homework_message')=data.homework_message
                             .form-group
                                 .col-lg-offset-2.col-lg-10
                                     button.btn.btn-primary(type='submit') 保存修改

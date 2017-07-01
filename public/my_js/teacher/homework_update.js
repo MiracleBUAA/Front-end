@@ -10,5 +10,8 @@ $(document).ready(function () {
 });
 
 
-
+//  时间选择器初始化
+$(".form_datetime-component").datetimepicker({
+    format: "yyyy-mm-dd hh:ii:ss"
+});
 
