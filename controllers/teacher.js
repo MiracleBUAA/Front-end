@@ -166,7 +166,7 @@ router.get('/homework_list',function (req,res,next) {
 })
 
 //！！！！！！！！！！！！！！！！！！
-//查看学生作业     第15个接口不太确定
+//15 查看学生作业     第15个接口不太确定
 router.get('/homework_information',function (req,res,next) {
     var teacher = check_Cookie(req,res);
     var url = URL + '/homework_information?course_id=' + teacher.course_id
@@ -235,25 +235,25 @@ router.post('/homework_delete',function (req,res,next) {
 })
 
 //18.	教师——查看学生提交情况
-// router.get('/homework_group_upload',function (req,res,next) {
-//     var teacher = check_Cookie(req,res);
-//     var url = URL + '/homework_group_upload?course_id=' + teacher.course_id
-//         + '&homework_id=' + req.body.homework_id;
-//     console.log('url');
-//     request(url,function (error,response,body) {
-//         var dataJson = eval("(" + body + ")");
-//         console.log(dataJson);
-//         if(!error && response.statusCode == 200){
-//             res.render('teacher/homework_information',
-//                 {
-//                     data : dataJson.data,
-//                     title:'Ottcs教师版',
-//                     username:teacher.uid
-//                 }
-//             );
-//         }
-//     })
-// })
+router.get('/homework_group_upload',function (req,res,next) {
+    var teacher = check_Cookie(req,res);
+    var url = URL + '/homework_group_upload?course_id=' + teacher.course_id
+        + '&homework_id=' + req.body.homework_id;
+    console.log('url');
+    request(url,function (error,response,body) {
+        var dataJson = eval("(" + body + ")");
+        console.log(dataJson);
+        if(!error && response.statusCode == 200){
+            res.render('teacher/homework_information',
+                {
+                    data : dataJson.data,
+                    title:'Ottcs教师版',
+                    username:teacher.uid
+                }
+            );
+        }
+    })
+})
 
 //19.	教师——作业评分
 router.post('/homework_set_score',function (req,res,next) {
