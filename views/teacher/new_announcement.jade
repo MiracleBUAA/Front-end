@@ -1,0 +1,76 @@
+//
+   Created by lenovo on 2017/7/1.
+
+extends ../layout_teacher
+
+block styles
+
+block content
+        .page-heading
+          h3
+            | 发布课程通知
+            small &nbsp;软件工程敏捷开发实践
+          ul.breadcrumb
+            li
+              a(href='#') 课程信息
+            li.active 发布课程通知
+
+          hr(style="FILTER: alpha(opacity=100,finishopacity=0,style=3)", width="99%", color="#987cb9", size="3")
+
+          section.panel
+              header.panel-heading
+                | 发布通知
+                span.tools.pull-right
+                  a.fa.fa-chevron-down(href="javascript:;")
+                  a.fa.fa-times(href="javascript:;")
+
+              .panel-body
+                  table.table.table-hover.general-table
+                      thead
+                          tr
+                              th(style="display: none") 编号
+                              th 通知
+                              th 重新编辑
+                      tbody#term
+                          - var data = [{course_title:'警告',course_message:'第一次迭代截至日期为明天06月29日！'},{course_title:'表现不错',course_message:'每个组都按时完成了第二次迭代开发！'},{course_title:'评分',course_message:'各小组用户故事已经评分，请按照要求修改原有内容！'}];
+                          - var t = 0;
+                          - for i in data
+                            - ++t;
+                            tr
+                              td(style="display:none") #{t}
+                              td
+                                .alert.alert-block.alert-danger.fade.in
+                                  button.close.close-sm(type="button", data-dismiss="alert")
+                                    i.fa.fa-times
+                                  strong #{i.course_title}
+                                  |  #{i.course_message}
+                              td
+                                 button.btn.btn-info(type="button", onclick="edit(this)")
+                                   span.glyphicon.glyphicon-edit
+                                   i 编辑信息
+                          tr
+                              td#last(colspan="2")
+                                  button#add.btn.btn-block.btn-success(type="button",onclick="show('提交')")
+                                      span.pull-left
+                                          span.glyphicon.glyphicon-plus
+                                      span.bold 发布通知
+
+        div#pop(style="display: none;position: absolute;top:20%;left: 20%;right: 20%;height: 400px;padding: 20px;border: 5px solid silver;border-radius: 5px;background-color: white;z-index:1002;overflow: auto; ")
+                          section.panel
+                              header.panel-heading
+                                  | Basic Forms
+                              .panel-body
+                                  form(role="form")
+                                      .form-group
+                                          label 标题
+                                          input#tit.form-control(type="text")
+                                      .form-group
+                                          label 内容
+                                          input#det.form-control(type="text")
+                                      button#bubble.btn.btn-block.btn-success(type="button", onclick="close()") 提交
+
+        div#fade(onclick="hide()" style="display: none;position: absolute;top: 0%;left: 0%;width: 100%;height: 1000%;background-color: black;z-index:1001;-moz-opacity: 0.8;opacity:.80;filter: alpha(opacity=88); ")
+
+
+block scripts
+    script(src="/my_js/teacher/new_announcement.js").
