@@ -76,7 +76,7 @@
       var body = jQuery('body');
       var bodyposition = body.css('position');
 
-      if(bodyposition != 'relative') {
+      if(true || bodyposition != 'relative') {
 
          if(!body.hasClass('left-side-collapsed')) {
             body.addClass('left-side-collapsed');
