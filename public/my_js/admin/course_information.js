@@ -73,7 +73,7 @@ function show(s){
                         var x = document.createElement("tr");
                         var tot = document.getElementById("term").children.length;
                         x.innerHTML = "<td>" + tot + "</td><td>" + _year + "</td><td>进行中</td></tr><td><button type='button' onclick='edit(this)' class='btn btn-info'><span class='glyphicon glyphicon-edit'></span><i>&nbsp;编辑信息</i></button></td><td><button type='button' class='btn btn-danger'  onclick='end_course(this)'><span class='glyphicon glyphicon-stop'></span><i>&nbsp;结束学期</i></button></td><td><button type = 'button' class = 'btn btn-success'onclick='goto_list(this)'><span class = 'glyphicon glyphicon-download'></span><i>&nbsp;上传学生名单</i></button></td>";
-                        document.getElementById("term").insertBefore(x, document.getElementById("term").children[tot - 1]);
+                        document.getElementById("term").insertBefore(x, document.getElementById("term").children[0]);
                 }
             });
         }
