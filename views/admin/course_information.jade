@@ -35,28 +35,40 @@ block content
                             th 结束学期
                             th 上传学生名单
                         tbody#term
-                          - var data = [{course_id: 1,course_name:"2017年春",course_status:0}];
+                          - var data = [{course_id: 1,course_name:"2017年春",course_status:1},{course_id: 2,course_name:"2017年夏",course_status:0}];
                           - var x = 0;
                           - for i in data
                             tr
                               td #{i.course_id}
                               td #{i.course_name}
                               - if(i.course_status == 0)
-                                td 已结束
+                                td(style="color: red") 已结束
+                                td
+                                  button.btn.btn-info(type="button", onclick="edit(this)" disabled="true")
+                                    span.glyphicon.glyphicon-edit
+                                    i 编辑信息
+                                td
+                                  button.btn.btn-danger(type="button", onclick="end_course(this)" disabled="true")
+                                    span.glyphicon.glyphicon-stop
+                                    i &nbsp;结束学期
+                                td
+                                  button.btn.btn-success(type="button", onclick="goto_list(this)" disabled="true")
+                                    span.glyphicon.glyphicon-download
+                                    i &nbsp;上传学生名单
                               - else
-                                td 进行中
-                              td
-                                button.btn.btn-info(type="button", onclick="edit(this)")
-                                  span.glyphicon.glyphicon-edit
-                                  i 编辑信息
-                              td
-                                button.btn.btn-danger(type="button", onclick="end_course(this)")
-                                  span.glyphicon.glyphicon-stop
-                                  i &nbsp;结束学期
-                              td
-                                button.btn.btn-success(type="button", onclick="goto_list(this)")
-                                  span.glyphicon.glyphicon-download
-                                  i &nbsp;上传学生名单
+                                td(style="color: green") 进行中
+                                td
+                                  button.btn.btn-info(type="button", onclick="edit(this)")
+                                    span.glyphicon.glyphicon-edit
+                                    i 编辑信息
+                                td
+                                  button.btn.btn-danger(type="button", onclick="end_course(this)")
+                                    span.glyphicon.glyphicon-stop
+                                    i &nbsp;结束学期
+                                td
+                                  button.btn.btn-success(type="button", onclick="goto_list(this)")
+                                    span.glyphicon.glyphicon-download
+                                    i &nbsp;上传学生名单
                           tr
                             td#last(colspan="7")
                                   button#add.btn.btn-block.btn-success(type="button",onclick="show('提交')")
@@ -96,4 +108,4 @@ block content
         div#fade(onclick="hide()" style="display: none;position: absolute;top: 0%;left: 0%;width: 100%;height: 1000%;background-color: black;z-index:1001;-moz-opacity: 0.8;opacity:.80;filter: alpha(opacity=88); ")
 
 block scripts
-  script(src="/my_js/admin/course_information.js")
+  script(src="/my_js/admin/course_information.js").
