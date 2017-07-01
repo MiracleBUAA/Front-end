@@ -36,7 +36,7 @@ block scripts
   script(type='text/javascript', src='/js/bootstrap-colorpicker/js/bootstrap-colorpicker.js')
   script(type='text/javascript', src='/js/bootstrap-timepicker/js/bootstrap-timepicker.js')
   // pickers initialization
-  script(src='/js/pickers-init.js')
+  //script(src='/js/pickers-init.js')
 
   //wizard
   script(src='/js/jquery.validate.min.js')
@@ -71,7 +71,7 @@ block content
                 .form-group
                   label.col-md-2.col-sm-2.control-label 作业标题
                   .col-md-6.col-sm-6
-                    input.form-control#h_title(type='text', placeholder='标题' name='homework_title' )
+                    input.form-control(type='text', placeholder='标题' name='homework_title')
                 .form-group
                   label.col-md-2.col-sm-2.control-label 开始时间
                   .col-md-4
