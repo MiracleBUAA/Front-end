@@ -5,9 +5,9 @@
 /**
  * Created by lenovo on 2017/7/1.
  */
-var curID;
+    var curID;
 
-function show(s){
+    function show(s){
       document.getElementById("bubble").innerHTML = s;
       document.getElementById("pop").style.display = "block";
       document.getElementById("fade").style.display = "block";
@@ -47,9 +47,15 @@ function show(s){
                         var x = document.createElement("tr");
                         var tot = document.getElementById("term").children.length;
                         x.innerHTML = "<td>" + tot + "</td><td>" + _year + "</td><td>进行中</td></tr><td><button type='button' onclick='edit(this)' class='btn btn-info'><span class='glyphicon glyphicon-edit'></span><i>&nbsp;编辑信息</i></button></td><td><button type='button' class='btn btn-danger' onclick='end_course(this)'><span class='glyphicon glyphicon-stop'></span><i>&nbsp;结束学期</i></button></td><td><button type = 'button' class = 'btn btn-success' onclick='goto_list(this)'><span class = 'glyphicon glyphicon-download'></span><i>&nbsp;上传学生名单</i></button></td>";
-                        document.getElementById("term").insertBefore(x, document.getElementById("term").children[tot - 1]);
+                        document.getElementById("term").insertBefore(x, document.getElementById("term").children[0]);
                 }
             });
+            // 前端测试
+            var x = document.createElement("tr");
+                        var tot = document.getElementById("term").children.length;
+                        x.innerHTML = "<td>" + tot + "</td><td>" + _year + "</td><td>进行中</td></tr><td><button type='button' onclick='edit(this)' class='btn btn-info'><span class='glyphicon glyphicon-edit'></span><i>&nbsp;编辑信息</i></button></td><td><button type='button' class='btn btn-danger' onclick='end_course(this)'><span class='glyphicon glyphicon-stop'></span><i>&nbsp;结束学期</i></button></td><td><button type = 'button' class = 'btn btn-success' onclick='goto_list(this)'><span class = 'glyphicon glyphicon-download'></span><i>&nbsp;上传学生名单</i></button></td>";
+                        document.getElementById("term").insertBefore(x, document.getElementById("term").children[0]);
+            //
         }else{
             $.post({
                 url: "/admin/course_update",
@@ -70,12 +76,22 @@ function show(s){
                   alert('error');
                 },
                 success: function (res) {
-                        var x = document.createElement("tr");
-                        var tot = document.getElementById("term").children.length;
-                        x.innerHTML = "<td>" + tot + "</td><td>" + _year + "</td><td>进行中</td></tr><td><button type='button' onclick='edit(this)' class='btn btn-info'><span class='glyphicon glyphicon-edit'></span><i>&nbsp;编辑信息</i></button></td><td><button type='button' class='btn btn-danger'  onclick='end_course(this)'><span class='glyphicon glyphicon-stop'></span><i>&nbsp;结束学期</i></button></td><td><button type = 'button' class = 'btn btn-success'onclick='goto_list(this)'><span class = 'glyphicon glyphicon-download'></span><i>&nbsp;上传学生名单</i></button></td>";
-                        document.getElementById("term").insertBefore(x, document.getElementById("term").children[0]);
+                    var bo = document.getElementById("term");
+                    for(var i=0; i<bo.children.length; i++){
+                        if(bo.childNodes[i].childNodes[0].innerHTML == curID){
+                            bo.childNodes[i].childNodes[1].innerHTML = _name;
+                        }
+                    }
                 }
             });
+            // 前端测试
+            var bo = document.getElementById("term");
+                    for(var i=0; i<bo.children.length; i++){
+                        if(bo.childNodes[i].childNodes[0].innerHTML == curID){
+                            bo.childNodes[i].childNodes[1].innerHTML = _name;
+                        }
+                    }
+            //
         }
     });
     function edit(e) {
@@ -85,7 +101,7 @@ function show(s){
         document.getElementById("course_hour").value = "";
         document.getElementById("course_location").value = "";
         document.getElementById("course_credit").value = "";
-        document.getElementById("course_information").value = "";
+        document.getElementById("teacher_information").value = "";
         document.getElementById("course_year").value = "";
         curID = document.getElementById("course_year").value = e.parentNode.parentNode.children[0].innerHTML;
     }
@@ -101,9 +117,19 @@ function show(s){
                 alert('error');
             },
             success: function () {
+                e.parentNode.parentNode.children[2].style.color = 'red';
                 e.parentNode.parentNode.children[2].innerHTML = "已结束";
+                e.parentNode.parentNode.children[3].children[0].disabled = true;
+                e.parentNode.parentNode.children[4].children[0].disabled = true;
+                e.parentNode.parentNode.children[5].children[0].disabled = true;
             }
         });
+        // 前端测试
+        e.parentNode.parentNode.children[2].style.color = 'red';
+        e.parentNode.parentNode.children[2].innerHTML = "已结束";
+        e.parentNode.parentNode.children[3].children[0].disabled = true;
+        e.parentNode.parentNode.children[4].children[0].disabled = true;
+        e.parentNode.parentNode.children[5].children[0].disabled = true;
     }
     function goto_list(e) {
         var ID = e.parentNode.parentNode.children[0].innerHTML;
