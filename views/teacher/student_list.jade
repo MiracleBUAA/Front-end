@@ -61,9 +61,9 @@ block scripts
     script(type='text/javascript', language='javascript', src='/js/advanced-datatable/js/jquery.dataTables.js')
     script(type='text/javascript', src='/js/data-tables/DT_bootstrap.js')
     // dynamic table initialization
-    script(src='/js/dynamic_table_init.js')
+    //script(src='/js/dynamic_table_init.js')
 
-    script(src='/js/student_list.js')
+    script(src='/myjs/teacher/student_list.js')
 
 
 
@@ -86,11 +86,18 @@ block content
                 section.panel
                     header.panel-heading
                         | 名单
+                        //span.pull-right(style='margin-bottom: -50px')
+                        //    form#upload_form.form-group(method='post' enctype="multipart/form-data")
+                        //        button#upload_button.btn.btn-default(type='submit' style='height: 25px;margin-right: 10px;padding-top: 2px;font-size: inherit;')
+                        //            i.fa.fa-cloud-upload
+                        //            |  确认上传
+                        //        input#upload_file(name='file',type='file', style='float:right;width: 200px;')
+
                         span.pull-right(style='margin-bottom: -50px')
                             form#upload_form.form-group(method='post' enctype="multipart/form-data")
                                 button#upload_button.btn.btn-default(type='submit' style='height: 25px;margin-right: 10px;padding-top: 2px;font-size: inherit;')
-                                    i.fa.fa-cloud-upload
-                                    |  确认上传
+                                   i.fa.fa-cloud-upload
+                                   |  确认上传
                                 input#upload_file(name='file',type='file', style='float:right;width: 200px;')
                     .panel-body
                         .adv-table
