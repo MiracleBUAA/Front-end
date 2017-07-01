@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
     }
     var admin = req.cookies.admin;
     if(admin){
-        res.render('layout_admin',{title:'Ottcs教务版',username:teacher.uid});
+        res.render('layout_admin',{title:'Ottcs教务版',username:admin.uid});
     }
     res.render('login', { title: 'Octts团队平台' });
 });

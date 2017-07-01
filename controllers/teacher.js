@@ -193,7 +193,7 @@ router.post('/homework_update',function (req,res,next) {
     console.log(req.body);
     var teacher = check_Cookie(req,res);
     var url = URL + '/homework_update?uid=' + teacher.uid
-        +'&homework_id='+ req.body.homeword_id
+        +'&homework_id='+ req.body.homework_id
         +'&course_id='+ teacher.course_id
         +'&homework_title=' + AsciiToUnicode(req.body.homework_title)
         +'&homework_start_time=' + req.body.homework_start_time

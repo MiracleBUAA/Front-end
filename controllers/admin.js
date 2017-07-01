@@ -37,35 +37,42 @@ router.get('/course_information',function (req,res,next) {
     var url = URL+ "/course_information";
     request(url,function (error,response,body) {
         var dataJson = eval("(" + body + ")");
-        console.log(dataJson);
+        console.log(dataJson.data.course_list);
         if(!error && response.statusCode == 200){
-            res.render('admin/course_information',{data : dataJson.data,title:'Ottcs教务版',username:admin.uid});
+            res.render('admin/course_information',{data : dataJson.data.course_list,title:'Ottcs教务版',username:admin.uid});
         }
     })
 })
 
 //添加新学期
-router.get('/new_course',function (req,res,next) {
-    var admin = check_Cookie(req,res);
-    res.render('admin/new_course',{title:'Ottcs教务版',username:admin.uid});
-
-}).post('/new_course',function (req,res,next) {
+router.post('/new_course',function (req,res,next) {
     console.log(req.body);
     var admin = check_Cookie(req,res);
     var url = URL + '/new_course?uid=' + admin.uid
         +'&course_year='+req.body.course_year
         +'&course_name=' + AsciiToUnicode(req.body.course_name)
         +'&course_start_time=' + req.body.course_start_time
-        +'&course_hour=' + req.body.course_hours
+        +'&course_hour=' + req.body.course_hour
         +'&course_location=' + AsciiToUnicode(req.body.course_location)
         +'&course_credit=' + req.body.course_credit
         +'&teacher_information=' + AsciiToUnicode(req.body.teacher_information)
     console.log("URL:"+url);
 
     request.post({url:url}, function(error, response, body) {
+        var dataJson = eval("(" + body + ")");
+        console.log(dataJson);
         console.log(response.statusCode);
         if(error) console.log(error);
         if (!error && response.statusCode == 200) {
+            //console.log('dataJson.data.course_id='+dataJson.data.course_id);
+            var username = admin.uid;
+            res.clearCookie('admin');
+            res.cookie('admin',{
+                urank:4, //教务为4
+                course_id:dataJson.data.course_id,//学期标识符
+                uid:username
+            })
+
             res.json({
                 url: '/admin/course_information'
             });
@@ -80,12 +87,12 @@ router.get('/course_update',function (req,res,next) {
 }).post('/course_update',function (req,res,next){
     console.log(req.body);
     var admin = check_Cookie(req,res);
-    var url = URL + '/new_course?uid=' + admin.uid
+    var url = URL + '/course_update?uid=' + admin.uid
         +'&course_id=' + admin.course_id
         +'&course_year='+req.body.course_year
         +'&course_name=' + AsciiToUnicode(req.body.course_name)
         +'&course_start_time=' + req.body.course_start_time
-        +'&course_hour=' + req.body.course_hours
+        +'&course_hour=' + req.body.course_hour
         +'&course_location=' + AsciiToUnicode(req.body.course_location)
         +'&course_credit=' + req.body.course_credit
         +'&teacher_information=' + AsciiToUnicode(req.body.teacher_information)
@@ -106,15 +113,17 @@ router.get('/course_update',function (req,res,next) {
 router.get('/course_end',function (req,res,next) {
     console.log(req.body);
     var admin = check_Cookie(req,res);
-    var url = URL + '/new_course?uid=' + admin.uid
-        +'course_id=' + admin.course_id
+    var url = URL + '/course_end?uid=' + admin.uid
+        +'&course_id=' + admin.course_id
     console.log("URL:"+url);
 
     request.post({url:url}, function(error, response, body) {
         console.log(response.statusCode);
         if(error) console.log(error);
         if (!error && response.statusCode == 200) {
-            res.redirect('/admin/course_information');
+            res.json({
+                url: '/admin/course_information'
+            });
         }
     })
 })
