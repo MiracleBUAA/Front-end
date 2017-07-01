@@ -1,0 +1,208 @@
+//
+   Created by lenovo on 2017/7/1.
+
+extends ../layout_admin
+
+block styles
+
+block content
+        .page-heading
+          h3
+            | 添加新学期
+            small 软件工程敏捷开发实践
+          ul.breadcrumb
+            li
+              a(href='#') 教务管理
+            li.active 设置新学期
+
+            .wrapper
+              .row
+                .col-sm-12
+                  section.panel
+                    header.panel-heading
+                      | 学期列表
+                      span.tools.pull-right
+                        a.fa.fa-chevron-down(href="javascript:;")
+                        a.fa.fa-times(href="javascript:;")
+                    .panel-body
+                      table.table.table-hover.general-table
+                        thead
+                          tr
+                            th  编号
+                            th.hidden-phone 学期名称
+                            th 学期状态
+                            th 重新编辑
+                            th 结束学期
+                            th 上传学生名单
+                        tbody#term
+                          - var data = [{course_id:"1",course_name:"2017年春",course_status:"进行中"}];
+                          - var x = 0;
+                          - for i in data
+                            tr
+                              td #{i.course_id}
+                              td #{i.course_name}
+                              td #{i.course_status}
+                              td
+                                button.btn.btn-info(type="button", onclick="edit(this)")
+                                  span.glyphicon.glyphicon-edit
+                                  i 编辑信息
+                              td
+                                button.btn.btn-danger(type="button", onclick="end_course(this)")
+                                  span.glyphicon.glyphicon-stop
+                                  i &nbsp;结束学期
+                              td
+                                button.btn.btn-success(type="button", onclick="goto_list(this)")
+                                  span.glyphicon.glyphicon-download
+                                  i &nbsp;上传学生名单
+                          tr
+                            td#last(colspan="7")
+                                  button#add.btn.btn-block.btn-success(type="button",onclick="show('提交')")
+                                    span.pull-left
+                                      span.glyphicon.glyphicon-plus
+                                    span.bold 添加新学期
+
+        div#pop(style="display: none;position: absolute;top:2%;left: 20%;right: 20%;height: 700px;padding: 20px;border: 5px solid silver;border-radius: 5px;background-color: white;z-index:1002;overflow: auto; ")
+          section.panel
+            header.panel-heading
+              | Basic Forms
+            .panel-body
+              form(role="form")
+                .form-group
+                  label 课程学年
+                  input#course_year.form-control(type="text", placeholder="年份 春/秋")
+                .form-group
+                  label 课程名
+                  input#course_name.form-control(type="text")
+                .form-group
+                  label 课程开始时间
+                  input#course_start_time.form-control(type="text")
+                .form-group
+                  label 课程学时
+                  input#course_hour.form-control(type="text")
+                .form-group
+                  label 课程地点
+                  input#course_location.form-control(type="text")
+                .form-group
+                  label 课程学分
+                  input#course_credit.form-control(type="text")
+                .form-group
+                  label 教师信息
+                  input#teacher_information.form-control(type="text")
+                button#bubble.btn.btn-block.btn-success(type="button", onclick="close()") 提交
+
+        div#fade(onclick="hide()" style="display: none;position: absolute;top: 0%;left: 0%;width: 100%;height: 1000%;background-color: black;z-index:1001;-moz-opacity: 0.8;opacity:.80;filter: alpha(opacity=88); ")
+
+block scripts
+  script.
+    function show(s){
+      document.getElementById("bubble").innerHTML = s;
+      document.getElementById("pop").style.display = "block";
+      document.getElementById("fade").style.display = "block";
+    }
+    function hide() {
+        document.getElementById("pop").style.display = "none";
+        document.getElementById("fade").style.display = "none";
+    }
+    document.getElementById("bubble").addEventListener("click",function (){
+        hide();
+        var _id = $("#course_id").val();
+        var _year = $("#course_year").val();
+        var _name = $("#course_name").val();
+        var _time = $("#course_start_time").val();
+        var _hour = $("#course_hour").val();
+        var _location = $("#course_location").val();
+        var _credit = $("#course_credit").val();
+        var _info = $("#teacher_information").val();
+        if(document.getElementById("bubble").innerHTML == "提交") {
+            $.post("/admin/new_course", {
+                    uid: "1",
+                    course_year: _year,
+                    course_name: _name,
+                    course_start_time: _time,
+                    course_hour: _hour,
+                    course_location: _location,
+                    course_credit: _credit,
+                    teacher_information: _info
+                },
+                function (res, errno) {
+                    if(res == 0) {
+                        var x = document.createElement("tr");
+                        var tot = document.getElementById("term").children.length;
+                        x.innerHTML = "<td>" + tot + "</td><td>" + _year + "</td><td>进行中</td></tr><td><button type='button' onclick='edit(this)' class='btn btn-info'><span class='glyphicon glyphicon-edit'></span><i>&nbsp;编辑信息</i></button></td><td><button type='button' class='btn btn-danger' onclick='end_course(this)'><span class='glyphicon glyphicon-stop'></span><i>&nbsp;结束学期</i></button></td><td><button type = 'button' class = 'btn btn-success' onclick='goto_list(this)'><span class = 'glyphicon glyphicon-download'></span><i>&nbsp;上传学生名单</i></button></td>";
+                        document.getElementById("term").insertBefore(x, document.getElementById("term").children[tot - 1]);
+                    }
+                }
+            );
+            // 测试
+            var x = document.createElement("tr");
+            var tot = document.getElementById("term").children.length;
+            x.innerHTML = "<td>" + tot + "</td><td>" + _year + "</td><td>进行中</td></tr><td><button type='button' onclick='edit(this)' class='btn btn-info'><span class='glyphicon glyphicon-edit'></span><i>&nbsp;编辑信息</i></button></td><td><button type='button' class='btn btn-danger' onclick='end_course(this)'><span class='glyphicon glyphicon-stop'></span><i>&nbsp;结束学期</i></button></td><td><button type = 'button' class = 'btn btn-success'onclick='goto_list(this)'><span class = 'glyphicon glyphicon-download'></span><i>&nbsp;上传学生名单</i></button></td>";
+            document.getElementById("term").insertBefore(x, document.getElementById("term").children[tot - 1]);
+            // 测试
+        }else{
+            $.post("/admin/course_update", {
+                    uid: "1",
+                    course_id: _id,
+                    course_year: _year,
+                    course_name: _name,
+                    course_start_time: _time,
+                    course_hour: _hour,
+                    course_location: _location,
+                    course_credit: _credit,
+                    teacher_information: _info
+                },
+                function (res) {
+                    if (res == 0) {
+                        var x = document.createElement("tr");
+                        var tot = document.getElementById("term").children.length;
+                        x.innerHTML = "<td>" + tot + "</td><td>" + _year + "</td><td>进行中</td></tr><td><button type='button' onclick='edit(this)' class='btn btn-info'><span class='glyphicon glyphicon-edit'></span><i>&nbsp;编辑信息</i></button></td><td><button type='button' class='btn btn-danger'  onclick='end_course(this)'><span class='glyphicon glyphicon-stop'></span><i>&nbsp;结束学期</i></button></td><td><button type = 'button' class = 'btn btn-success'onclick='goto_list(this)'><span class = 'glyphicon glyphicon-download'></span><i>&nbsp;上传学生名单</i></button></td>";
+                        document.getElementById("term").insertBefore(x, document.getElementById("term").children[tot - 1]);
+                    }
+                }
+            );
+            // 测试
+            var x = document.createElement("tr");
+            var tot = document.getElementById("term").children.length;
+            x.innerHTML = "<td>" + tot + "</td><td>" + _year + "</td><td>进行中</td></tr><td><button type='button' onclick='edit(this)' class='btn btn-info'><span class='glyphicon glyphicon-edit'></span><i>&nbsp;编辑信息</i></button></td><td><button type='button' class='btn btn-danger' onclick='end_course(this)'><span class='glyphicon glyphicon-stop'></span><i>&nbsp;结束学期</i></button></td><td><button type = 'button' class = 'btn btn-success'onclick='goto_list(this)'><span class = 'glyphicon glyphicon-download'></span><i>&nbsp;上传学生名单</i></button></td>";
+            document.getElementById("term").insertBefore(x, document.getElementById("term").children[tot - 1]);
+            // 测试
+        }
+    });
+    function edit(e) {
+        show('编辑');
+        document.getElementById("course_year").value = e.parentNode.parentNode.children[1].innerHTML;
+        $.get('/admin/course_information',
+          function (data) {
+            var ID =  e.parentNode.parentNode.children[0].innerHTML;
+            var res = data.course_list;
+            for(var i in  res){
+                if(i.course_id == ID){
+                    document.getElementById("course_year").value = i.course_year;
+                    document.getElementById("course_name").value = i.course_name;
+                    document.getElementById("course_start_time").value = i.course_start_time;
+                    document.getElementById("course_hour").value = i.course_hour;
+                    document.getElementById("course_location").value = i.course_location;
+                    document.getElementById("course_credit").value = i.course_credit;
+                    document.getElementById("course_information").value = i.course_information;
+                    break;
+                }
+            }
+          }
+        )
+    }
+    function end_course(e){
+        $.post('/admin/course_end',{
+            uid: "1",
+            course_id:e.parentNode.parentNode.children[0].innerHTML
+        },function () {
+            e.parentNode.parentNode.children[2].innerHTML = "已结束";
+          }
+        );
+        // 测试
+        e.parentNode.parentNode.children[2].innerHTML = "已结束";
+        // 测试
+    }
+    function goto_list(e) {
+        var ID = e.parentNode.parentNode.children[0].innerHTML;
+        winow.location = 'teacher/student_list';
+    }
