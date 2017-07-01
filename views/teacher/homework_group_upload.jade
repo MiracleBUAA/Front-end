@@ -1,0 +1,86 @@
+//
+   Created by 胡晟 on 2017/7/1.
+
+extends ../layout_teacher
+
+
+block styles
+    // dynamic table
+    link(href='/js/advanced-datatable/css/demo_page.css', rel='stylesheet')
+    link(href='/js/advanced-datatable/css/demo_table.css', rel='stylesheet')
+    link(rel='stylesheet', href='/js/data-tables/DT_bootstrap.css')
+    link(href='/css/style.css', rel='stylesheet')
+    link(href='/css/style-responsive.css', rel='stylesheet')
+
+    // file upload
+    link(rel='stylesheet', type='text/css', href='/css/bootstrap-fileupload.min.css')
+
+
+block scripts
+
+
+    // icheck
+    //script(src='/js/iCheck/jquery.icheck.js')
+    //script(src='/js/icheck-init.js')
+    // spinner
+    script(type='text/javascript', src='/js/fuelux/js/spinner.min.js')
+    script(src='/js/spinner-init.js')
+    // file upload
+    script(type='text/javascript', src='/js/bootstrap-fileupload.min.js')
+    // dynamic table
+    script(type='text/javascript', language='javascript', src='/js/advanced-datatable/js/jquery.dataTables.js')
+    script(type='text/javascript', src='/js/data-tables/DT_bootstrap.js')
+
+
+    script(src='/my_js/teacher/homework_group_upload.js')
+
+
+
+
+block content
+    // page heading start
+    .page-heading
+        h3
+            | XXXX次作业
+        ul.breadcrumb
+            li
+                a(href='#') 作业
+
+            li.active  XXXX次作业
+    // page heading end
+    // body wrapper start
+    .wrapper
+        .row
+            .col-sm-12
+                section.panel
+                    header.panel-heading
+                        | 已提交的团队
+                    .panel-body
+                        .adv-table
+                            table#dynamic-table.display.table.table-bordered.table-striped
+                                -var data=[{homework_id:'1',homework_title:'罚抄十遍',homework_start_time:'2017-1-1',homework_end_time:'2017-2-1',teacher_name:'林广艳'}];
+                                thead
+                                    tr
+                                        th 团队ID
+                                        th 团队名
+                                        th 负责人
+                                        th 上传时间
+                                        th 操作
+
+                                tbody
+                                    each item in data
+                                        tr.gradeA
+                                            td #{item.homework_title}
+                                            td #{item.homework_start_time}
+                                            td #{item.homework_end_time}
+                                            td #{item.teacher_name}
+                                            td(style='width:200px;')
+                                                div
+                                                    -var edit='/teacher/homework_update?homework_id='+item.homework_id;
+                                                    input.btn.btn-primary(type='button',onclick="window.location.href=" + "'" + edit + "'",style='margin-right:10px',value='编辑')
+                                                    button.btn.btn-success(type='button',style='margin-right:10px') 批改
+                                                    button.btn.btn-danger(type='button',style='margin-right:10px') 删除
+
+
+    // body wrapper end
+
