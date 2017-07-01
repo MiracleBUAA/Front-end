@@ -5,6 +5,7 @@
 /**
  * Created by lenovo on 2017/7/1.
  */
+var curID;
 
 function show(s){
       document.getElementById("bubble").innerHTML = s;
@@ -17,7 +18,6 @@ function show(s){
     }
     document.getElementById("bubble").addEventListener("click",function (){
         hide();
-        var _id = $("#course_id").val();
         var _year = parseInt($("#course_year").val()); // int
         var _name = $("#course_name").val();
         var _time = $("#course_start_time").val();
@@ -29,7 +29,7 @@ function show(s){
             $.ajax({
                 url: "/admin/new_course",
                 data: {
-                    uid: "1",
+                    uid: 1,
                     course_year: _year,
                     course_name: _name,
                     course_start_time: _time,
@@ -54,8 +54,8 @@ function show(s){
             $.post({
                 url: "/admin/course_update",
                 data: {
-                    uid: "1",
-                    course_id: _id,
+                    uid: 1,
+                    course_id: curID, // 全局变量
                     course_year: _year,
                     course_name: _name,
                     course_start_time: _time,
@@ -80,30 +80,14 @@ function show(s){
     });
     function edit(e) {
         show('编辑');
-        document.getElementById("course_year").value = e.parentNode.parentNode.children[1].innerHTML;
-        $.ajax({
-            url: '/admin/course_information',
-            dataType: 'json',
-            error: function () {
-                alert('error');
-            },
-            success: function (data) {
-                var ID = e.parentNode.parentNode.children[0].innerHTML;
-                var res = data.course_list;
-                for (var i in  res) {
-                    if (i.course_id == ID) {
-                        document.getElementById("course_year").value = i.course_year;
-                        document.getElementById("course_name").value = i.course_name;
-                        document.getElementById("course_start_time").value = i.course_start_time;
-                        document.getElementById("course_hour").value = i.course_hour;
-                        document.getElementById("course_location").value = i.course_location;
-                        document.getElementById("course_credit").value = i.course_credit;
-                        document.getElementById("course_information").value = i.course_information;
-                        break;
-                    }
-                }
-            }
-        });
+        document.getElementById("course_year").value = "";
+        document.getElementById("course_start_time").value = "";
+        document.getElementById("course_hour").value = "";
+        document.getElementById("course_location").value = "";
+        document.getElementById("course_credit").value = "";
+        document.getElementById("course_information").value = "";
+        document.getElementById("course_year").value = "";
+        curID = document.getElementById("course_year").value = e.parentNode.parentNode.children[0].innerHTML;
     }
     function end_course(e){
         $.ajax({
