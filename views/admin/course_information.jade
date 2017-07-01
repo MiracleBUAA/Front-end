@@ -35,13 +35,16 @@ block content
                             th 结束学期
                             th 上传学生名单
                         tbody#term
-                          - var data = [{course_id:"1",course_name:"2017年春",course_status:"进行中"}];
+                          - var data = [{course_id: 1,course_name:"2017年春",course_status:0}];
                           - var x = 0;
                           - for i in data
                             tr
                               td #{i.course_id}
                               td #{i.course_name}
-                              td #{i.course_status}
+                              - if(i.course_status == 0)
+                                td 已结束
+                              - else
+                                td 进行中
                               td
                                 button.btn.btn-info(type="button", onclick="edit(this)")
                                   span.glyphicon.glyphicon-edit
@@ -93,4 +96,4 @@ block content
         div#fade(onclick="hide()" style="display: none;position: absolute;top: 0%;left: 0%;width: 100%;height: 1000%;background-color: black;z-index:1001;-moz-opacity: 0.8;opacity:.80;filter: alpha(opacity=88); ")
 
 block scripts
-  script(src="/js/course_information.js")
+  script(src="/my_js/admin/course_information.js")
