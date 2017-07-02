@@ -1,7 +1,7 @@
 //
-     Created by 胡晟 on 2017/7/1.
+     Created by 胡晟 on 2017/7/2.
 
-extends ../layout_teacher
+extends ../layout_student
 
 
 block styles
@@ -13,7 +13,7 @@ block styles
     link(href='/css/style-responsive.css', rel='stylesheet')
 
     // file upload
-    link(rel='stylesheet', type='text/css', href='/css/bootstrap-fileupload.min.css')
+    //link(rel='stylesheet', type='text/css', href='/css/bootstrap-fileupload.min.css')
 
 
 block scripts
@@ -26,13 +26,13 @@ block scripts
     script(type='text/javascript', src='/js/fuelux/js/spinner.min.js')
     script(src='/js/spinner-init.js')
     // file upload
-    script(type='text/javascript', src='/js/bootstrap-fileupload.min.js')
+    //script(type='text/javascript', src='/js/bootstrap-fileupload.min.js')
     // dynamic table
     script(type='text/javascript', language='javascript', src='/js/advanced-datatable/js/jquery.dataTables.js')
     script(type='text/javascript', src='/js/data-tables/DT_bootstrap.js')
 
 
-    script(src='/my_js/teacher/homework_list.js')
+    script(src='/my_js/student/homework_list.js')
 
 
 
@@ -41,12 +41,12 @@ block content
     // page heading start
     .page-heading
         h3
-            | 查看学生作业
+            | 查看作业
         ul.breadcrumb
             li
                 a(href='#') 作业
 
-            li.active  查看学生作业
+            li.active  查看作业
     // page heading end
     // body wrapper start
     .wrapper
@@ -58,7 +58,7 @@ block content
                     .panel-body
                         .adv-table
                             table#dynamic-table.display.table.table-bordered.table-striped
-                                -var data=[{homework_id:'1',homework_title:'罚抄十遍',homework_start_time:'2017-1-1',homework_end_time:'2017-2-1',teacher_name:'林广艳'}];
+                                -var data=[{homework_id:'1',homework_title:'罚抄十遍',homework_start_time:'2017-01-01 ',homework_end_time:'2017-02-01',teacher_name:'林广艳'}];
                                 thead
                                     tr
                                         th 标题
@@ -74,13 +74,11 @@ block content
                                             td #{item.homework_start_time}
                                             td #{item.homework_end_time}
                                             td #{item.teacher_name}
-                                            td.center(style='width:200px;')
-                                                div
-                                                    -var edit='/teacher/homework_update?homework_id='+item.homework_id;
-                                                    -var check='/teacher/homework_group_upload?homework_id='+item.homework_id;
-                                                    input.btn.btn-primary(type='button',onclick="window.location.href="+"'"+edit+"'",style='margin-right:10px',value='编辑')
-                                                    input.btn.btn-success(type='button',onclick="window.location.href="+"'"+check+"'",style='margin-right:10px',value='批改')
-                                                    button.btn.btn-danger(type='button',style='margin-right:10px') 删除
+                                            td.center(style='width:100px;')
+                                                -var edit='/teacher/homework_information?homework_id='+item.homework_id;
+                                                input.btn.btn-info(type='button',onclick="window.location.href="+"'"+edit+"'",style='margin-right:10px',value='详情')
+
+
 
 
     // body wrapper end
