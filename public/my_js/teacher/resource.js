@@ -99,7 +99,7 @@ document.getElementById("bubble").onclick=function () {
 }
 document.getElementById("nosee").onchange=function() {
     show("提交");
-    var file_addr = this.value;
+    //var file_addr = this.value;
     var file_name = getFileName(file);
     var file_data = new FormData($('#file_form')[0]);
 
@@ -137,8 +137,8 @@ document.getElementById("nosee").onchange=function() {
 }
 
 function del(e){
-    var tds = e.parentNode.parentNode.parentNode.parentNode;
-    var curID = Number(tds.lastChild.innerHTML);
+    curELE = e.parentNode.parentNode.parentNode.parentNode;
+    curID = Number(curELE.getAttribute("data-id"));
     $.ajax({
         type:'post',
         url:'/teacher/resource_delete',
@@ -147,13 +147,33 @@ function del(e){
             resource_id:curID
         },
         error:function (res) {
-            alert('teacher');
+            //alert('error');
             window.location.href = res.url;
         },
         success:function (res) {
-            alert('success');
-            alert(res.url);
+            //alert('success');
             window.location.href = res.url;
+        }
+    });
+}
+
+function download(e) {
+    curELE = e.parentNode.parentNode.parentNode.parentNode;
+    curID = Number(curELE.getAttribute("data-id"));
+    $.ajax({
+        type:'post',
+        url:'/teacher/resource_download',
+        dataType:'json',
+        data:{
+            resource_id:curID
+        },
+        error:function (res) {
+            alert(res.url);
+            window.open(res.url);
+        },
+        success:function (res) {
+            alert("success"+res.url);
+            window.location.href = "https://www.baidu.com/";
         }
     });
 }

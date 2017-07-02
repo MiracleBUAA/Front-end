@@ -125,13 +125,17 @@ router.post('/resource_upload',function (req,res,next) {
     });
 });
 
-//下载课程资源
-// router.get('/resource_download',function (req,res,next) {
-//     //res.render('teacher/resource',{title:'Ottcs教师版'});
-//     //文件下载仅仅是链接跳转
-// })
+//11.	教师——下载课程资源
+router.post('/resource_download',function (req,res,next) {
+    console.log(req.body);
+    var url = URL + '/resource_download?resource_id=' + req.body.resource_id;
+    console.log(url);
+    res.json({
+        url : url
+    });
+});
 
-//删除课程资源
+//12.	教师——删除课程资源
 router.post('/resource_delete',function (req,res,next) {
     var teacher = check_Cookie(req,res);
     var url = URL + '/resource_delete?uid=' + teacher.uid
