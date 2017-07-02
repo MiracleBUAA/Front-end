@@ -13,7 +13,7 @@ block styles
     link(href='/css/style-responsive.css', rel='stylesheet')
 
     // file upload
-    link(rel='stylesheet', type='text/css', href='/css/bootstrap-fileupload.min.css')
+    //link(rel='stylesheet', type='text/css', href='/css/bootstrap-fileupload.min.css')
 
 
 block scripts
@@ -26,7 +26,7 @@ block scripts
     script(type='text/javascript', src='/js/fuelux/js/spinner.min.js')
     script(src='/js/spinner-init.js')
     // file upload
-    script(type='text/javascript', src='/js/bootstrap-fileupload.min.js')
+    //script(type='text/javascript', src='/js/bootstrap-fileupload.min.js')
     // dynamic table
     script(type='text/javascript', language='javascript', src='/js/advanced-datatable/js/jquery.dataTables.js')
     script(type='text/javascript', src='/js/data-tables/DT_bootstrap.js')
@@ -39,14 +39,17 @@ block scripts
 
 block content
     // page heading start
+    -var data={homework_name:"罚抄一百遍",homework_upload_list:[{group_id:"1",group_name:'不想罚抄',group_owner:'罚抄大队长',homework_upload_time:'2017-11-5 21:22:23',score:'5',homework_message:'抄的不错 '},{group_id:"2",group_name:'就想罚抄',group_owner:'抄抄抄',homework_upload_time:'2017-11-5 06:22:23',score:'1',homework_message:'错别字太多！'}]};
+
+
     .page-heading
         h3
-            | XXXX次作业
+            | #{data.homework_name}
         ul.breadcrumb
             li
                 a(href='#') 作业
 
-            li.active  XXXX次作业
+            li.active  #{data.homework_name}
     // page heading end
     // body wrapper start
     .wrapper
@@ -58,28 +61,50 @@ block content
                     .panel-body
                         .adv-table
                             table#dynamic-table.display.table.table-bordered.table-striped
-                                -var data=[{homework_id:'1',homework_title:'罚抄十遍',homework_start_time:'2017-1-1',homework_end_time:'2017-2-1',teacher_name:'林广艳'}];
+
                                 thead
                                     tr
-                                        th 团队ID
+                                        th 团队号
                                         th 团队名
                                         th 负责人
-                                        th 上传时间
+                                        th 提交时间
+                                        th 分数
                                         th 操作
 
                                 tbody
-                                    each item in data
+                                    each item in data.homework_upload_list
                                         tr.gradeA
-                                            td #{item.homework_title}
-                                            td #{item.homework_start_time}
-                                            td #{item.homework_end_time}
-                                            td #{item.teacher_name}
-                                            td(style='width:200px;')
+                                            td #{item.group_id}
+                                            td #{item.group_name}
+                                            td #{item.group_owner}
+                                            td #{item.homework_upload_time}
+                                            td #{item.score}
+                                            td(style='width:150px;')
                                                 div
-                                                    -var edit='/teacher/homework_update?homework_id='+item.homework_id;
-                                                    input.btn.btn-primary(type='button',onclick="window.location.href=" + "'" + edit + "'",style='margin-right:10px',value='编辑')
-                                                    button.btn.btn-success(type='button',style='margin-right:10px') 批改
-                                                    button.btn.btn-danger(type='button',style='margin-right:10px') 删除
+                                                    a(href='#myModal'+item.group_id, data-toggle='modal')
+                                                        button.btn.btn-primary(type='button',style='margin-right:10px') 评分
+                                                    button.btn.btn-success(type='button',style='margin-right:10px') 下载
+                        // Modal
+                        each item in data.homework_upload_list
+                            .modal.fade(id='myModal'+item.group_id,tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+                                .modal-dialog
+                                    .modal-content
+                                        .modal-header
+                                            button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+                                            h4.modal-title Edit Media Gallery
+                                        .modal-body.row
+                                            form.col-md-12(action='/teacher/homework_group_upload', method='post')
+                                                input(name='homework_id',value=item.homework_id,type='hidden')
+                                                .form-group
+                                                    label  分数
+                                                    input.form-control(name='score',value=item.score)
+                                                .form-group
+                                                    label  评语
+                                                    textarea.form-control(name='score_message',rows='4')=item.homework_message
+                                                .pull-right
+                                                    button.btn.btn-success.btn-sm(type='submit') 保存提交
+                        // modal
+
 
 
     // body wrapper end
