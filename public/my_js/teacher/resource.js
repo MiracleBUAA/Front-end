@@ -97,48 +97,63 @@ document.getElementById("bubble").onclick=function () {
     hide();
     $("#nosee").click();
 }
-document.getElementById("nosee").onchange=function(){
+document.getElementById("nosee").onchange=function() {
     show("提交");
     var file_addr = this.value;
     var file_name = getFileName(file);
     var file_data = new FormData($('#file_form')[0]);
 
     $("#see").prop("disabled", true);
-
     $.ajax({
-        type: "post",
-        enctype: 'multipart/form-data',
-        url:"http://localhost:8080/teacher/resource_upload?uid=1&course_id=1&resource_type="+file_flag+"&title="+file_name+"&file=multipart",
-        data: file_data,
-        processData: false, //prevent jQuery from automatically transforming the data into a query string
-        contentType: false,
-        cache: false,
-        timeout: 600000,
-        success: function (data) {
-            console.log("SUCCESS : ", data);
-            $("#see").prop("disabled", false);
+        url: '/teacher/resource_upload',
+        dataType: 'json',
+        data: {
+            resource_type: file_flag,
+            title: file_name
         },
-        error: function (e) {
-            console.log("ERROR : ", e);
-            $("#see").prop("disabled", false);
+        type: 'post',
+        success: function (res) {
+            alert(res.url);
+            $.ajax({
+                type: "post",
+                enctype: 'multipart/form-data',
+                url : res.url,
+                data: file_data,
+                processData: false, //prevent jQuery from automatically transforming the data into a query string
+                contentType: false,
+                cache: false,
+                timeout: 600000,
+                success: function (data) {
+                    console.log("SUCCESS : ", data);
+                    window.location.href = "/teacher/resource";
+                },
+                error: function (e) {
+                    console.log("ERROR : ", e);
+                    window.location.href = "/teacher/resource";
+                }
+            });
         }
     });
 }
+
 function del(e){
     var tds = e.parentNode.parentNode.parentNode.parentNode;
     var curID = Number(tds.lastChild.innerHTML);
     $.ajax({
         type:'post',
-        url:'teacher/resource_delete',
+        url:'/teacher/resource_delete',
         dataType:'json',
         data:{
             resource_id:curID
         },
-        error:function () {
+        error:function (res) {
             alert('teacher');
+            window.location.href = res.url;
         },
-        success:function () {
+        success:function (res) {
             alert('success');
+            alert(res.url);
+            window.location.href = res.url;
         }
     });
 }

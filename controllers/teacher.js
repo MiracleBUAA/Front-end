@@ -111,10 +111,18 @@ router.get('/resource',function (req,res,next) {
     });
 });
 
-//上传课程资源
-router.get('/resource_upload',function (req,res,next) {
-    //res.render('teacher/resource',{title:'Ottcs教师版'});
-    //Ajax文件传输不经过中间层,可以采取返回URL？
+//上传课程资源,返回上传URL
+router.post('/resource_upload',function (req,res,next) {
+    console.log(req.body);
+    var teacher = check_Cookie(req,res);
+    var url = URL + '/resource_upload?uid=' + teacher.uid
+        + '&course_id=' + teacher.course_id
+        + '&resource_type=' + req.body.resource_type
+        + '&title=' + req.body.title
+    console.log(url);
+    res.json({
+        url : url
+    });
 });
 
 //下载课程资源
@@ -124,13 +132,19 @@ router.get('/resource_upload',function (req,res,next) {
 // })
 
 //删除课程资源
-router.get('/resource_delete',function (req,res,next) {
+router.post('/resource_delete',function (req,res,next) {
     var teacher = check_Cookie(req,res);
     var url = URL + '/resource_delete?uid=' + teacher.uid
     + '&resource_id=' + req.body.resource_id;
-    request(url,function (error,response,body) {
-        if(!error && response.statusCode == 200){
-            res.redirect('/teacher/resource');
+    console.log(url);
+
+    request.post({url:url}, function(error, response, body) {
+        console.log(response.statusCode);
+        if(error) console.log(error);
+        if (!error && response.statusCode == 200) {
+            res.json({
+                url: '/teacher/resource'
+            });
         }
     });
 });
