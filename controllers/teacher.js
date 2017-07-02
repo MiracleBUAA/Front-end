@@ -400,7 +400,7 @@ router.get('/announcement',function (req,res,next) {
         console.log(response.statusCode);
         if(error) console.log(error);
         if (!error && response.statusCode == 200) {
-            //返回到作业列表界面
+            //返回到通知列表界面
             res.json({
                 url: '/teacher/announcement'
             });
@@ -422,9 +422,9 @@ router.post('/announcement_update',function (req,res,next) {
         console.log(response.statusCode);
         if(error) console.log(error);
         if (!error && response.statusCode == 200) {
-            //返回到作业列表界面
+            //返回到通知界面
             res.json({
-                url: '/teacher/announcement_list'
+                url: '/teacher/announcement'
             });
         }
     });
@@ -484,7 +484,7 @@ router.post('/group_confirm',function (req,res,next) {
         console.log(response.statusCode);
         if(error) console.log(error);
         if (!error && response.statusCode == 200) {
-            //返回到作业列表界面
+            //返回到团队列表界面
             res.json({
                 url: '/teacher/group_confirm_list'
             });
@@ -504,7 +504,7 @@ router.post('/group_reject',function (req,res,next) {
         console.log(response.statusCode);
         if(error) console.log(error);
         if (!error && response.statusCode == 200) {
-            //返回到作业列表界面
+            //返回到团队列表界面
             res.json({
                 url: '/teacher/group_confirm_list'
             });
