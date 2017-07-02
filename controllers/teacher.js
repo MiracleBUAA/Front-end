@@ -304,9 +304,9 @@ router.post('/new_announcement',function (req,res,next) {
     console.log(req.body);
     var teacher = check_Cookie(req,res);
     var url = URL + '/new_announcement?uid=' + teacher.uid
-        + '&course_id=' + teacher.course_id
-        + '&course_title=' +  AsciiToUnicode(req.body.course_title)
-        + '&course_message=' + AsciiToUnicode(req.body.course_message)
+        + '&announcement_id=' + req.body.announcement_id
+        + '&announcement_title=' +  AsciiToUnicode(req.body.announcement_title)
+        + '&announcement_message=' + AsciiToUnicode(req.body.announcement_message)
 
     request.post({url:url}, function(error, response, body) {
         console.log(response.statusCode);
@@ -321,14 +321,14 @@ router.post('/new_announcement',function (req,res,next) {
 })
 
 //22.	教师——修改通知
-router.post('/new_announcement',function (req,res,next) {
+router.post('/announcement_update',function (req,res,next) {
     console.log(req.body);
     var teacher = check_Cookie(req,res);
-    var url = URL + '/new_announcement?uid=' + teacher.uid
+    var url = URL + '/announcement_update?uid=' + teacher.uid
         + '&course_id=' + teacher.course_id
         + '&announcement_id=' + req.body.announcement_id
-        + '&course_title=' +  AsciiToUnicode(req.body.course_title)
-        + '&course_message=' + AsciiToUnicode(req.body.course_message)
+        + '&announcement_title=' +  AsciiToUnicode(req.body.announcement_title)
+        + '&announcement_message=' + AsciiToUnicode(req.body.announcement_message)
 
     request.post({url:url}, function(error, response, body) {
         console.log(response.statusCode);

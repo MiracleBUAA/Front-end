@@ -135,9 +135,9 @@ router.get('/student_list',function (req,res,next) {
     var url = URL+ "/student_list";
     request(url,function (error,response,body) {
         var dataJson = eval("(" + body + ")");
-        console.log(dataJson);
+        console.log(dataJson.data.student_list[1]);
         if(!error && response.statusCode == 200){
-            res.render('admin/student_list',{data : dataJson.data,title:'Ottcs教务版',username:admin.uid});
+            res.render('admin/student_list',{data : dataJson.data.student_list,title:'Ottcs教务版',username:admin.uid});
         }
     })
 }).post('/student_list',function (req,res,next){
