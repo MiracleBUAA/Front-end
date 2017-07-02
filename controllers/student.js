@@ -103,7 +103,7 @@ router.get('/homework_information',function (req,res,next) {
     console.log(params);
     var url = URL + '/homework_information?course_id=' + student.course_id
         + '&homework_id=' + params.homework_id;
-    console.log('url');
+    console.log(url);
     request(url,function (error,response,body) {
         var dataJson = eval("(" + body + ")");
         console.log(dataJson);
@@ -172,7 +172,7 @@ router.post('/homework_delete',function (req,res,next) {
 router.get('/announcement_list',function (req,res,next) {
     var student = check_Cookie(req,res);
     var url = URL + '/announcement_list?course_id=' + student.course_id;
-    console.log('url');
+    console.log(url);
 
     request(url,function (error,response,body) {
         var dataJson = eval("(" + body + ")");

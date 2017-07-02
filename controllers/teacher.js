@@ -38,6 +38,8 @@ router.get('/course_information',function (req,res,next) {
     //res.render('/teacher/course_information',{title:'Ottcs教师版'});
     var teacher = check_Cookie(req,res);
     var url = URL + '/course_information?course_id=' + teacher.course_id;
+    console.log(url);
+
     request(url,function (error,response,body) {
         var dataJson = eval("(" + body + ")");
         console.log(dataJson);
@@ -82,7 +84,7 @@ router.get('/student_list',function (req,res,next) {
         if(!error && response.statusCode == 200){
             res.render('teacher/student_list',
                 {
-                    data : dataJson.data,
+                    data : dataJson.data.student_list,
                     title:'Ottcs教师版',
                     username:teacher.uid
                 });
@@ -143,8 +145,8 @@ router.get('/new_homework',function (req,res,next) {
     var url = URL + '/new_homework?uid=' + teacher.uid
         +'&course_id=' + teacher.course_id
         +'&homework_title=' + AsciiToUnicode(req.body.homework_title)
-        +'&homework_start_time=' + req.body.homework_start_time
-        +'&homework_end_time=' + req.body.homework_end_time
+        +'&homework_start_time=' + AsciiToUnicode(req.body.homework_start_time)
+        +'&homework_end_time=' + AsciiToUnicode(req.body.homework_end_time)
         +'&homework_score=' + req.body.homework_score
         +'&homework_message=' + AsciiToUnicode(req.body.homework_message)
         +'&resubmit_limit=' + req.body.resubmit_limit
@@ -155,9 +157,7 @@ router.get('/new_homework',function (req,res,next) {
         if(error) console.log(error);
         if (!error && response.statusCode == 200) {
             //返回到作业列表界面
-            res.json({
-                url: '/teacher/homework_list'
-            });
+            res.redirect('/teacher/homework_list');
         }
     });
 });
@@ -166,9 +166,10 @@ router.get('/new_homework',function (req,res,next) {
 router.get('/homework_list',function (req,res,next) {
     var teacher = check_Cookie(req,res);
     var url = URL + '/homework_list?course_id=' + teacher.course_id;
+    console.log(url);
     request(url,function (error,response,body) {
         var dataJson = eval("(" + body + ")");
-        console.log(dataJson);
+        console.log(dataJson.data.homework_list);
         if(!error && response.statusCode == 200){
             res.render('teacher/homework_list',
                 {
@@ -183,18 +184,42 @@ router.get('/homework_list',function (req,res,next) {
 
 //！！！！！！！！！！！！！！！！！！
 //15 查看学生作业     第15个接口不太确定
-router.get('/homework_information',function (req,res,next) {
+// router.get('/homework_information',function (req,res,next) {
+//     var teacher = check_Cookie(req,res);
+//     var params = _url.parse(req.url, true).query;
+//     console.log(params);
+//     var url = URL + '/homework_information?course_id=' + teacher.course_id
+//         + '&homework_id=' + params.homework_id;
+//     console.log(url);
+//     request(url,function (error,response,body) {
+//         var dataJson = eval("(" + body + ")");
+//         console.log(dataJson);
+//         if(!error && response.statusCode == 200){
+//             res.render('teacher/homework_information',
+//                 {
+//                     data : dataJson.data,
+//                     title:'Ottcs教师版',
+//                     username:teacher.uid
+//                 }
+//             );
+//         }
+//     });
+// });
+
+
+//16 查看,编辑作业信息
+router.get('/homework_update',function (req,res,next){
     var teacher = check_Cookie(req,res);
     var params = _url.parse(req.url, true).query;
-    console.log(params);
+
     var url = URL + '/homework_information?course_id=' + teacher.course_id
         + '&homework_id=' + params.homework_id;
-    console.log('url');
+    console.log(url);
     request(url,function (error,response,body) {
         var dataJson = eval("(" + body + ")");
         console.log(dataJson);
         if(!error && response.statusCode == 200){
-            res.render('teacher/homework_information',
+            res.render('teacher/homework_update',
                 {
                     data : dataJson.data,
                     title:'Ottcs教师版',
@@ -203,19 +228,15 @@ router.get('/homework_information',function (req,res,next) {
             );
         }
     });
-});
-
-
-//16 编辑作业信息
-router.post('/homework_update',function (req,res,next) {
+}).post('/homework_update',function (req,res,next) {
     console.log(req.body);
     var teacher = check_Cookie(req,res);
     var url = URL + '/homework_update?uid=' + teacher.uid
         +'&homework_id='+ req.body.homework_id
         +'&course_id='+ teacher.course_id
         +'&homework_title=' + AsciiToUnicode(req.body.homework_title)
-        +'&homework_start_time=' + req.body.homework_start_time
-        +'&homework_end_time=' + req.body.homework_end_time
+        +'&homework_start_time=' + AsciiToUnicode(req.body.homework_start_time)
+        +'&homework_end_time=' + AsciiToUnicode(req.body.homework_end_time)
         +'&homework_score=' + req.body.homework_score
         +'&homework_message=' + AsciiToUnicode(req.body.homework_message)
         +'&resubmit_limit=' + req.body.resubmit_limit
@@ -226,27 +247,26 @@ router.post('/homework_update',function (req,res,next) {
         if(error) console.log(error);
         if (!error && response.statusCode == 200) {
             //返回到作业列表界面
-            res.json({
-                url: '/teacher/homework_list'
-            });
+            res.redirect('/teacher/homework_list');
         }
     });
 });
 
 //17.	教师——删除作业
-router.post('/homework_delete',function (req,res,next) {
-    console.log(req.body);
+router.get('/homework_delete',function (req,res,next) {
     var teacher = check_Cookie(req,res);
+    var params = _url.parse(req.url, true).query;
+
     var url = URL + '/homework_delete?uid=' + teacher.uid
-        + '&homework_id=' + req.body.homework_id
+        + '&homework_id=' + params.homework_id;
+    console.log(url);
+
     request.post({url:url}, function(error, response, body) {
         console.log(response.statusCode);
         if(error) console.log(error);
         if (!error && response.statusCode == 200) {
             //返回到作业列表界面
-            res.json({
-                url: '/teacher/homework_list'
-            });
+            res.redirect('/teacher/homework_list');
         }
     });
 });
@@ -254,14 +274,17 @@ router.post('/homework_delete',function (req,res,next) {
 //18.	教师——查看学生提交情况
 router.get('/homework_group_upload',function (req,res,next) {
     var teacher = check_Cookie(req,res);
+    var params = _url.parse(req.url, true).query;
+
     var url = URL + '/homework_group_upload?course_id=' + teacher.course_id
-        + '&homework_id=' + req.body.homework_id;
-    console.log('url');
+        + '&homework_id=' + params.homework_id;
+    console.log(url);
+
     request(url,function (error,response,body) {
         var dataJson = eval("(" + body + ")");
         console.log(dataJson);
         if(!error && response.statusCode == 200){
-            res.render('teacher/homework_information',
+            res.render('teacher/homework_group_upload',
                 {
                     data : dataJson.data,
                     title:'Ottcs教师版',
@@ -314,8 +337,8 @@ router.post('/homework_set_score',function (req,res,next) {
 //23.	教师——通知列表
 router.get('/announcement_list',function (req,res,next) {
     var teacher = check_Cookie(req,res);
-    var url = URL + '/homework_information?course_id=' + teacher.course_id
-    console.log('url');
+    var url = URL + '/announcement_list?course_id=' + teacher.course_id
+    console.log(url);
 
     request(url,function (error,response,body) {
         var dataJson = eval("(" + body + ")");
@@ -333,7 +356,10 @@ router.get('/announcement_list',function (req,res,next) {
 });
 
 //21.	教师——发布通知
-router.post('/new_announcement',function (req,res,next) {
+router.get('/new_announcement',function (req,res,next) {
+    var teacher = check_Cookie(req,res);
+    res.render('teacher/new_announcement',{title:'Ottcs教务版',username:teacher.uid});
+}).post('/new_announcement',function (req,res,next) {
     console.log(req.body);
     var teacher = check_Cookie(req,res);
     var url = URL + '/new_announcement?uid=' + teacher.uid
@@ -379,7 +405,7 @@ router.post('/announcement_update',function (req,res,next) {
 router.get('/group_confirm_list',function (req,res,next) {
     var teacher = check_Cookie(req,res);
     var url = URL + '/group_confirm_list?course_id=' + teacher.course_id
-    console.log('url');
+    console.log(url);
 
     request(url,function (error,response,body) {
         var dataJson = eval("(" + body + ")");
@@ -400,7 +426,7 @@ router.get('/group_confirm_list',function (req,res,next) {
 router.get('/group_apply_list',function (req,res,next) {
     var teacher = check_Cookie(req,res);
     var url = URL + '/group_apply_list?course_id=' + teacher.course_id
-    console.log('url');
+    console.log(url);
 
     request(url,function (error,response,body) {
         var dataJson = eval("(" + body + ")");
@@ -423,7 +449,7 @@ router.post('/group_confirm',function (req,res,next) {
     var url = URL + '/group_confirm?uid=' + teacher.uid
     + '&course_id=' + teacher.course_id
     + '&group_apply_id=' + req.body.group_apply_id
-    console.log('url');
+    console.log(url);
 
     request.post({url:url}, function(error, response, body) {
         console.log(response.statusCode);
@@ -443,7 +469,7 @@ router.post('/group_reject',function (req,res,next) {
     var url = URL + '/group_confirm?uid=' + teacher.uid
         + '&course_id=' + teacher.course_id
         + '&group_apply_id=' + req.body.group_apply_id
-    console.log('url');
+    console.log(url);
 
     request.post({url:url}, function(error, response, body) {
         console.log(response.statusCode);
@@ -461,7 +487,7 @@ router.post('/group_reject',function (req,res,next) {
 router.get('/student_not_in_group',function (req,res,next) {
     var teacher = check_Cookie(req,res);
     var url = URL + '/student_not_in_group?course_id=' + teacher.course_id
-    console.log('url');
+    console.log(url);
 
     request(url,function (error,response,body) {
         var dataJson = eval("(" + body + ")");
@@ -482,7 +508,7 @@ router.get('/student_not_in_group',function (req,res,next) {
 // router.get('/group_download',function (req,res,next) {
 //     var teacher = check_Cookie(req,res);
 //     var url = URL + '/group_download?course_id=' + teacher.course_id
-//     console.log('url');
+//     console.log(url);
 //
 //     request(url,function (error,response,body) {
 //         var dataJson = eval("(" + body + ")");
