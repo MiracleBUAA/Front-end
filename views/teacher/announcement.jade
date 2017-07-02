@@ -30,10 +30,10 @@ block content
                           tr
                               th 通知
                               th 发布人
-                              th 重新编辑
                               th 创建时间
+                              th 重新编辑
                       tbody#term
-                          - var data = [{announcement_id:"233",teacher_name:"林广艳",announcement_title:'警告',announcement_message:'第一次迭代截至日期为明天06月29日！',announcement_create_time:"2017-07-02 14:27:30"}];
+                          //- var data = [{announcement_id:"233",teacher_name:"林广艳",announcement_title:'警告',announcement_message:'第一次迭代截至日期为明天06月29日！',announcement_create_time:"2017-07-02 14:27:30"}];
 
                           - for i in data
                             tr(data-id=i.announcement_id,data-tit=i.announcement_title,data-det=i.announcement_message,data-teacher=i.teacher_name,data-time=i.announcement_create_time)
@@ -45,7 +45,7 @@ block content
                                   i &nbsp;#{i.announcement_message}
                               td(style='padding-top: 24px;')
                                 strong #{i.teacher_name}
-                              td(style='padding-top: 24px;color:red;') #{i.announcement_create_time}
+                              td(style='padding-top: 24px;color:red;') #{i.announcement_update_time}
                               td
                                  button.btn.btn-info(type="button", onclick="edit(this)",style="margin-top: 10px;")
                                    span.glyphicon.glyphicon-edit

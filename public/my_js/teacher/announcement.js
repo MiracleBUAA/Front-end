@@ -55,35 +55,36 @@
                   alert('error');
                 },
                 success: function (res) {
-                    curELE.setAttribute("data-tit",_tit);
-                    curELE.setAttribute("data-det",_det);
-                    curELE.innerHTML =
-                        "<td><div class='alert alert-block alert-danger fade in'>"+
-                        "<button type='button' data-dismiss='alert' class='close close-sm'>"+
-                        "<i class='fa fa-times'>"+
-                        "</i></button><strong>"+_tit+"</strong><i>&nbsp;"+_det+"</i></div></td>"+
-                        "<td style='padding-top: 24px;'><strong>"+curELE.getAttribute("data-teacher")+"</strong></td>"+
-                        "<td style='padding-top: 24px;color:red;'>"+curELE.getAttribute("data-time")+"</td>"+
-                        "<td>"+
-                        "<button type='button' onclick='edit(this)' style='margin-top: 10px;' class='btn btn-info'>"+
-                        "<span class='glyphicon glyphicon-edit'></span><i>编辑信息</i></button></td>";
+                    window.location.href = res.url;
+                    // curELE.setAttribute("data-tit",_tit);
+                    // curELE.setAttribute("data-det",_det);
+                    // curELE.innerHTML =
+                    //     "<td><div class='alert alert-block alert-danger fade in'>"+
+                    //     "<button type='button' data-dismiss='alert' class='close close-sm'>"+
+                    //     "<i class='fa fa-times'>"+
+                    //     "</i></button><strong>"+_tit+"</strong><i>&nbsp;"+_det+"</i></div></td>"+
+                    //     "<td style='padding-top: 24px;'><strong>"+curELE.getAttribute("data-teacher")+"</strong></td>"+
+                    //     "<td style='padding-top: 24px;color:red;'>"+curELE.getAttribute("data-time")+"</td>"+
+                    //     "<td>"+
+                    //     "<button type='button' onclick='edit(this)' style='margin-top: 10px;' class='btn btn-info'>"+
+                    //     "<span class='glyphicon glyphicon-edit'></span><i>编辑信息</i></button></td>";
                 }
             });
             // 前端测试
 
-                    curELE.setAttribute("data-tit",_tit);
-                    curELE.setAttribute("data-det",_det);
-                    curELE.innerHTML =
-                        "<td><div class='alert alert-block alert-danger fade in'>"+
-                        "<button type='button' data-dismiss='alert' class='close close-sm'>"+
-                        "<i class='fa fa-times'>"+
-                        "</i></button><strong>"+_tit+"</strong><i>&nbsp;"+_det+"</i></div></td>"+
-                        "<td style='padding-top: 24px;'><strong>"+curELE.getAttribute("data-teacher")+"</strong></td>"+
-                        "<td style='padding-top: 24px;color:red;'>"+curELE.getAttribute("data-time")+"</td>"+
-                        "<td>"+
-                        "<button type='button' onclick='edit(this)' style='margin-top: 10px;' class='btn btn-info'>"+
-                        "<span class='glyphicon glyphicon-edit'></span><i>编辑信息</i></button></td>";
-            //前端测试
+            //         curELE.setAttribute("data-tit",_tit);
+            //         curELE.setAttribute("data-det",_det);
+            //         curELE.innerHTML =
+            //             "<td><div class='alert alert-block alert-danger fade in'>"+
+            //             "<button type='button' data-dismiss='alert' class='close close-sm'>"+
+            //             "<i class='fa fa-times'>"+
+            //             "</i></button><strong>"+_tit+"</strong><i>&nbsp;"+_det+"</i></div></td>"+
+            //             "<td style='padding-top: 24px;'><strong>"+curELE.getAttribute("data-teacher")+"</strong></td>"+
+            //             "<td style='padding-top: 24px;color:red;'>"+curELE.getAttribute("data-time")+"</td>"+
+            //             "<td>"+
+            //             "<button type='button' onclick='edit(this)' style='margin-top: 10px;' class='btn btn-info'>"+
+            //             "<span class='glyphicon glyphicon-edit'></span><i>编辑信息</i></button></td>";
+            // //前端测试
         }
     });
     function edit(e) {
