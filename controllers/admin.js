@@ -41,8 +41,8 @@ router.get('/course_information',function (req,res,next) {
         if(!error && response.statusCode == 200){
             res.render('admin/course_information',{data : dataJson.data.course_list,title:'Ottcs教务版',username:admin.uid});
         }
-    })
-})
+    });
+});
 
 //添加新学期
 router.post('/new_course',function (req,res,next) {
@@ -77,8 +77,8 @@ router.post('/new_course',function (req,res,next) {
                 url: '/admin/course_information'
             });
         }
-    })
-})
+    });
+});
 
 //修改课程
 router.get('/course_update',function (req,res,next) {
@@ -106,8 +106,8 @@ router.get('/course_update',function (req,res,next) {
                 url: '/admin/course_information'
             });
         }
-    })
-})
+    });
+});
 
 //结束课程
 router.get('/course_end',function (req,res,next) {
@@ -125,8 +125,8 @@ router.get('/course_end',function (req,res,next) {
                 url: '/admin/course_information'
             });
         }
-    })
-})
+    });
+});
 
 //上传学生名单
 router.get('/student_list',function (req,res,next) {
@@ -135,11 +135,11 @@ router.get('/student_list',function (req,res,next) {
     var url = URL+ "/student_list";
     request(url,function (error,response,body) {
         var dataJson = eval("(" + body + ")");
-        console.log(dataJson);
+        console.log(dataJson.data.student_list[1]);
         if(!error && response.statusCode == 200){
-            res.render('admin/student_list',{data : dataJson.data,title:'Ottcs教务版',username:admin.uid});
+            res.render('admin/student_list',{data : dataJson.data.student_list,title:'Ottcs教务版',username:admin.uid});
         }
-    })
+    });
 }).post('/student_list',function (req,res,next){
     //文件上传使用ajax自己解决跳转
     var admin = check_Cookie(req,res);
@@ -150,6 +150,6 @@ router.get('/student_list',function (req,res,next) {
     res.json({
         url:url
     })
-})
+});
 
 module.exports = router;

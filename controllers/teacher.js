@@ -5,6 +5,7 @@ var express = require('express');
 var router =  express.Router();
 var request = require('request');
 var fs = require('fs');
+var _url = require('url');
 var URL = "http://localhost:8080/teacher";//后端接口请求头
 
 //检查cookie，存在返回cookie，不存在跳转到登录界面
@@ -36,14 +37,19 @@ router.get('/', function(req, res, next) {
 router.get('/course_information',function (req,res,next) {
     //res.render('/teacher/course_information',{title:'Ottcs教师版'});
     var teacher = check_Cookie(req,res);
-    var url = URL + '/course_information';
+    var url = URL + '/course_information?course_id=' + teacher.course_id;
     request(url,function (error,response,body) {
         var dataJson = eval("(" + body + ")");
         console.log(dataJson);
         if(!error && response.statusCode == 200){
-            res.render('teacher/course_information',{data : dataJson.data,title:'Ottcs教师版',username:teacher.uid});
+            res.render('teacher/course_information',
+                {
+                    data : dataJson.data,
+                    title:'Ottcs教师版',
+                    username:teacher.uid
+                });
         }
-    })
+    });
 }).post('/course_information',function (req,res,next) {
     console.log(req.body);
     var teacher = check_Cookie(req,res);
@@ -62,7 +68,7 @@ router.get('/course_information',function (req,res,next) {
                 url: '/teacher/course_information'
             });
         }
-    })
+    });
 });
 
 //查看学生名单
@@ -74,10 +80,15 @@ router.get('/student_list',function (req,res,next) {
         var dataJson = eval("(" + body + ")");
         console.log(dataJson);
         if(!error && response.statusCode == 200){
-            res.render('teacher/student_list',{data : dataJson.data,title:'Ottcs教师版',username:teacher.uid});
+            res.render('teacher/student_list',
+                {
+                    data : dataJson.data,
+                    title:'Ottcs教师版',
+                    username:teacher.uid
+                });
         }
-    })
-})
+    });
+});
 
 //查看课程资源
 router.get('/resource',function (req,res,next) {
@@ -88,16 +99,21 @@ router.get('/resource',function (req,res,next) {
         var dataJson = eval("(" + body + ")");
         console.log(dataJson);
         if(!error && response.statusCode == 200){
-            res.render('teacher/resource',{data : dataJson.data,title:'Ottcs教师版',username:teacher.uid});
+            res.render('teacher/resource',
+                {
+                    data : dataJson.data.resource_list,
+                    title:'Ottcs教师版',
+                    username:teacher.uid
+                });
         }
-    })
-})
+    });
+});
 
 //上传课程资源
 router.get('/resource_upload',function (req,res,next) {
     //res.render('teacher/resource',{title:'Ottcs教师版'});
     //Ajax文件传输不经过中间层,可以采取返回URL？
-})
+});
 
 //下载课程资源
 // router.get('/resource_download',function (req,res,next) {
@@ -114,8 +130,8 @@ router.get('/resource_delete',function (req,res,next) {
         if(!error && response.statusCode == 200){
             res.redirect('/teacher/resource');
         }
-    })
-})
+    });
+});
 
 //发布作业信息
 router.get('/new_homework',function (req,res,next) {
@@ -143,8 +159,8 @@ router.get('/new_homework',function (req,res,next) {
                 url: '/teacher/homework_list'
             });
         }
-    })
-})
+    });
+});
 
 //查看学生作业列表
 router.get('/homework_list',function (req,res,next) {
@@ -156,21 +172,23 @@ router.get('/homework_list',function (req,res,next) {
         if(!error && response.statusCode == 200){
             res.render('teacher/homework_list',
                 {
-                    data : dataJson.data,
+                    data : dataJson.data.homework_list,
                     title:'Ottcs教师版',
                     username:teacher.uid
                 }
             );
         }
-    })
-})
+    });
+});
 
 //！！！！！！！！！！！！！！！！！！
 //15 查看学生作业     第15个接口不太确定
 router.get('/homework_information',function (req,res,next) {
     var teacher = check_Cookie(req,res);
+    var params = _url.parse(req.url, true).query;
+    console.log(params);
     var url = URL + '/homework_information?course_id=' + teacher.course_id
-        + '&homework_id=' + req.body.homework_id;
+        + '&homework_id=' + params.homework_id;
     console.log('url');
     request(url,function (error,response,body) {
         var dataJson = eval("(" + body + ")");
@@ -184,8 +202,8 @@ router.get('/homework_information',function (req,res,next) {
                 }
             );
         }
-    })
-})
+    });
+});
 
 
 //16 编辑作业信息
@@ -212,15 +230,14 @@ router.post('/homework_update',function (req,res,next) {
                 url: '/teacher/homework_list'
             });
         }
-    })
-})
+    });
+});
 
 //17.	教师——删除作业
 router.post('/homework_delete',function (req,res,next) {
     console.log(req.body);
     var teacher = check_Cookie(req,res);
     var url = URL + '/homework_delete?uid=' + teacher.uid
-        + '&course_id=' + teacher.course_id
         + '&homework_id=' + req.body.homework_id
     request.post({url:url}, function(error, response, body) {
         console.log(response.statusCode);
@@ -231,8 +248,8 @@ router.post('/homework_delete',function (req,res,next) {
                 url: '/teacher/homework_list'
             });
         }
-    })
-})
+    });
+});
 
 //18.	教师——查看学生提交情况
 router.get('/homework_group_upload',function (req,res,next) {
@@ -252,8 +269,8 @@ router.get('/homework_group_upload',function (req,res,next) {
                 }
             );
         }
-    })
-})
+    });
+});
 
 //19.	教师——作业评分
 router.post('/homework_set_score',function (req,res,next) {
@@ -275,8 +292,24 @@ router.post('/homework_set_score',function (req,res,next) {
                 url: '/teacher/homework_group_upload'
             });
         }
-    })
-})
+    });
+});
+
+//20.	教师——学生提交的作业下载
+// router.get('/homework_group_download',function (req,res,next){
+//     //文件上传使用ajax自己解决跳转
+//     var teacher = check_Cookie(req,res);
+//     var params = _url.parse(req.url, true).query;
+//     console.log(params);
+//     var url = URL + '/homework_group_download?homework_id='
+//         + '&homework_id=' + params.homework_group_download;
+//     console.log("URL:"+url);
+//
+//     res.json({
+//         url:url
+//     })
+// });
+
 
 //23.	教师——通知列表
 router.get('/announcement_list',function (req,res,next) {
@@ -296,17 +329,17 @@ router.get('/announcement_list',function (req,res,next) {
                 }
             );
         }
-    })
-})
+    });
+});
 
 //21.	教师——发布通知
 router.post('/new_announcement',function (req,res,next) {
     console.log(req.body);
     var teacher = check_Cookie(req,res);
     var url = URL + '/new_announcement?uid=' + teacher.uid
-        + '&course_id=' + teacher.course_id
-        + '&course_title=' +  AsciiToUnicode(req.body.course_title)
-        + '&course_message=' + AsciiToUnicode(req.body.course_message)
+        + '&announcement_id=' + req.body.announcement_id
+        + '&announcement_title=' +  AsciiToUnicode(req.body.announcement_title)
+        + '&announcement_message=' + AsciiToUnicode(req.body.announcement_message)
 
     request.post({url:url}, function(error, response, body) {
         console.log(response.statusCode);
@@ -317,18 +350,18 @@ router.post('/new_announcement',function (req,res,next) {
                 url: '/teacher/announcement_list'
             });
         }
-    })
-})
+    });
+});
 
 //22.	教师——修改通知
-router.post('/new_announcement',function (req,res,next) {
+router.post('/announcement_update',function (req,res,next) {
     console.log(req.body);
     var teacher = check_Cookie(req,res);
-    var url = URL + '/new_announcement?uid=' + teacher.uid
+    var url = URL + '/announcement_update?uid=' + teacher.uid
         + '&course_id=' + teacher.course_id
         + '&announcement_id=' + req.body.announcement_id
-        + '&course_title=' +  AsciiToUnicode(req.body.course_title)
-        + '&course_message=' + AsciiToUnicode(req.body.course_message)
+        + '&announcement_title=' +  AsciiToUnicode(req.body.announcement_title)
+        + '&announcement_message=' + AsciiToUnicode(req.body.announcement_message)
 
     request.post({url:url}, function(error, response, body) {
         console.log(response.statusCode);
@@ -339,8 +372,8 @@ router.post('/new_announcement',function (req,res,next) {
                 url: '/teacher/announcement_list'
             });
         }
-    })
-})
+    });
+});
 
 //24.	教师——查看已组建团队信息
 router.get('/group_confirm_list',function (req,res,next) {
@@ -360,8 +393,8 @@ router.get('/group_confirm_list',function (req,res,next) {
                 }
             );
         }
-    })
-})
+    });
+});
 
 //25.	教师——查看未审批的团队信息
 router.get('/group_apply_list',function (req,res,next) {
@@ -381,8 +414,8 @@ router.get('/group_apply_list',function (req,res,next) {
                 }
             );
         }
-    })
-})
+    });
+});
 
 //26.	教师——批准学生团队
 router.post('/group_confirm',function (req,res,next) {
@@ -401,8 +434,8 @@ router.post('/group_confirm',function (req,res,next) {
                 url: '/teacher/group_confirm_list'
             });
         }
-    })
-})
+    });
+});
 
 //27.	教师——拒绝学生团队
 router.post('/group_reject',function (req,res,next) {
@@ -421,8 +454,8 @@ router.post('/group_reject',function (req,res,next) {
                 url: '/teacher/group_confirm_list'
             });
         }
-    })
-})
+    });
+});
 
 //28.	教师——查看未组队人员
 router.get('/student_not_in_group',function (req,res,next) {
@@ -442,8 +475,8 @@ router.get('/student_not_in_group',function (req,res,next) {
                 }
             );
         }
-    })
-})
+    });
+});
 
 //29.	教师——下载团队信息
 // router.get('/group_download',function (req,res,next) {

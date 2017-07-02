@@ -41,7 +41,7 @@ $(document).ready(function() {
         dataType : 'json',
         type : 'post',
         success : function (res) {
-            alert(res.url);
+            //alert(res.url);
             URL = res.url;
         }
     })
@@ -147,15 +147,14 @@ function fire_ajax_submit() {
         cache: false,
         timeout: 600000,
         success: function (data) {
-
             console.log("SUCCESS : ", data);
-            $("#upload_button").prop("disabled", false);
+            window.location.href = "/admin/student_list";
 
         },
         error: function (e) {
 
             console.log("ERROR : ", e);
-            $("#upload_button").prop("disabled", false);
+            window.location.href = "/admin/student_list";
         }
     });
 
