@@ -31,8 +31,9 @@ block content
                               th(style="display: none") 编号
                               th 通知
                               th 重新编辑
+                              th 更新时间
                       tbody#term
-                          - var data = [{announcement_title:'警告',announcement_message:'第一次迭代截至日期为明天06月29日！'},{announcement_title:'表现不错',announcement_message:'每个组都按时完成了第二次迭代开发！'},{announcement_title:'评分',announcement_message:'各小组用户故事已经评分，请按照要求修改原有内容！'}];
+                          - var data = [{announcement_title:'警告',announcement_message:'第一次迭代截至日期为明天06月29日！',announcement_update_time:"时间"}];
                           - var t = 0;
                           - for i in data
                             - ++t;
@@ -48,6 +49,7 @@ block content
                                  button.btn.btn-info(type="button", onclick="edit(this)")
                                    span.glyphicon.glyphicon-edit
                                    i 编辑信息
+                              td #{i.announcement_update_time}
                           tr
                               td#last(colspan="2")
                                   button#add.btn.btn-block.btn-success(type="button",onclick="show('提交')")
