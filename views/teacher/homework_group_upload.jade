@@ -82,8 +82,8 @@ block content
                                             td.center(style='width:150px;')
                                                 div
                                                     a(href='#myModal'+item.group_id, data-toggle='modal')
-                                                        button.btn.btn-primary(type='button',style='margin-right:10px') 评分
-                                                    button.btn.btn-success(type='button',style='margin-right:10px') 下载
+                                                        button.btn.btn-primary.btn-xs(type='button',style='margin-right:10px') 评分
+                                                    button.btn.btn-success.btn-xs(type='button',style='margin-right:10px') 下载
                         // Modal
                         each item in data.homework_upload_list
                             .modal.fade(id='myModal'+item.group_id,tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')

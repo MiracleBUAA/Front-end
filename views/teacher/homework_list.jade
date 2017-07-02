@@ -79,9 +79,15 @@ block content
                                                     -var edit='/teacher/homework_update?homework_id='+item.homework_id;
                                                     -var check='/teacher/homework_group_upload?homework_id='+item.homework_id;
                                                     -var del='/teacher/homework_delete?homework_id='+item.homework_id;
-                                                    input.btn.btn-primary(type='button',onclick="window.location.href="+"'"+edit+"'",style='margin-right:10px',value='查看/编辑')
-                                                    input.btn.btn-success(type='button',onclick="window.location.href="+"'"+check+"'",style='margin-right:10px',value='批改')
-                                                    input.btn.btn-danger(type='button',onclick="window.location.href="+"'"+del+"'",style='margin-right:10px',value='删除 ')
+                                                    button.btn.btn-success.btn-xs(type='button',onclick="window.location.href="+"'"+edit+"'",style='margin-right:10px',)
+                                                        i.fa.fa-eye
+                                                        |查看/编辑
+                                                    button.btn.btn-primary.btn-xs(type='button',onclick="window.location.href="+"'"+check+"'",style='margin-right:10px')
+                                                        i.fa
+                                                        |批改
+                                                    button.btn.btn-danger.btn-xs(type='button',onclick="window.location.href="+"'"+del+"'",style='margin-right:10px')
+                                                        i.fa.fa-trash-o
+                                                        |删除
 
 
     // body wrapper end
