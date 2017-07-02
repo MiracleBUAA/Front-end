@@ -77,8 +77,9 @@ block content
                                             td(style='width:200px;')
                                                 div
                                                     -var edit='/teacher/homework_update?homework_id='+item.homework_id;
+                                                    -var check='/teacher/homework_group_upload?homework_id='+item.homework_id;
                                                     input.btn.btn-primary(type='button',onclick="window.location.href="+"'"+edit+"'",style='margin-right:10px',value='编辑')
-                                                    button.btn.btn-success(type='button',style='margin-right:10px') 批改
+                                                    input.btn.btn-success(type='button',onclick="window.location.href="+"'"+check+"'",style='margin-right:10px',value='批改')
                                                     button.btn.btn-danger(type='button',style='margin-right:10px') 删除
 
 
