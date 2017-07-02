@@ -1,9 +1,10 @@
 //
-   Created by 胡晟 on 2017/7/1.
+   Created by 胡晟 on 2017/7/2.
 
+extends ../layout_student
 
-extends ../layout_teacher
-
+// 2:负责人     1:普通人
+-var urank;
 
 block styles
     link(href='/css/jquery.stepy.css', rel='stylesheet')
@@ -13,6 +14,11 @@ block styles
     link(rel='stylesheet', type='text/css', href='/js/bootstrap-colorpicker/css/colorpicker.css')
     link(rel='stylesheet', type='text/css', href='/js/bootstrap-daterangepicker/daterangepicker-bs3.css')
     link(rel='stylesheet', type='text/css', href='/js/bootstrap-datetimepicker/css/datetimepicker-custom.css')
+
+    style.
+        .ajust{
+            padding-top : 7px
+        }
 
 block scripts
 
@@ -45,63 +51,55 @@ block scripts
 
 
 
-    script(src='/my_js/teacher/homework_update.js')
+    script(src='/my_js/student/homework_information.js')
 
 
 block content
     // page heading start
     .page-heading
         h3
-            | 编辑作业要求
+            | 作业详情
         ul.breadcrumb
             li
                 a(href='#') 作业
-            li.active 编辑作业要求
+            li.active 作业详情
     // page heading end
     // body wrapper start
+    -var data={homework_id:'1',homework_title:'罚抄十遍',homework_start_time:'2017-07-04 21:25:10',homework_end_time:'2017-07-06 06:45:10',homework_score:"12",resubmit_limit:'6',homework_message:'快抄！罚抄十遍！',homework_upload_list:[{score:'3',score_message:'字太丑'}]};
     .wrapper
         .row
             .col-lg-12
                 section.panel
                     header.panel-heading
-                        | 作业要求
+                        | #{data.homework_title}
                     .panel-body
-                        form.form-horizontal.adminex-form(action='/teacher/homework_update',method='post')
-                            //-var data={homework_id:'1',homework_title:'罚抄十遍',homework_start_time:'2017-07-04 21:25:10',homework_end_time:'2017-07-06 06:45:10',homework_score:"12",resubmit_limit:'6',homework_message:'快抄！'};
-                            input(name='homework_id',value=data.homework_id,type='hidden')
-                            .form-group
-                                label.col-md-2.col-sm-2.control-label 作业标题
-                                .col-md-6.col-sm-6
-                                    input.form-control(type='text', placeholder='标题' name='homework_title',value=data.homework_title )
+                        .form-horizontal.adminex-form
+                            //input(name='homework_id',value=data.homework_id,type='hidden')
                             .form-group
                                 label.col-md-2.col-sm-2.control-label 开始时间
-                                .col-md-4
-                                    .input-group.date.form_datetime-component
-                                        input.form-control(type='text', readonly='', size='16' name='homework_start_time',value=data.homework_start_time)
-                                        span.input-group-btn
-                                            button.btn.btn-primary.date-set(type='button')
-                                                i.fa.fa-calendar
+                                .ajust.col-md-6.col-sm-6 #{data.homework_start_time}
                             .form-group
                                 label.col-md-2.col-sm-2.control-label 截止时间
-                                .col-md-4
-                                    .input-group.date.form_datetime-component
-                                        input.form-control(type='text', readonly='', size='16' name='homework_end_time',value=data.homework_end_time)
-                                        span.input-group-btn
-                                            button.btn.btn-primary.date-set(type='button')
-                                                i.fa.fa-calendar
+                                .ajust.col-md-6.col-sm-6 #{data.homework_end_time}
                             .form-group
                                 label.col-md-2.col-sm-2.control-label 作业分值
-                                .col-md-6.col-sm-6
-                                    input.form-control(type='text', placeholder='分值' name='homework_score',value=data.homework_score)
+                                .ajust.col-md-6.col-sm-6 #{data.homework_score}
                             .form-group
                                 label.col-md-2.col-sm-2.control-label 允许提交次数
-                                .col-md-6.col-sm-6
-                                    input.form-control(type='text', placeholder='提交次数' name='resubmit_limit',value=data.resubmit_limit)
+                                .ajust.col-md-6.col-sm-6 #{data.resubmit_limit}
+
                             .form-group
-                                label.col-md-2.col-sm-2.control-label 要求以及指导
-                                .col-md-6.col-sm-6
-                                    textarea.form-control(rows='5', cols='60' name='homework_message')=data.homework_message
+                                label.col-md-2.col-sm-2.control-label 要求及指导
+                                .ajust.col-md-6.col-sm-6 #{data.homework_message}
+
                             .form-group
+                                label.col-md-2.col-sm-2.control-label  得分
+                                .ajust.col-md-6.col-sm-6 #{data.homework_upload_list[0].score}
+                            .form-group
+                                label.col-md-2.col-sm-2.control-label 教师评语
+                                .ajust.col-md-6.col-sm-6 #{data.homework_upload_list[0].score_message}
+
+                            //.form-group
                                 .col-lg-offset-2.col-lg-10
                                     button.btn.btn-primary(type='submit') 保存修改
 
