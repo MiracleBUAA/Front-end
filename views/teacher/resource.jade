@@ -1,107 +1,89 @@
 extends  ../layout_teacher
 
 block styles
-  link(rel="stylesheet", href="/css/amazeui.css")
-block content
-        .page-heading
-          h3
-            | 上传课程资源
-            small &nbsp;软件工程敏捷开发实践
-          ul.breadcrumb
-            li
-              a(href='#') 课程资源
-            li.active 上传资源列表
+  // dynamic table
+  link(href='/js/advanced-datatable/css/demo_page.css', rel='stylesheet')
+  link(href='/js/advanced-datatable/css/demo_table.css', rel='stylesheet')
+  link(rel='stylesheet', href='/js/data-tables/DT_bootstrap.css')
+  link(href='/css/style.css', rel='stylesheet')
+  link(href='/css/style-responsive.css', rel='stylesheet')
 
-        .admin-content
-          .am-cf.am-padding
-            .am-fl.am-cf
-              strong.am-text-primary.am-text-lg 表格
-              |  /
-              small Table
-
-          .am-g
-            .am-u-md-6.am-cf
-              .am-fl.am-cf
-                .am-btn-toolbar.am-fl
-                  .am-btn-group.am-btn-group-xs
-                    form#file_form
-                      input#nosee(type="file", style="display: none;")
-                      button#see.am-btn.am-btn-default(type="button", onclick="show('提交')")
-                        span.am-icon-plus
-                        |  新增文件
-
-                 .am-form-group.am-margin-left.am-fl
-                    select#sel
-                      option(selected="selected") 所有类别
-            .am-u-md-3.am-cf
-              .am-fr
-                .am-input-group.am-input-group-sm
-                  input.am-form-field(type="text")
-                  span.am-input-group-btn
-                    button.am-btn.am-btn-default(type="button") 搜索
-          .am-g
-            .am-u-sm-12
-              form.am-form
-                table.am-table.am-table-striped.am-table-hover.table-main
-                  thead
-                    tr
-                      th.table-check
-                        input(type="checkbox")
-                      th.table-title 标题
-                      th.table-type 类别
-                      th.table-author 作者
-                      th.table-date 上传日期
-                      th.table-set 操作
-                  tbody#list
-                    //- var data = [{resource_id:1,resource_title:"在线协同教学平台-原始业务需求20170622.docx",resource_type:"文本文档",teacher_name:"林老师",create_time:"2017年06月25日 10:28:47"},{resource_id:2,resource_title:"在线协同教学平台-原始业务需求20170622.ppt",resource_type:"幻灯片",teacher_name:"林老师",create_time:"2017年06月25日 10:28:47"}, {resource_id:3,resource_title:"在线协同教学平台-原始业务需求20170622.xls",resource_type:"表格",teacher_name:"林老师",create_time:"2017年06月25日 10:28:47"},{resource_id:4,resource_title:"在线协同教学平台-原始业务需求20170622.doc",resource_type:"文本文档",teacher_name:"林老师",create_time:"2017年06月25日 10:28:47"}];
-
-                    - for i in data
-                      tr(data-id=i.resource_id)
-                        td
-                          input(type="checkbox")
-                        td
-                          a(href="#") #{i.resource_title}
-                        td #{i.resource_type}
-                        td #{i.teacher_name}
-                        td #{i.create_time}
-                        td
-                          .am-btn-toolbar
-                            .am-btn-group.am-btn-group-xs
-                              button.am-btn.am-btn-default.am-btn-xs.am-text-secondary
-                                span.am-icon-pencil-square-o
-                                |  分类
-                              button.am-btn.am-btn-default.am-btn-xs(onclick="download(this)")
-                                span.am-icon-copy
-                                |  下载
-                              button.am-btn.am-btn-default.am-btn-xs.am-text-danger(onclick="del(this)")
-                                span.am-icon-trash-o
-                                |  删除
-
-                #am-cf.am-cf
-                  | 共 1 条记录
-                  .am-fr
-                    ul.am-pagination
-                      li.am-disabled
-                        a(href="#") «
-                      li.am-active
-                        a(href="#") 1
-                      li
-                        a(href="#") »
-
-        div#pop(style="display: none;position: absolute;top:10%;left: 20%;right: 20%;height: 400px;padding: 20px;border: 5px solid silver;border-radius: 5px;background-color: white;z-index:1002;overflow: auto; ")
-          section.panel
-            header.panel-heading
-              | Basic Forms
-            .panel-body
-              form(role="form")
-                .form-group
-                  label 文件分类
-                  input#file_flag.form-control(type="text")
-                button#bubble.btn.btn-block.btn-success(type="button") 提交
-
-        div#fade(onclick="hide()" style="display: none;position: absolute;top: 0%;left: 0%;width: 100%;height: 1000%;background-color: black;z-index:1001;-moz-opacity: 0.8;opacity:.80;filter: alpha(opacity=88); ")
-
+  // file upload
+  link(rel='stylesheet', type='text/css', href='/css/bootstrap-fileupload.min.css')
 
 
 block scripts
-  script(type="text/javascript",src="/my_js/teacher/resource.js").
+  // spinner
+  script(type='text/javascript', src='/js/fuelux/js/spinner.min.js')
+  script(src='/js/spinner-init.js')
+  // file upload
+  script(type='text/javascript', src='/js/bootstrap-fileupload.min.js')
+  // dynamic table
+  script(type='text/javascript', language='javascript', src='/js/advanced-datatable/js/jquery.dataTables.js')
+  script(type='text/javascript', src='/js/data-tables/DT_bootstrap.js')
+  // dynamic table initialization
+  //script(src='/js/dynamic_table_init.js')
+
+  script(src='/my_js/teacher/resource.js')
+
+
+
+
+block content
+  // page heading start
+  .page-heading
+    h3
+      | 课程资源
+    ul.breadcrumb
+      li
+        a(href='#') 未定义
+
+      li.active  未定义
+  // page heading end
+  // body wrapper start
+  .wrapper
+    .row
+      .col-sm-12
+        section.panel
+          header.panel-heading
+            | 资源列表
+
+            span.pull-right(style='margin-bottom: -50px')
+              form#upload_form.form-group(method='post' enctype="multipart/form-data")
+                button#upload_button.btn.btn-default(type='submit' style='height: 25px;margin-right: 10px;padding-top: 2px;font-size: inherit;')
+                  i.fa.fa-cloud-upload
+                  |  上传
+                input#upload_file(name='file',type='file', style='float:right;width: 200px;')
+                .iconic-input(style='float:right;margin-right: 10px;')
+                  i.fa.fa-question-circle
+                  input.form-control(name='type',type='text', placeholder='分类',style='width:100px;height: 25px;')
+          .panel-body
+            .adv-table
+              table#dynamic-table.display.table.table-bordered.table-striped
+                -var data=[{resource_id:'1',resource_title:'罚抄内容',resource_type:'奇葩',teacher_name:'林广艳',create_time:'2017-01-02 20:21:22'},{resource_id:'2',resource_title:'接着罚抄',resource_type:'奇葩',teacher_name:'林广艳',create_time:'2017-01-02 20:21:22'}]
+
+                thead
+                  tr
+                    th 标题
+                    th 类别
+                    th 发布人
+                    th 发布时间
+                    th 操作
+
+                tbody
+                  each item in data
+                    tr.gradeA
+                      td #{item.resource_title}
+                      td #{item.resource_type}
+                      td #{item.teacher_name}
+                      td #{item.create_time}
+                      td.center
+                        -var del='/teacher/resource_delete?resource_id='+item.resource_id;
+                        button.btn.btn-success.btn-xs(type='button',style='margin-right:10px') 下载
+                        button.btn.btn-danger.btn-xs(type='button',onclick="window.location.href=" + "'" + del + "'",style='margin-right:10px')
+                          i.fa.fa-trash-o
+                          | 删除
+
+
+  // body wrapper end
+
