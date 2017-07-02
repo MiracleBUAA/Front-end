@@ -65,7 +65,7 @@ block content
             li.active 作业详情
     // page heading end
     // body wrapper start
-    -var data={homework_id:'1',homework_title:'罚抄十遍',homework_start_time:'2017-07-04 21:25:10',homework_end_time:'2017-07-06 06:45:10',homework_score:"12",resubmit_limit:'6',homework_message:'快抄！罚抄十遍！快抄！罚抄十遍！快抄！罚抄十遍！快抄！罚抄十遍！快抄！罚抄十遍！',homework_upload_list:[{score:'3',score_message:'字太丑！字太丑！字太丑！字太丑！字太丑！字太丑！字太丑！'}]};
+    -var data={homework_id:'1',homework_title:'罚抄十遍',homework_start_time:'2017-07-04 21:25:10',homework_end_time:'2017-07-06 06:45:10',homework_score:"12",resubmit_limit:'6',homework_message:'快抄！罚抄十遍！快抄！罚抄十遍！快抄！罚抄十遍！快抄！罚抄十遍！快抄！罚抄十遍！',homework_upload_list:[{score:'3',score_message:'字太丑！字太丑！字太丑！字太丑！字太丑！字太丑！字太丑！',homework_file_name:'罚抄.doc',homework_upload_time:'2017-07-02 21:22:23',homework_upload_id:'1'},{score:'3',score_message:'字太丑！字太丑！字太丑！字太丑！字太丑！字太丑！字太丑！',homework_file_name:'手都抄断了.doc',homework_upload_time:'2017-07-02 21:22:23',homework_upload_id:'1'}]};
     .wrapper
         .row
             .col-lg-12
@@ -101,6 +101,38 @@ block content
                                 .form-group
                                     label.col-md-4.col-sm-4.control-label 教师评语
                                     .ajust.col-md-6.col-sm-6 #{data.homework_upload_list[0].score_message}
+                        .row
+                            .col-sm-12
+                                section.panel
+                                    header.panel-heading
+                                        | 上传作业
+                                        span.pull-right(style='margin-bottom: -50px')
+                                            form#upload_form.form-group(method='post' enctype="multipart/form-data")
+                                                button#upload_button.btn.btn-default(type='submit' style='height: 25px;margin-right: 10px;padding-top: 2px;font-size: inherit;')
+                                                    i.fa.fa-cloud-upload
+                                                    |  上传
+                                                input#upload_file(name='file',type='file', style='float:right;width: 200px;')
+                                    .panel-body
+                                        table.table.table-hover.general-table
+                                            thead
+                                                tr
+                                                    th 序号
+                                                    th 文件名
+                                                    th 上传时间
+                                                    th 操作
+
+                                            tbody
+                                                -var i=0;
+                                                each item in data.homework_upload_list
+                                                    -i=i+1;
+                                                    tr
+                                                        td #{i}
+                                                        td #{item.homework_file_name}
+                                                        td #{item.homework_upload_time}
+                                                        td
+                                                            -var del='/teacher/homework_delete?homework_id='+item.homework_upload_id;
+                                                            input.btn.btn-danger(type='button',onclick="window.location.href="+"'"+del+"'",style='margin-right:10px',value='删除 ')
+
 
 
 
