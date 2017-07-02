@@ -57,13 +57,13 @@ function fire_ajax_submit() {
         timeout: 600000,
         success: function (data) {
             console.log("SUCCESS : ", data);
-            window.location.href = "/admin/student_list";
+            window.location.href = "/student/homework_information";
 
         },
         error: function (e) {
 
             console.log("ERROR : ", e);
-            window.location.href = "/admin/student_list";
+            window.location.href = "/student/homework_information";
         }
     });
 
