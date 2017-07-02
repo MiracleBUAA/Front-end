@@ -335,35 +335,50 @@ router.post('/homework_set_score',function (req,res,next) {
 
 
 //23.	教师——通知列表
-router.get('/announcement_list',function (req,res,next) {
+// router.get('/announcement_list',function (req,res,next) {
+//     var teacher = check_Cookie(req,res);
+//     var url = URL + '/announcement_list?course_id=' + teacher.course_id
+//     console.log(url);
+//
+//     request(url,function (error,response,body) {
+//         var dataJson = eval("(" + body + ")");
+//         console.log(dataJson);
+//         if(!error && response.statusCode == 200){
+//             res.render('teacher/announcement_list',
+//                 {
+//                     data : dataJson.data,
+//                     title:'Ottcs教师版',
+//                     username:teacher.uid
+//                 }
+//             );
+//         }
+//     });
+// });
+
+//21.	教师——发布通知
+router.get('/announcement',function (req,res,next) {
     var teacher = check_Cookie(req,res);
     var url = URL + '/announcement_list?course_id=' + teacher.course_id
     console.log(url);
 
     request(url,function (error,response,body) {
         var dataJson = eval("(" + body + ")");
-        console.log(dataJson);
+        console.log(dataJson.data);
         if(!error && response.statusCode == 200){
-            res.render('teacher/announcement_list',
+            res.render('teacher/announcement',
                 {
-                    data : dataJson.data,
+                    data : dataJson.data.announcement_list,
                     title:'Ottcs教师版',
                     username:teacher.uid
                 }
             );
         }
     });
-});
-
-//21.	教师——发布通知
-router.get('/new_announcement',function (req,res,next) {
-    var teacher = check_Cookie(req,res);
-    res.render('teacher/new_announcement',{title:'Ottcs教务版',username:teacher.uid});
 }).post('/new_announcement',function (req,res,next) {
     console.log(req.body);
     var teacher = check_Cookie(req,res);
     var url = URL + '/new_announcement?uid=' + teacher.uid
-        + '&announcement_id=' + req.body.announcement_id
+        + '&course_id=' + teacher.course_id
         + '&announcement_title=' +  AsciiToUnicode(req.body.announcement_title)
         + '&announcement_message=' + AsciiToUnicode(req.body.announcement_message)
 
@@ -373,7 +388,7 @@ router.get('/new_announcement',function (req,res,next) {
         if (!error && response.statusCode == 200) {
             //返回到作业列表界面
             res.json({
-                url: '/teacher/announcement_list'
+                url: '/teacher/announcement'
             });
         }
     });
