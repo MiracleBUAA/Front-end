@@ -89,20 +89,22 @@ block content
                             .modal.fade(id='myModal'+item.group_id,tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
                                 .modal-dialog
                                     .modal-content
-                                        .modal-header
-                                            button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
-                                            h4.modal-title Edit Media Gallery
-                                        .modal-body.row
-                                            form.col-md-12(action='/teacher/homework_group_upload', method='post')
-                                                input(name='homework_id',value=item.homework_id,type='hidden')
-                                                .form-group
-                                                    label  分数
-                                                    input.form-control(name='score',value=item.score)
-                                                .form-group
-                                                    label  评语
-                                                    textarea.form-control(name='score_message',rows='4')=item.homework_message
-                                                .pull-right
-                                                    button.btn.btn-success.btn-sm(type='submit') 保存提交
+                                        form(action='/teacher/homework_group_upload', method='post')
+                                            .modal-header
+                                                button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+                                                h4.modal-title Edit Media Gallery
+                                            .modal-body.row
+                                                    input(name='homework_id',value=item.homework_id,type='hidden')
+                                                    .form-group.col-md-2
+                                                        label  分数
+                                                        input.form-control(name='score',value=item.score)
+                                                    .form-group.col-md-12
+                                                        label  评语
+                                                        textarea.form-control(name='score_message',rows='4')=item.homework_message
+                                            .modal-footer
+                                                button.btn.btn-default(type='button', data-dismiss='modal') 关闭
+                                                button.btn.btn-success.btn-sm(type='submit') 保存提交
+
                         // modal
 
 
