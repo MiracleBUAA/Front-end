@@ -22,12 +22,12 @@
         var _det = $("#det").val();
         if(document.getElementById("bubble").innerHTML == "提交") {
             $.ajax({
-                url: "/admin/new_announcement",
+                url: "/teacher/new_announcement",
                 data: {
                     uid: 1,
-                    course_id:1,
-                    course_title: _tit,
-                    course_message: _det
+                    announcement_id:1,
+                    announcement_title: _tit,
+                    announcement_message: _det
                 },
                 dataType: 'json',
                 type: 'post',
@@ -54,13 +54,13 @@
             //
         }else{
             $.ajax({
-                url: "/admin/new_announcement",
+                url: "/teacher/announcement_update",
                 data: {
                     uid: 1,
                     course_id:1,
                     announcement_id: 1,
-                    course_title: _tit,
-                    course_message: _det
+                    announcement_title: _tit,
+                    announcement_message: _det
                 },
                 dataType: 'json',
                 type: 'post',
