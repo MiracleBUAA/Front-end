@@ -39,7 +39,7 @@
                     var tot = document.getElementById("term").children.length;
                     x.innerHTML = "<td>"+tot+"</td>"+
                                     "<td><div class='alert alert-block alert-danger fade in'><button type='button' data-dismiss='alert' class='close close-sm'><i class='fa fa-times'></i></button><strong>"+_tit+"&nbsp;</strong>"+_det+"</div></td>"+
-                                    "<td><button type='button' onclick='edit(this)' class='btn btn-info'><span class='glyphicon glyphicon-edit'></span><i>编辑信息</i></button></td><td></td>";
+                                    "<td><button type='button' onclick='edit(this)' class='btn btn-info' style='margin-top: 10px;'><span class='glyphicon glyphicon-edit'></span><i>编辑信息</i></button></td><td style='padding-top: 24px;color:red;'></td>";
                     document.getElementById("term").insertBefore(x, document.getElementById("term").children[0]);
                 }
             });
@@ -49,7 +49,7 @@
                     var tot = document.getElementById("term").children.length;
                     x.innerHTML = "<td style='display: none;'>"+tot+"</td>"+
                                     "<td><div class='alert alert-block alert-danger fade in'><button type='button' data-dismiss='alert' class='close close-sm'><i class='fa fa-times'></i></button><strong>"+_tit+"&nbsp;</strong>"+_det+"</div></td>"+
-                                    "<td><button type='button' onclick='edit(this)' class='btn btn-info'><span class='glyphicon glyphicon-edit'></span><i>编辑信息</i></button></td><td></td>";
+                                    "<td><button type='button' onclick='edit(this)' class='btn btn-info' style='margin-top: 10px;'><span class='glyphicon glyphicon-edit'></span><i>编辑信息</i></button></td><td style='padding-top: 24px;color:red;'></td>";
                     document.getElementById("term").insertBefore(x, document.getElementById("term").children[0]);
             //
         }else{
