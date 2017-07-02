@@ -65,7 +65,7 @@ block content
             li.active 作业详情
     // page heading end
     // body wrapper start
-    -var data={homework_id:'1',homework_title:'罚抄十遍',homework_start_time:'2017-07-04 21:25:10',homework_end_time:'2017-07-06 06:45:10',homework_score:"12",resubmit_limit:'6',homework_message:'快抄！罚抄十遍！',homework_upload_list:[{score:'3',score_message:'字太丑'}]};
+    -var data={homework_id:'1',homework_title:'罚抄十遍',homework_start_time:'2017-07-04 21:25:10',homework_end_time:'2017-07-06 06:45:10',homework_score:"12",resubmit_limit:'6',homework_message:'快抄！罚抄十遍！快抄！罚抄十遍！快抄！罚抄十遍！快抄！罚抄十遍！快抄！罚抄十遍！',homework_upload_list:[{score:'3',score_message:'字太丑！字太丑！字太丑！字太丑！字太丑！字太丑！字太丑！'}]};
     .wrapper
         .row
             .col-lg-12
@@ -73,35 +73,37 @@ block content
                     header.panel-heading
                         | #{data.homework_title}
                     .panel-body
-                        .form-horizontal.adminex-form
-                            //input(name='homework_id',value=data.homework_id,type='hidden')
-                            .form-group
-                                label.col-md-2.col-sm-2.control-label 开始时间
-                                .ajust.col-md-6.col-sm-6 #{data.homework_start_time}
-                            .form-group
-                                label.col-md-2.col-sm-2.control-label 截止时间
-                                .ajust.col-md-6.col-sm-6 #{data.homework_end_time}
-                            .form-group
-                                label.col-md-2.col-sm-2.control-label 作业分值
-                                .ajust.col-md-6.col-sm-6 #{data.homework_score}
-                            .form-group
-                                label.col-md-2.col-sm-2.control-label 允许提交次数
-                                .ajust.col-md-6.col-sm-6 #{data.resubmit_limit}
+                        .row
+                            .form-horizontal.adminex-form.col-md-5
+                                .form-group
+                                    label.col-md-4.col-sm-4.control-label 开始时间
+                                    .ajust.col-md-6.col-sm-6 #{data.homework_start_time}
+                                .form-group
+                                    label.col-md-4.col-sm-4.control-label 作业分值
+                                    .ajust.col-md-6.col-sm-6 #{data.homework_score}
+                                .form-group
+                                    label.col-md-4.col-sm-4.control-label 允许提交次数
+                                    .ajust.col-md-6.col-sm-6 #{data.resubmit_limit}
+                                .form-group
+                                    label.col-md-4.col-sm-4.control-label 要求及指导
+                                    .ajust.col-md-8.col-sm-8 #{data.homework_message}
 
-                            .form-group
-                                label.col-md-2.col-sm-2.control-label 要求及指导
-                                .ajust.col-md-6.col-sm-6 #{data.homework_message}
+                            .form-horizontal.adminex-form.col-md-7
+                                .form-group
+                                    label.col-md-4.col-sm-4.control-label 截止时间
+                                    .ajust.col-md-6.col-sm-6 #{data.homework_end_time}
+                                .form-group
+                                    label.col-md-4.col-sm-4.control-label 得分
+                                    .ajust.col-md-6.col-sm-6 #{data.homework_upload_list[0].score}
+                                .form-group
+                                    label.col-md-4.col-sm-4.control-label 已提交次数
+                                    .ajust.col-md-6.col-sm-6 未定义
+                                .form-group
+                                    label.col-md-4.col-sm-4.control-label 教师评语
+                                    .ajust.col-md-6.col-sm-6 #{data.homework_upload_list[0].score_message}
 
-                            .form-group
-                                label.col-md-2.col-sm-2.control-label  得分
-                                .ajust.col-md-6.col-sm-6 #{data.homework_upload_list[0].score}
-                            .form-group
-                                label.col-md-2.col-sm-2.control-label 教师评语
-                                .ajust.col-md-6.col-sm-6 #{data.homework_upload_list[0].score_message}
 
-                            //.form-group
-                                .col-lg-offset-2.col-lg-10
-                                    button.btn.btn-primary(type='submit') 保存修改
+
 
 
 
