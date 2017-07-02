@@ -1,0 +1,56 @@
+// By ZhuFu on 20170627
+
+extends ../layout_student
+
+
+block styles
+
+block content
+        .page-heading
+          h3
+            | 查看课程信息
+            | &nbsp;
+            small 软件工程敏捷开发实践
+          ul.breadcrumb
+            li
+              a(href='#') 课程信息
+            li.active 查看课程信息
+
+        - var data={course_id:"1",course_name:"软件工程敏捷开发实践",course_start_time:"2017-06-25",course_hour:"20 学时",course_credit:"2 学分",course_location:"北航学院路工训中心317",team_limit_information:"6-8人，一个女生",teacher_information:"林广艳，贾经冬",course_information:"敏捷过程Scrum模型与教务系统开发"};
+        .wrapper
+          table#info.table.table-bordered.table-striped(style="clear: both")
+            tbody
+              tr
+                td(width="30%") 课程名称
+                td(width="30%")
+                  p#course_name #{data.course_name}
+              tr
+                td(width="30%") 开始时间
+                td(width="30%")
+                  p#course_start_time #{data.course_start_time}
+              tr
+                td(width="30%") 学时
+                td(width="30%")
+                  p#course_hours #{data.course_hour}
+              tr
+                td(width="30%") 学分
+                td(width="30%")
+                  p#credit #{data.course_credit}
+              tr
+                td(width="30%") 上课地点
+                td(width="30%")
+                  p#course_location #{data.course_location}
+              tr
+                td(width="30%") 团队限制信息
+                td(width="30%")
+                  p#team_limit_information #{data.team_limit_information}
+              tr
+                td(width="30%") 教师信息
+                td(width="30%")
+                  p#teacher_information #{data.teacher_information}
+              tr
+                td(width="30%") 课程信息
+                td(width="30%")
+                  p#course_information #{data.course_information}
+
+block scripts
