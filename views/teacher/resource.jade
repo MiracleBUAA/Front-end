@@ -52,13 +52,11 @@ block content
                       th.table-author 作者
                       th.table-date 上传日期
                       th.table-set 操作
-                      th(style="display:none")
                   tbody#list
                     //- var data = [{resource_id:1,resource_title:"在线协同教学平台-原始业务需求20170622.docx",resource_type:"文本文档",teacher_name:"林老师",create_time:"2017年06月25日 10:28:47"},{resource_id:2,resource_title:"在线协同教学平台-原始业务需求20170622.ppt",resource_type:"幻灯片",teacher_name:"林老师",create_time:"2017年06月25日 10:28:47"}, {resource_id:3,resource_title:"在线协同教学平台-原始业务需求20170622.xls",resource_type:"表格",teacher_name:"林老师",create_time:"2017年06月25日 10:28:47"},{resource_id:4,resource_title:"在线协同教学平台-原始业务需求20170622.doc",resource_type:"文本文档",teacher_name:"林老师",create_time:"2017年06月25日 10:28:47"}];
-                    - var t = 0;
+
                     - for i in data
-                      - ++t;
-                      tr(tag=data.announcement_id)
+                      tr(data-id=i.resource_id)
                         td
                           input(type="checkbox")
                         td
@@ -72,13 +70,12 @@ block content
                               button.am-btn.am-btn-default.am-btn-xs.am-text-secondary
                                 span.am-icon-pencil-square-o
                                 |  分类
-                              button.am-btn.am-btn-default.am-btn-xs(onclick="window.location.href('/teacher/resource_download')")
+                              button.am-btn.am-btn-default.am-btn-xs(onclick="download(this)")
                                 span.am-icon-copy
                                 |  下载
                               button.am-btn.am-btn-default.am-btn-xs.am-text-danger(onclick="del(this)")
                                 span.am-icon-trash-o
                                 |  删除
-                        td(style="display: none") #{t}
 
                 #am-cf.am-cf
                   | 共 1 条记录
