@@ -1,0 +1,110 @@
+extends  ../layout_teacher
+
+block styles
+  link(rel="stylesheet", href="/css/amazeui.css")
+block content
+        .page-heading
+          h3
+            | 上传课程资源
+            small &nbsp;软件工程敏捷开发实践
+          ul.breadcrumb
+            li
+              a(href='#') 课程资源
+            li.active 上传资源列表
+
+        .admin-content
+          .am-cf.am-padding
+            .am-fl.am-cf
+              strong.am-text-primary.am-text-lg 表格
+              |  /
+              small Table
+
+          .am-g
+            .am-u-md-6.am-cf
+              .am-fl.am-cf
+                .am-btn-toolbar.am-fl
+                  .am-btn-group.am-btn-group-xs
+                    form#file_form
+                      input#nosee(type="file", style="display: none;")
+                      button#see.am-btn.am-btn-default(type="button", onclick="show('提交')")
+                        span.am-icon-plus
+                        |  新增文件
+
+                 .am-form-group.am-margin-left.am-fl
+                    select#sel
+                      option(selected="selected") 所有类别
+            .am-u-md-3.am-cf
+              .am-fr
+                .am-input-group.am-input-group-sm
+                  input.am-form-field(type="text")
+                  span.am-input-group-btn
+                    button.am-btn.am-btn-default(type="button") 搜索
+          .am-g
+            .am-u-sm-12
+              form.am-form
+                table.am-table.am-table-striped.am-table-hover.table-main
+                  thead
+                    tr
+                      th.table-check
+                        input(type="checkbox")
+                      th.table-title 标题
+                      th.table-type 类别
+                      th.table-author 作者
+                      th.table-date 上传日期
+                      th.table-set 操作
+                      th(style="display:none")
+                  tbody#list
+                    - var data = [{resource_id:1,resource_title:"在线协同教学平台-原始业务需求20170622.docx",resource_type:"文本文档",teacher_name:"林老师",create_time:"2017年06月25日 10:28:47"},{resource_id:2,resource_title:"在线协同教学平台-原始业务需求20170622.ppt",resource_type:"幻灯片",teacher_name:"林老师",create_time:"2017年06月25日 10:28:47"}, {resource_id:3,resource_title:"在线协同教学平台-原始业务需求20170622.xls",resource_type:"表格",teacher_name:"林老师",create_time:"2017年06月25日 10:28:47"},{resource_id:4,resource_title:"在线协同教学平台-原始业务需求20170622.doc",resource_type:"文本文档",teacher_name:"林老师",create_time:"2017年06月25日 10:28:47"}];
+                    - var t = 0;
+                    - for i in data
+                      - ++t;
+                      tr(tag=data.announcement_id)
+                        td
+                          input(type="checkbox")
+                        td
+                          a(href="#") #{i.resource_title}
+                        td #{i.resource_type}
+                        td #{i.teacher_name}
+                        td #{i.create_time}
+                        td
+                          .am-btn-toolbar
+                            .am-btn-group.am-btn-group-xs
+                              button.am-btn.am-btn-default.am-btn-xs.am-text-secondary
+                                span.am-icon-pencil-square-o
+                                |  分类
+                              button.am-btn.am-btn-default.am-btn-xs(onclick="window.location.href('/teacher/resource_download')")
+                                span.am-icon-copy
+                                |  下载
+                              button.am-btn.am-btn-default.am-btn-xs.am-text-danger(onclick="del(this)")
+                                span.am-icon-trash-o
+                                |  删除
+                        td(style="display: none") #{t}
+
+                #am-cf.am-cf
+                  | 共 1 条记录
+                  .am-fr
+                    ul.am-pagination
+                      li.am-disabled
+                        a(href="#") «
+                      li.am-active
+                        a(href="#") 1
+                      li
+                        a(href="#") »
+
+        div#pop(style="display: none;position: absolute;top:10%;left: 20%;right: 20%;height: 400px;padding: 20px;border: 5px solid silver;border-radius: 5px;background-color: white;z-index:1002;overflow: auto; ")
+          section.panel
+            header.panel-heading
+              | Basic Forms
+            .panel-body
+              form(role="form")
+                .form-group
+                  label 文件分类
+                  input#file_flag.form-control(type="text")
+                button#bubble.btn.btn-block.btn-success(type="button") 提交
+
+        div#fade(onclick="hide()" style="display: none;position: absolute;top: 0%;left: 0%;width: 100%;height: 1000%;background-color: black;z-index:1001;-moz-opacity: 0.8;opacity:.80;filter: alpha(opacity=88); ")
+
+
+
+block scripts
+  script(type="text/javascript",src="/my_js/teacher/resource.js").
