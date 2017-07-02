@@ -4,7 +4,7 @@
 $(document).ready(function () {
 
     var x;
-    var path = '/teacher/course_info';
+    var path = '/teacher/course_information';
 
     // 7
     $('#team_limit_information').editable({
