@@ -1,0 +1,54 @@
+//
+   Created by lenovo on 2017/7/1.
+
+extends ../layout_student
+
+block styles
+
+block content
+        .page-heading
+          h3
+            | 课程通知
+            | &nbsp;
+            small 软件工程敏捷开发实践
+          ul.breadcrumb
+            li
+              a(href='#') 课程信息
+            li.active 查看通知
+
+          hr(style="FILTER: alpha(opacity=100,finishopacity=0,style=3)", width="99%", color="#987cb9", size="3")
+
+        .wrapper
+          section.panel
+              header.panel-heading
+                | 发布通知
+                span.tools.pull-right
+                  a.fa.fa-chevron-down(href="javascript:;")
+                  // a.fa.fa-times(href="javascript:;")
+
+              .panel-body
+                  table.table.table-hover.general-table
+                      thead
+                          tr
+                              th 通知
+                              th 发布人
+                              th 创建时间
+                      tbody#term
+                          - var data = [{announcement_id:"233",teacher_name:"林广艳",announcement_title:'警告',announcement_message:'第一次迭代截至日期为明天06月29日！',announcement_create_time:"2017-07-02 14:27:30"}];
+
+                          - for i in data
+                            tr(data-id=i.announcement_id,data-tit=i.announcement_title,data-det=i.announcement_message,data-teacher=i.teacher_name,data-time=i.announcement_create_time)
+                              td
+                                .alert.alert-block.alert-danger.fade.in
+                                  button.close.close-sm(type="button", data-dismiss="alert")
+                                    //i.fa.fa-times
+                                  strong #{i.announcement_title}
+                                  i &nbsp;#{i.announcement_message}
+                              td(style='padding-top: 24px;')
+                                strong #{i.teacher_name}
+                              td(style='padding-top: 24px;color:red;') #{i.announcement_create_time}
+
+
+
+block scripts
+    
