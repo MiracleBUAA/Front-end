@@ -89,7 +89,7 @@
     function edit(e) {
         show('编辑');
         curELE = e.parentNode.parentNode;
-        curID = curELE.getAttribute("data-id");
+        curID = Number(curELE.getAttribute("data-id"));
         document.getElementById("tit").value = curELE.getAttribute("data-tit");
         document.getElementById("det").value = curELE.getAttribute("data-det");
     }
