@@ -33,7 +33,7 @@ block content
                               th 重新编辑
                               th 更新时间
                       tbody#term
-                          - var data = [{announcement_title:'警告',announcement_message:'第一次迭代截至日期为明天06月29日！',announcement_update_time:"时间"}];
+                          - var data = [{announcement_title:'警告',announcement_message:'第一次迭代截至日期为明天06月29日！',announcement_update_time:"2017-07-02 14:27:30"}];
                           - var t = 0;
                           - for i in data
                             - ++t;
@@ -46,12 +46,12 @@ block content
                                   strong #{i.announcement_title}
                                   |  #{i.announcement_message}
                               td
-                                 button.btn.btn-info(type="button", onclick="edit(this)")
+                                 button.btn.btn-info(type="button", onclick="edit(this)",style="margin-top: 10px;")
                                    span.glyphicon.glyphicon-edit
                                    i 编辑信息
-                              td #{i.announcement_update_time}
+                              td(style='padding-top: 24px;color:red;') #{i.announcement_update_time}
                           tr
-                              td#last(colspan="2")
+                              td#last(colspan="3")
                                   button#add.btn.btn-block.btn-success(type="button",onclick="show('提交')")
                                       span.pull-left
                                           span.glyphicon.glyphicon-plus
