@@ -3,6 +3,10 @@
 
 extends  ../layout_student
 
+
+block scripts
+    script(src='/my_js/student/mygroup_homeless.js')
+
 block content
     // page heading start
     .page-heading
@@ -20,7 +24,7 @@ block content
 
             .panel-body
                 p 你还没有加入任何团队。
-                p 如果想创建自己的团队，可以点击下面的按钮，同时成为团队的负责人。
+                p 你可以创建自己的团队，同时成为团队的负责人。
                 a.btn.btn-default.btn-primary(href='#myModal', data-toggle='modal')
                     | 创建
                 #myModal.modal.fade(aria-hidden='true', aria-labelledby='myModalLabel', role='dialog', tabindex='-1')
@@ -30,12 +34,8 @@ block content
                                 button.close(aria-hidden='true', data-dismiss='modal', type='button') ×
                                 h4.modal-title 创建团队
                             .modal-body
-                                form
+                                form(action='/student/new_group', method='post')
                                     .form-group
                                         label 团队名
                                         input.form-control(type='text', placeholder='起一个好听的名字')
-
                                     button.btn.btn-primary(type='submit') 确认创建
-
-
-

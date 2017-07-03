@@ -1,0 +1,85 @@
+//
+   Created by 胡晟 on 2017/7/3.
+
+extends ../layout_student
+
+block styles
+    // dynamic table
+    link(href='/js/advanced-datatable/css/demo_page.css', rel='stylesheet')
+    link(href='/js/advanced-datatable/css/demo_table.css', rel='stylesheet')
+    link(rel='stylesheet', href='/js/data-tables/DT_bootstrap.css')
+    link(href='/css/style.css', rel='stylesheet')
+    link(href='/css/style-responsive.css', rel='stylesheet')
+
+
+
+block scripts
+
+
+    // spinner
+    script(type='text/javascript', src='/js/fuelux/js/spinner.min.js')
+    script(src='/js/spinner-init.js')
+    // file upload
+    script(type='text/javascript', src='/js/bootstrap-fileupload.min.js')
+    // dynamic table
+    script(type='text/javascript', language='javascript', src='/js/advanced-datatable/js/jquery.dataTables.js')
+    script(type='text/javascript', src='/js/data-tables/DT_bootstrap.js')
+    // dynamic table initialization
+    //script(src='/js/dynamic_table_init.js')
+
+    script(src='/my_js/student/mygroup_homemore.js')
+
+
+
+
+block content
+    // page heading start
+    .page-heading
+        h3
+            | 我的团队
+        ul.breadcrumb
+            li
+                a(href='#') 团队
+
+            li.active  我的团队
+    // page heading end
+    // body wrapper start
+
+    -var data={group_id:'1',group_name:'Miracle-',group_owner:'胡铮飞',group_member:[{student_id:'14211093',student_name:"胡晟",student_gender:'男',student_class:'142114'},{student_id:'14215555',student_name:"胡铮飞",student_gender:'男',student_class:'142114'}],group_status:'未批准'};
+    .wrapper
+        .row
+            .col-sm-12
+                section.panel
+                    header.panel-heading
+                        | 团队成员
+                        span.pull-right(style='margin-bottom: -50px')
+                            -if (data.group_status=='未批准')
+                                span.label.label-warning.label-mini(style='margin-right:25px;') 未批准
+                            -else
+                                span.label.label-success.label-mini(style='margin-right:25px;') 已批准
+                    .panel-body
+                        table.table.table-hover.general-table
+                            thead
+                                tr
+                                    th 序号
+                                    th 学号
+                                    th 姓名
+                                    th 性别
+                                    th 班级
+
+                            tbody
+                                -var i=0;
+                                each item in data.group_member
+                                    -i=i+1;
+                                    tr
+                                        td #{i}
+                                        td #{item.student_id}
+                                        td
+                                            |#{item.student_name}
+                                            -if (item.student_name==data.group_owner)
+                                                span.label.label-primary.label-mini(style='margin-left:15px') 负责人
+                                        td #{item.student_gender}
+                                        td #{item.student_class}
+
+    // body wrapper end
+
