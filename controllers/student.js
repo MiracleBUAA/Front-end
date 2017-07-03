@@ -206,6 +206,8 @@ router.get('/mygroup',function (req,res,next) {
     var student = check_Cookie(req,res);
     var url = URL + '/mygroup?course_id=' + student.course_id
         + '&student_id=' + student.uid;
+    console.log(url);
+
     request(url,function (error,response,body) {
         var dataJson = eval("(" + body + ")");
         console.log(dataJson);
@@ -263,7 +265,7 @@ router.post('/new_group',function (req,res,next) {
     var student = check_Cookie(req,res);
     var url = URL + '/new_group?uid=' + student.uid
         + '&course_id=' + student.course_id
-        + '&group_name=' + req.body.group_name
+        + '&group_name=' + AsciiToUnicode(req.body.group_name)
     console.log(url);
 
     request.post({url:url}, function(error, response, body) {
@@ -328,7 +330,7 @@ router.post('/accept_invitation',function (req,res,next) {
         if(error) console.log(error);
         if (!error && response.statusCode == 200) {
             //返回到我的团队界面
-            res.redirect('/student/mygroup');
+            // res.redirect('/student/mygroup');
         }
     });
 });
