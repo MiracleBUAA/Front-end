@@ -50,17 +50,17 @@ block content
 
             span.pull-right(style='margin-bottom: -50px')
               form#upload_form.form-group(method='post' enctype="multipart/form-data")
-                button#upload_button.btn.btn-default(type='submit' style='height: 25px;margin-right: 10px;padding-top: 2px;font-size: inherit;')
+                button#upload_button.btn.btn-default(type='submit',style='height: 25px;margin-right: 10px;padding-top: 2px;font-size: inherit;',onclick="upload()")
                   i.fa.fa-cloud-upload
                   |  上传
                 input#upload_file(name='file',type='file', style='float:right;width: 200px;')
                 .iconic-input(style='float:right;margin-right: 10px;')
                   i.fa.fa-question-circle
-                  input.form-control(name='type',type='text', placeholder='分类',style='width:100px;height: 25px;')
+                  input#file_flag.form-control(name='type',type='text', required="true",value="默认",placeholder='分类',style='width:100px;height: 25px;')
           .panel-body
             .adv-table
               table#dynamic-table.display.table.table-bordered.table-striped
-                //-var data=[{resource_id:'1',resource_title:'罚抄内容',resource_type:'奇葩',teacher_name:'林广艳',create_time:'2017-01-02 20:21:22'},{resource_id:'2',resource_title:'接着罚抄',resource_type:'奇葩',teacher_name:'林广艳',create_time:'2017-01-02 20:21:22'}]
+                -var data=[{resource_id:'1',resource_title:'罚抄内容',resource_type:'奇葩',teacher_name:'林广艳',create_time:'2017-01-02 20:21:22'},{resource_id:'2',resource_title:'接着罚抄',resource_type:'奇葩',teacher_name:'林广艳',create_time:'2017-01-02 20:21:22'}]
 
                 thead
                   tr
