@@ -107,7 +107,7 @@ block content
                                     header.panel-heading
                                         | 上传作业
                                         span.pull-right(style='margin-bottom: -50px')
-                                            form#upload_form.form-group(method='post' enctype="multipart/form-data")
+                                            form#upload_form.form-group(method='post' enctype="multipart/form-data",data-homework-id=data.homework_id)
                                                 button#upload_button.btn.btn-default(type='submit' style='height: 25px;margin-right: 10px;padding-top: 2px;font-size: inherit;')
                                                     i.fa.fa-cloud-upload
                                                     |  上传
