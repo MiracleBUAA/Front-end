@@ -3,8 +3,10 @@
 
 extends ../layout_student
 
-// 2:负责人     1:普通人
--var urank;
+
+
+
+
 
 block styles
     link(href='/css/jquery.stepy.css', rel='stylesheet')
@@ -19,6 +21,8 @@ block styles
         .ajust{
             padding-top : 7px
         }
+
+
 
 block scripts
 
@@ -105,13 +109,16 @@ block content
                             .col-sm-12
                                 section.panel
                                     header.panel-heading
-                                        | 上传作业
-                                        span.pull-right(style='margin-bottom: -50px')
-                                            form#upload_form.form-group(method='post' enctype="multipart/form-data")
-                                                button#upload_button.btn.btn-default(type='submit' style='height: 25px;margin-right: 10px;padding-top: 2px;font-size: inherit;')
-                                                    i.fa.fa-cloud-upload
-                                                    |  上传
-                                                input#upload_file(name='file',type='file', style='float:right;width: 200px;')
+                                        | 文件列表
+                                        -var urank=2;
+                                        // 2:负责人     1:普通人
+                                        -if (urank==2)
+                                            span.pull-right(style='margin-bottom: -50px')
+                                                form#upload_form.form-group(method='post' enctype="multipart/form-data")
+                                                    button#upload_button.btn.btn-default(type='submit' style='height: 25px;margin-right: 10px;padding-top: 2px;font-size: inherit;')
+                                                        i.fa.fa-cloud-upload
+                                                        |  上传
+                                                    input#upload_file(name='file',type='file', style='float:right;width: 200px;')
                                     .panel-body
                                         table.table.table-hover.general-table
                                             thead
@@ -119,7 +126,8 @@ block content
                                                     th 序号
                                                     th 文件名
                                                     th 上传时间
-                                                    th 操作
+                                                    -if (urank==2)
+                                                        th 操作
 
                                             tbody
                                                 -var i=0;
@@ -129,9 +137,10 @@ block content
                                                         td #{i}
                                                         td #{item.homework_file_name}
                                                         td #{item.homework_upload_time}
-                                                        td
-                                                            -var del='/teacher/homework_delete?homework_id='+item.homework_upload_id;
-                                                            input.btn.btn-danger.btn-xs(type='button',onclick="window.location.href="+"'"+del+"'",style='margin-right:10px',value='删除 ')
+                                                        -if (urank==2)
+                                                            td
+                                                                -var del='/teacher/homework_delete?homework_id='+item.homework_upload_id;
+                                                                input.btn.btn-danger.btn-xs(type='button',onclick="window.location.href="+"'"+del+"'",style='margin-right:10px',value='删除 ')
 
     // body wrapper end
 
