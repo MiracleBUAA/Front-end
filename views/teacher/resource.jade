@@ -50,13 +50,13 @@ block content
 
             span.pull-right(style='margin-bottom: -50px')
               form#upload_form.form-group(method='post' enctype="multipart/form-data")
-                button#upload_button.btn.btn-default(type='submit' style='height: 25px;margin-right: 10px;padding-top: 2px;font-size: inherit;')
+                button#upload_button.btn.btn-default(type='submit',style='height: 25px;margin-right: 10px;padding-top: 2px;font-size: inherit;',onclick="upload()")
                   i.fa.fa-cloud-upload
                   |  上传
                 input#upload_file(name='file',type='file', style='float:right;width: 200px;')
                 .iconic-input(style='float:right;margin-right: 10px;')
                   i.fa.fa-question-circle
-                  input.form-control(name='type',type='text', placeholder='分类',style='width:100px;height: 25px;')
+                  input#file_flag.form-control(name='type',type='text', required="true",value="默认",placeholder='分类',style='width:100px;height: 25px;')
           .panel-body
             .adv-table
               table#dynamic-table.display.table.table-bordered.table-striped
@@ -79,7 +79,7 @@ block content
                       td #{item.create_time}
                       td.center
                         -var del='/teacher/resource_delete?resource_id='+item.resource_id;
-                        button#download_button.btn.btn-success.btn-xs(type='button',style='margin-right:10px', data-id=item.resource_id) 下载
+                        button.btn.btn-success.btn-xs(type='button',style='margin-right:10px', data-id=item.resource_id,onclick="download(this)") 下载
                         button.btn.btn-danger.btn-xs(type='button',onclick="window.location.href=" + "'" + del + "'",style='margin-right:10px')
                           i.fa.fa-trash-o
                           | 删除

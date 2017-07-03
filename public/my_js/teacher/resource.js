@@ -2,6 +2,11 @@
  * Created by lenovo on 2017/7/1.
  */
 
+function getFileName(s){
+     var pos=s.lastIndexOf("\\");
+     return s.substring(pos+1);
+}
+
 //  页面侧边栏选中
 $(document).ready(function () {
     document.getElementById("resource_li").className += " active";
@@ -21,6 +26,61 @@ function fnFormatDetails ( oTable, nTr )
     sOut += '</table>';
 
     return sOut;
+}
+function download(e) {
+    var curID = Number(e.getAttribute("data-id"));
+    $.ajax({
+        url:'/teacher/resource_download',
+        dataType:'json',
+        data:{
+            resource_id:curID
+        },
+        type:'post',
+        success:function (res) {
+            alert(res.url);
+            window.location.href = res.url;
+        }
+    });
+}
+var file_flag, file_name;
+function upload() {
+    $.ajax({
+        url: '/teacher/resource_upload',
+        dataType: 'json',
+        data: {
+            resource_type: file_flag,
+            title: file_name
+        },
+        type: 'post',
+        error:function() {
+            alert('URL REQUEST ERROR');
+        },
+        success: function (res) {
+            alert(res.url);
+            $.ajax({
+                type: "post",
+                enctype: 'multipart/form-data',
+                url: res.url,
+                data: file_data,
+                processData: false, //prevent jQuery from automatically transforming the data into a query string
+                contentType: false,
+                cache: false,
+                timeout: 600000,
+                success: function (data) {
+                    console.log("SUCCESS : ", data);
+                    window.location.href = "/teacher/resource";
+                },
+                error: function (e) {
+                    console.log("ERROR : ", e);
+                    window.location.href = "/teacher/resource";
+                }
+            });
+        }
+    });
+}
+document.getElementById("upload_file").onchange = function () {
+    file_flag = $("#file_flag").val();
+    file_name = getFileName(this.value);
 }
 
 $(document).ready(function() {
@@ -47,21 +107,7 @@ $(document).ready(function() {
         }
     })
     */
-    document.getElementById("download_button").onclick=function () {
-        var curID = Number(this.getAttribute("data-id"));
-        $.ajax({
-            url:'/teacher/resource_download',
-            dataType:'json',
-            data:{
-                resource_id:curID
-            },
-            type:'post',
-            success:function (res) {
-                alert(res.url);
-                window.location.href = res.url;
-            }
-        });
-    }
+
 
     /*
      * Insert a 'details' column to the table

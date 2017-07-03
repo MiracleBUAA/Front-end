@@ -330,9 +330,7 @@ router.post('/homework_set_score',function (req,res,next) {
         if(error) console.log(error);
         if (!error && response.statusCode == 200) {
             //返回到作业列表界面
-            res.json({
-                url: '/teacher/homework_group_upload'
-            });
+            res.redirect('/teacher/homework_group_upload?homework_id='+ req.body.homework_id);
         }
     });
 });

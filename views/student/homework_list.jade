@@ -77,7 +77,7 @@ block content
                                             td #{item.teacher_name}
                                             td #{item.score}
                                             td.center(style='width:100px;')
-                                                -var edit='/teacher/homework_information?homework_id='+item.homework_id;
+                                                -var edit='/student/homework_information?homework_id='+item.homework_id;
                                                 input.btn.btn-info.btn-xs(type='button',onclick="window.location.href="+"'"+edit+"'",style='margin-right:10px',value='详情')
 
 
