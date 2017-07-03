@@ -85,5 +85,26 @@ $(document).ready(function() {
     } );
 } );
 
+function dismiss(e) {
+    var gid = Number(e.getAttribute("data-apply-id"));
+    $.ajax({
+        url:'/student/dismiss_group',
+        type:'post',
+        dataType:'json',
+        data:{
+            group_apply_id:gid
+        },
+        error:function () {
+            alert("ERROR mygroup_homemore");
+        },
+        success:function (res) {
+            if(res.urank==2){
+                alert("团队已经解散！");
+            }else{
+                alert("你没有权限解散，问问你的团长吧！");
+            }
 
-
+            window.location.href = res.url;
+        }
+    });
+}
