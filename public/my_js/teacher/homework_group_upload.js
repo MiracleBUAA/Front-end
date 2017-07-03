@@ -83,22 +83,48 @@ $(document).ready(function() {
         }
     } );
 } );
-
-function download() {
+function download(e) {
+    var cur_homework_id = Number(e.getAttribute("data-homework-id"));
+    var cur_group_id = Number(e.getAttribute("data-group-id"));
     $.ajax({
-        url: "/teacher/homework_group_download",
-        data: {
-            homework_upload_id: "homework_upload_id"
+        url:"/teacher/homework_group_upload",
+        type:'get',
+        dataType:"json",
+        data:{
+            homework_id:cur_homework_id
         },
-        type: "POST",
-        dataType: "json",
-        success: function (response) {
-            alert(response.url);
-            window.open(response.url);
+        error:function () {
+            alert("GET homework_id ERROR");
         },
-        error: function (response) {
-            alert(response.url);
-            window.open(response.url);
+        success:function (data) {
+            var temp = data.group_list;
+            var hwk_list;
+            for(var i in temp){
+                if(i.group_id == cur_group_id){
+                    hwk_list = i.homework_upload_list;
+                    break;
+                }
+            }
+            for(var i in  hwk_list){
+                var ID = i.homework_upload_id;
+
+                $.ajax({
+                        url: "/teacher/homework_group_download",
+                        data: {
+                            homework_upload_id: ID
+                        },
+                        type: "POST",
+                        dataType: "json",
+                        success: function (response) {
+                            alert(response.url);
+                            window.open(response.url);
+                        },
+                        error: function (response) {
+                            alert(response.url);
+                            window.open(response.url);
+                        }
+                });
+            }
         }
     });
 }
