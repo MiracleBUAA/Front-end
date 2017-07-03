@@ -93,5 +93,21 @@ $(document).ready(function() {
     } );
 } );
 
-
-
+function invite(e) {
+    var sid = Number(e.getAttribute("data-sid"));
+    var sna = e.getAttribute("data-sna");
+    $.ajax({
+        url:'/student/send_invitation',
+        dataType:'json',
+        type:'post',
+        data:{
+            receiver_id:sid
+        },
+        error:function () {
+            alert("ERROR invitation_teamee");
+        },
+        success:function () {
+            alert("Invitation for ["+sid+","+sna+"] is done!");
+        }
+    });
+}
