@@ -16,7 +16,7 @@ $('.reject-in').click(function () {
 
 function accept(e) {
     var cur_sender_id = Number(e.getAttribute("data-sender-id"));
-    alert(cur_sender_id);
+    //alert(cur_sender_id);
     $.ajax({
         url:"/student/accept_invitation",
         type:'post',
@@ -24,11 +24,11 @@ function accept(e) {
         data:{
             sender_id:cur_sender_id
         },
-        error:function () {
-            alert('ERROR accept');
+        error:function (res) {
+            alert(res);
         },
-        success:function () {
-            window.location = '/student/mygroup';
+        success:function (res) {
+            window.location = res.url;
         }
     })
 }
@@ -46,8 +46,8 @@ function reject(e) {
         error:function () {
             alert('ERROR reject');
         },
-        success:function () {
-
+        success:function (res) {
+            window.location = res.url;
         }
     })
 }

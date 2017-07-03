@@ -29,7 +29,7 @@ block scripts
 
 
 block content
-    -var data={student_list:[{student_id:'14211093',student_name:'胡晟',student_gender:'男',student_class:'142114'},{student_id:'14211234',student_name:'胡铮飞',student_gender:'男',student_class:'142114'}]};
+    //-var data={student_list:[{student_id:'14211093',student_name:'胡晟',student_gender:'男',student_class:'142114'},{student_id:'14211234',student_name:'胡铮飞',student_gender:'男',student_class:'142114'}]};
     // page heading start
     .page-heading
         h3
@@ -60,7 +60,7 @@ block content
                                         th 操作
 
                                 tbody
-                                    each item in data.student_list
+                                    each item in data.invitation_list
                                         tr.gradeA
                                             td #{item.student_id}
                                             td #{item.student_name}

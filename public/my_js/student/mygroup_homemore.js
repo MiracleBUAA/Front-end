@@ -97,8 +97,14 @@ function dismiss(e) {
         error:function () {
             alert("ERROR mygroup_homemore");
         },
-        success:function () {
-            alert("团队已经解散！");
+        success:function (res) {
+            if(res.urank==2){
+                alert("团队已经解散！");
+            }else{
+                alert("你没有权限解散，问问你的团长吧！");
+            }
+
+            window.location.href = res.url;
         }
     });
 }

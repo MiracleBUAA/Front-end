@@ -30,7 +30,11 @@ function AsciiToUnicode(content) {
 router.get('/', function(req, res, next) {
     //res.render('layout_student',{title:'Ottcs学生版'});
     var student = check_Cookie(req,res);
-    res.render('layout_student',{title:'Ottcs学生版',username:student.uid});
+    res.render('layout_student',{
+        title:'Ottcs学生版',
+        username:student.uid,
+        urank: student.urank
+    });
 });
 
 //34.	学生——查看课程信息
@@ -46,7 +50,8 @@ router.get('/course_information',function (req,res,next) {
                 {
                     data : dataJson.data,
                     title:'Ottcs学生版',
-                    username:student.uid
+                    username:student.uid,
+                    urank: student.urank
                 });
         }
     });
@@ -65,7 +70,8 @@ router.get('/resource',function (req,res,next) {
                 {
                     data : dataJson.data.resource_list,
                     title:'Ottcs学生版',
-                    username:student.uid
+                    username:student.uid,
+                    urank: student.urank
                 });
         }
     });
@@ -95,7 +101,8 @@ router.get('/homework_list',function (req,res,next) {
                 {
                     data : dataJson.data.homework_list,
                     title:'Ottcs学生版',
-                    username:student.uid
+                    username:student.uid,
+                    urank: student.urank
                 }
             );
         }
@@ -114,12 +121,14 @@ router.get('/homework_information',function (req,res,next) {
     request(url,function (error,response,body) {
         var dataJson = eval("(" + body + ")");
         console.log(dataJson);
+        console.log(dataJson.data.group_list);
         if(!error && response.statusCode == 200){
             res.render('student/homework_information',
                 {
                     data : dataJson.data,
                     title:'Ottcs学生版',
-                    username:student.uid
+                    username:student.uid,
+                    urank: student.urank
                 }
             );
         }
@@ -159,11 +168,11 @@ router.post('/homework_upload',function (req,res,next){
 // });
 
 //47.	学生——删除作业
-router.post('/homework_delete',function (req,res,next) {
-    console.log(req.body);
+router.get('/homework_delete',function (req,res,next) {
     var student = check_Cookie(req,res);
+    var params = _url.parse(req.url, true).query;
     var url = URL + '/homework_delete?uid=' + student.uid
-        + '&homework_id=' + req.body.homework_id
+        + '&homework_upload_id=' + params.homework_id
     console.log(url);
 
     request.post({url:url}, function(error, response, body) {
@@ -171,9 +180,7 @@ router.post('/homework_delete',function (req,res,next) {
         if(error) console.log(error);
         if (!error && response.statusCode == 200) {
             //返回到作业列表界面
-            res.json({
-                url: '/student/homework_list'
-            });
+            res.redirect('/student/homework_information?homework_id='+params.homework_id);
         }
     });
 });
@@ -192,7 +199,8 @@ router.get('/announcement_list',function (req,res,next) {
                 {
                     data : dataJson.data.announcement_list,
                     title:'Ottcs学生版',
-                    username:student.uid
+                    username:student.uid,
+                    urank: student.urank
                 }
             );
         }
@@ -217,14 +225,16 @@ router.get('/mygroup',function (req,res,next) {
                 res.render('student/mygroup_homemore',{
                     data : dataJson.data,
                     title:'Ottcs学生版',
-                    username:student.uid
+                    username:student.uid,
+                    urank: student.urank
                 })
             }else if(dataJson.errorNo == 3){
                 //未加入团队
                 res.render('student/mygroup_homeless',{
                     data : dataJson.data,
                     title:'Ottcs学生版',
-                    username:student.uid
+                    username:student.uid,
+                    urank: student.urank
                 })
             }
         }
@@ -235,25 +245,36 @@ router.get('/mygroup',function (req,res,next) {
 router.get('/invitation',function (req,res,next) {
     var student = check_Cookie(req,res);
     var url = URL + '/invitation?course_id=' + student.course_id
-        + '&student_id=' + student.uid;
+        + '&uid=' + student.uid;
+    console.log(url);
+
     request(url,function (error,response,body) {
         var dataJson = eval("(" + body + ")");
+        console.log(response.statusCode);
         console.log(dataJson);
         if(!error && response.statusCode == 200){
             if(dataJson.errorNo == 0) {
                 //团队负责人
                 res.render('student/invitation_teamee',{
-                    data : dataJson.data.invitation_list,
+                    data : dataJson.data,
                     title:'Ottcs学生版',
-                    username:student.uid
+                    username:student.uid,
+                    urank: student.urank
                 })
             }else if(dataJson.errorNo == 3){
                 //未加入团队
                 res.render('student/invitation_teamer',{
-                    data : dataJson.data.invitation_list,
+                    data : dataJson.data,
                     title:'Ottcs学生版',
-                    username:student.uid
+                    username:student.uid,
+                    urank: student.urank
                 })
+            }else if(dataJson.errorNo == 4){
+                //团队已经批准了，重定向到我的团队
+                res.redirect('/student/mygroup');
+            }else if(dataJson.errorNo == 5){
+                //加入了一个待批准的团队，重定向到我的团队
+                res.redirect('/student/mygroup');
             }
         }
     });
@@ -291,7 +312,8 @@ router.get('/student_not_in_group',function (req,res,next) {
             res.render('student/student_not_in_group',{
                 data : dataJson.data.student_list,
                 title:'Ottcs学生版',
-                username:student.uid
+                username:student.uid,
+                urank: student.urank
             })
         }
     });
@@ -301,7 +323,7 @@ router.get('/student_not_in_group',function (req,res,next) {
 router.post('/send_invitation',function (req,res,next) {
     console.log(req.body);
     var student = check_Cookie(req,res);
-    var url = URL + '/new_group?uid=' + student.uid
+    var url = URL + '/send_invitation?uid=' + student.uid
         + '&course_id=' + student.course_id
         + '&receiver_id=' + req.body.receiver_id
     console.log(url);
@@ -320,7 +342,7 @@ router.post('/send_invitation',function (req,res,next) {
 router.post('/accept_invitation',function (req,res,next) {
     console.log(req.body);
     var student = check_Cookie(req,res);
-    var url = URL + '/new_group?uid=' + student.uid
+    var url = URL + '/accept_invitation?uid=' + student.uid
         + '&course_id=' + student.course_id
         + '&sender_id=' + req.body.sender_id
     console.log(url);
@@ -329,12 +351,58 @@ router.post('/accept_invitation',function (req,res,next) {
         console.log(response.statusCode);
         if(error) console.log(error);
         if (!error && response.statusCode == 200) {
-            //返回到我的团队界面
-            // res.redirect('/student/mygroup');
+            res.json({
+                url:'/student/mygroup'
+            });
         }
     });
 });
 
+//53.	学生——未组队学生拒绝邀请
+router.post('/reject_invitation',function (req,res,next) {
+    console.log(req.body);
+    var student = check_Cookie(req,res);
+    var url = URL + '/reject_invitation?uid=' + student.uid
+        + '&course_id=' + student.course_id
+        + '&sender_id=' + req.body.sender_id
+    console.log(url);
 
+    request.post({url:url}, function(error, response, body) {
+        console.log(response.statusCode);
+        if(error) console.log(error);
+        if (!error && response.statusCode == 200) {
+            res.json({
+                url:'/student/mygroup'
+            });
+        }
+    });
+});
+
+//54. 学生——解散未被批准的团队
+router.post('/dismiss_group',function (req,res,next) {
+    console.log(req.body);
+    var student = check_Cookie(req,res);
+    var url = URL + '/dismiss_group?uid=' + student.uid
+        + '&course_id=' + student.course_id
+        + '&group_apply_id=' + req.body.group_apply_id
+    console.log(url);
+    if(student.urank == 2){
+        request.post({url:url}, function(error, response, body) {
+            console.log(response.statusCode);
+            if(error) console.log(error);
+            if (!error && response.statusCode == 200) {
+                res.json({
+                    urank:2,
+                    url:'/student/mygroup'
+                });
+            }
+        });
+    }else {
+        res.json({
+            urank:1,
+            url:'/student/mygroup'
+        });
+    }
+});
 
 module.exports = router;

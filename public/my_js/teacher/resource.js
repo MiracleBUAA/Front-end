@@ -45,7 +45,7 @@ function download(e) {
         },
         type:'post',
         success:function (res) {
-            alert(res.url);
+            //alert(res.url);
             window.location.href = res.url;
         }
     });
@@ -55,7 +55,7 @@ var file_flag, file_name;
 function upload() {
 
     var file_data = new FormData($('#upload_form')[0]);
-    alert("1");
+    //alert("1");
 
     $.ajax({
         url: '/teacher/resource_upload',
@@ -67,10 +67,10 @@ function upload() {
         type: 'post',
 
         error:function() {
-            alert('URL REQUEST ERROR');
+            //alert('URL REQUEST ERROR');
         },
         success: function (res) {
-            alert(res.url);
+            //alert(res.url);
             $.ajax({
                 type: "POST",
                 enctype: 'multipart/form-data',
@@ -81,12 +81,12 @@ function upload() {
                 cache: false,
                 timeout: 600000,
                 success: function (data) {
-                    alert("SUCCESS : "+ data);
+                    //alert("SUCCESS : "+ data);
                     window.location.href = "/teacher/resource";
                 },
                 error: function (e) {
                     console.log(e);
-                    alert("ERROR : " + e);
+                    //alert("ERROR : " + e);
                     window.location.href = "/teacher/resource";
                 }
             });
