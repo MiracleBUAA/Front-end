@@ -34,7 +34,7 @@ block scripts
 
 block content
     // page heading start
-    -var data={group_id:'1',group_name:'Miracle-',group_owner:'胡铮飞',group_member:[{student_id:'14211093',student_name:"胡晟",student_gender:'男',student_class:'142114'},{student_id:'14215555',student_name:"胡铮飞",student_gender:'男',student_class:'142114'}],group_status:'未批准'};
+    //-var data={group_id:'1',group_name:'Miracle-',group_owner:'胡铮飞',group_member:[{student_id:'14211093',student_name:"胡晟",student_gender:'男',student_class:'142114'},{student_id:'14215555',student_name:"胡铮飞",student_gender:'男',student_class:'142114'}],group_status:'未批准'};
     .page-heading
         h3
             | #{data.group_name}
@@ -54,7 +54,7 @@ block content
                     header.panel-heading
                         | 团队成员
                         span.pull-right(style='margin-bottom: -50px')
-                            -if (data.group_status=='未批准')
+                            -if (data.group_status==0)
                                 span.label.label-warning.label-mini(style='margin-right:25px;') 未批准
                             -else
                                 span.label.label-success.label-mini(style='margin-right:25px;') 已批准
@@ -77,7 +77,7 @@ block content
                                         td #{item.student_id}
                                         td
                                             |#{item.student_name}
-                                            -if (item.student_name==data.group_owner)
+                                            -if (item.student_name==data.group_owner_name)
                                                 span.label.label-primary.label-mini(style='margin-left:15px') 负责人
                                         td #{item.student_gender}
                                         td #{item.student_class}

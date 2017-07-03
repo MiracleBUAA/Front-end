@@ -39,7 +39,7 @@ block scripts
 
 block content
     // page heading start
-    - var data = {homework_id:11,homework_name:"作业名字",homework_score:"作业分数",homework_message:"作业消息",teacher_name:"教师名字",homework_start_time:"作业开始时间",homework_end_time:"作业结束时间",homework_resubmit_limit:"作业重交限制",group_list:[{group_id:202,group_name:"组名",group_owner:"组长",score:"分数",score_message:"打分评语",homework_upload_list:[{homework_upload_id:3003,homework_file_name:"作业文件名称",homework_upload_time:"作业上传时间",resubmit_limit:"重交限制"}]}]};
+    //- var data = {homework_id:11,homework_name:"作业名字",homework_score:"作业分数",homework_message:"作业消息",teacher_name:"教师名字",homework_start_time:"作业开始时间",homework_end_time:"作业结束时间",homework_resubmit_limit:"作业重交限制",group_list:[{group_id:202,group_name:"组名",group_owner:"组长",score:"分数",score_message:"打分评语",homework_upload_list:[{homework_upload_id:3003,homework_file_name:"作业文件名称",homework_upload_time:"作业上传时间",resubmit_limit:"重交限制"}]}]};
 
     .page-heading
         h3
@@ -58,7 +58,7 @@ block content
                     header.panel-heading
                         | 已提交的团队
                         span.pull-right(style='margin-bottom: -50px')
-                            button.btn.btn-success.btn-xs(type='button') 下载全部
+                            button.btn.btn-success.btn-xs(type='button',data-homework-id=data.homework_id,onclick="download_all(this)") 下载全部
                     .panel-body
                         .adv-table
                             table#dynamic-table.display.table.table-bordered.table-striped

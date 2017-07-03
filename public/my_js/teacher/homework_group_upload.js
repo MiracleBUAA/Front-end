@@ -11,8 +11,7 @@ $(document).ready(function () {
 
 
 //表格初始化
-function fnFormatDetails ( oTable, nTr )
-{
+function fnFormatDetails ( oTable, nTr ) {
     var aData = oTable.fnGetData( nTr );
     var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
     sOut += '<tr><td>Rendering engine:</td><td>'+aData[1]+' '+aData[4]+'</td></tr>';
@@ -83,12 +82,11 @@ $(document).ready(function() {
         }
     } );
 } );
-function download(e) {
+function download_all(e) {
     var cur_homework_id = Number(e.getAttribute("data-homework-id"));
-    var cur_group_id = Number(e.getAttribute("data-group-id"));
     $.ajax({
-        url:"/teacher/homework_group_upload",
-        type:'get',
+        url:"/teacher/get_group_list",
+        type:'post',
         dataType:"json",
         data:{
             homework_id:cur_homework_id
@@ -96,18 +94,64 @@ function download(e) {
         error:function () {
             alert("GET homework_id ERROR");
         },
-        success:function (data) {
-            var temp = data.group_list;
+        success:function (res) {
+            var temp = res.group_list;
+            console.log(temp);
             var hwk_list;
             for(var i in temp){
-                if(i.group_id == cur_group_id){
-                    hwk_list = i.homework_upload_list;
+                hwk_list = temp[i].homework_upload_list;
+                for(var j in  hwk_list){
+                    var ID = hwk_list[j].homework_upload_id;
+                    $.ajax({
+                        url: "/teacher/homework_group_download",
+                        data: {
+                            homework_upload_id: ID
+                        },
+                        type: "POST",
+                        dataType: "json",
+                        success: function (response) {
+                            //alert(response.url);
+                            //window.location.href = response.url;
+                            window.open(response.url);
+                        },
+                        error: function (response) {
+                            //alert(response.url);
+                            window.location.href = response.url;
+                        }
+                    });
+                }
+            }
+        }
+    });
+}
+function download(e) {
+    var cur_homework_id = Number(e.getAttribute("data-homework-id"));
+    var cur_group_id = Number(e.getAttribute("data-group-id"));
+    $.ajax({
+        url:"/teacher/get_group_list",
+        type:'post',
+        dataType:"json",
+        data:{
+            homework_id:cur_homework_id
+        },
+        error:function () {
+            alert("GET homework_id ERROR");
+        },
+        success:function (res) {
+            var temp = res.group_list;
+            console.log(temp);
+            var hwk_list;
+            for(var i in temp){
+                console.log(temp[i]);
+                if(temp[i].group_id == cur_group_id){
+                    console.log("get!");
+                    hwk_list = temp[i].homework_upload_list;
                     break;
                 }
             }
+            console.log(hwk_list);
             for(var i in  hwk_list){
-                var ID = i.homework_upload_id;
-
+                var ID = hwk_list[i].homework_upload_id;
                 $.ajax({
                         url: "/teacher/homework_group_download",
                         data: {
@@ -116,12 +160,13 @@ function download(e) {
                         type: "POST",
                         dataType: "json",
                         success: function (response) {
-                            alert(response.url);
+                            //alert(response.url);
+                            //window.location.href = response.url;
                             window.open(response.url);
                         },
                         error: function (response) {
-                            alert(response.url);
-                            window.open(response.url);
+                            //alert(response.url);
+                            window.location.href = response.url;
                         }
                 });
             }
