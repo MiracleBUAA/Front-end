@@ -60,7 +60,7 @@ block content
           .panel-body
             .adv-table
               table#dynamic-table.display.table.table-bordered.table-striped
-                //-var data=[{resource_id:'1',resource_title:'罚抄内容',resource_type:'奇葩',teacher_name:'林广艳',create_time:'2017-01-02 20:21:22'},{resource_id:'2',resource_title:'接着罚抄',resource_type:'奇葩',teacher_name:'林广艳',create_time:'2017-01-02 20:21:22'}]
+                -var data=[{resource_id:'1',resource_title:'罚抄内容',resource_type:'奇葩',teacher_name:'林广艳',create_time:'2017-01-02 20:21:22'},{resource_id:'2',resource_title:'接着罚抄',resource_type:'奇葩',teacher_name:'林广艳',create_time:'2017-01-02 20:21:22'}]
 
                 thead
                   tr
@@ -79,7 +79,7 @@ block content
                       td #{item.create_time}
                       td.center
                         -var del='/teacher/resource_delete?resource_id='+item.resource_id;
-                        button.btn.btn-success.btn-xs(type='button',style='margin-right:10px') 下载
+                        button#download_button.btn.btn-success.btn-xs(type='button',style='margin-right:10px', data-id=item.resource_id) 下载
                         button.btn.btn-danger.btn-xs(type='button',onclick="window.location.href=" + "'" + del + "'",style='margin-right:10px')
                           i.fa.fa-trash-o
                           | 删除
