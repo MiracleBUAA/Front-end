@@ -118,6 +118,7 @@ router.get('/homework_information',function (req,res,next) {
         + '&course_id=' + student.course_id
         + '&homework_id=' + params.homework_id;
     console.log(url);
+
     request(url,function (error,response,body) {
         var dataJson = eval("(" + body + ")");
         console.log(dataJson);
@@ -138,15 +139,16 @@ router.get('/homework_information',function (req,res,next) {
 //45.	学生——上传作业/homework_upload
 router.post('/homework_upload',function (req,res,next){
     //文件上传使用ajax自己解决跳转
+    console.log(req.body);
     var student = check_Cookie(req,res);
-    var params = _url.parse(req.url, true).query;
-    console.log(params);
-    var url = URL + '/student_list?uid=' + student.uid
+    var url = URL + '/homework_upload?uid=' + student.uid
         + '&course_id=' + student.course_id
-        + '&homework_id=' + params.homework_id;
+        + '&homework_id=' + req.body.homework_id
+        + '&group_id=' + req.body.group_id;
     console.log("URL:"+url);
 
     res.json({
+        urank:student.urank,
         url:url
     })
 });
@@ -172,7 +174,7 @@ router.get('/homework_delete',function (req,res,next) {
     var student = check_Cookie(req,res);
     var params = _url.parse(req.url, true).query;
     var url = URL + '/homework_delete?uid=' + student.uid
-        + '&homework_upload_id=' + params.homework_id
+        + '&homework_upload_id=' + params.homework_upload_id
     console.log(url);
 
     request.post({url:url}, function(error, response, body) {
@@ -180,7 +182,7 @@ router.get('/homework_delete',function (req,res,next) {
         if(error) console.log(error);
         if (!error && response.statusCode == 200) {
             //返回到作业列表界面
-            res.redirect('/student/homework_information?homework_id='+params.homework_id);
+            res.redirect('/student/homework_list');
         }
     });
 });

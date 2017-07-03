@@ -41,28 +41,29 @@ function fire_ajax_submit() {
     var file_data = new FormData(form);
 
 
-    // for (var value11 of data.values()) {
+    // for (var value11 of file_data.values()) {
     //     console.log(value11);
     // }
 
 
     $("#upload_button").prop("disabled", true);
 
-    var curID = Number(document.getElementById("upload_form").getAttribute("data-homework-id"));
+    var homeworkID = Number(document.getElementById("upload_form").getAttribute("data-homework-id"));
+    var groupID = Number(document.getElementById("upload_form").getAttribute("data-homework-id"));
 
     $.ajax({
         type: 'post',
         dataType: 'json',
         url: '/student/homework_upload',
         data: {
-            title: file_name,
-            homework_id: curID
+            homework_id: homeworkID,
+            group_id:groupID
         },
         error: function () {
             alert("请求url错误！");
         },
         success: function (res) {
-            alert(res.url);
+            //alert(res.url);
             $.ajax({
                 type: 'post',
                 enctype: 'multipart/form-data',
@@ -73,41 +74,15 @@ function fire_ajax_submit() {
                 cache: false,
                 timeout: 600000,
                 success: function (data) {
-                    console.log("SUCESS :", data);
-                    window.location.href = "/student/homework_information";
+                    //alert("success");
+                    window.location.href = "/student/homework_information?homework_id=" + homeworkID;
                 },
                 error: function (e) {
+                    //alert("error");
                     console.log("ERROR :", e);
-                    window.location.href = '/student/homework_information';
+                    window.location.href = "/student/homework_information?homework_id=" + homeworkID;
                 }
             });
         }
     });
 }
-    /*
-    $.ajax({
-        type: "POST",
-        enctype: 'multipart/form-data',
-        //url直接通到黄老板
-        // url:"http://localhost:8080/admin/student_list?uid=1",
-        // url: "/teacher/student_list",
-        url: URL,
-        data: data,
-        //http://api.jquery.com/jQuery.ajax/
-        //http://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects
-        processData: false, //prevent jQuery from automatically transforming the data into a query string
-        contentType: false,
-        cache: false,
-        timeout: 600000,
-        success: function (data) {
-            console.log("SUCCESS : ", data);
-            window.location.href = "/student/homework_information";
-
-        },
-        error: function (e) {
-
-            console.log("ERROR : ", e);
-            window.location.href = "/student/homework_information";
-        }
-    });
-    */
