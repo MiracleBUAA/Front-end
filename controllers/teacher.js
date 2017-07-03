@@ -136,19 +136,19 @@ router.post('/resource_download',function (req,res,next) {
 });
 
 //12.	教师——删除课程资源
-router.post('/resource_delete',function (req,res,next) {
+router.get('/resource_delete',function (req,res,next) {
     var teacher = check_Cookie(req,res);
+    var params = _url.parse(req.url, true).query;
+
     var url = URL + '/resource_delete?uid=' + teacher.uid
-    + '&resource_id=' + req.body.resource_id;
+    + '&resource_id=' + params.resource_id;
     console.log(url);
 
     request.post({url:url}, function(error, response, body) {
         console.log(response.statusCode);
         if(error) console.log(error);
         if (!error && response.statusCode == 200) {
-            res.json({
-                url: '/teacher/resource'
-            });
+            res.redirect('/teacher/resource');
         }
     });
 });
