@@ -72,11 +72,14 @@ router.get('/resource',function (req,res,next) {
 });
 
 //36.	学生——下载课程资源
-
-// router.get('/resource_download',function (req,res,next) {
-//     //res.render('student/resource',{title:'Ottcs学生版'});
-//     //文件下载仅仅是链接跳转
-// })
+router.post('/resource_download',function (req,res,next) {
+    console.log(req.body);
+    var url = URL + '/resource_download?resource_id=' + req.body.resource_id;
+    console.log(url);
+    res.json({
+        url : url
+    });
+});
 
 //43.	学生——查看作业列表
 router.get('/homework_list',function (req,res,next) {
@@ -104,7 +107,8 @@ router.get('/homework_information',function (req,res,next) {
     var student = check_Cookie(req,res);
     var params = _url.parse(req.url, true).query;
     console.log(params);
-    var url = URL + '/homework_information?course_id=' + student.course_id
+    var url = URL + '/homework_information?uid=' + student.uid
+        + '&course_id=' + student.course_id
         + '&homework_id=' + params.homework_id;
     console.log(url);
     request(url,function (error,response,body) {

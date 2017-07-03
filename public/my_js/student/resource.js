@@ -23,6 +23,22 @@ function fnFormatDetails ( oTable, nTr )
     return sOut;
 }
 
+function download(e) {
+    var curID = Number(e.getAttribute("data-id"));
+    $.ajax({
+        url:'/teacher/resource_download',
+        dataType:'json',
+        data:{
+            resource_id:curID
+        },
+        type:'post',
+        success:function (res) {
+            //alert(res.url);
+            window.location.href = res.url;
+        }
+    });
+}
+
 $(document).ready(function() {
 
     $('#dynamic-table').dataTable( {
@@ -36,15 +52,6 @@ $(document).ready(function() {
             "sInfoFiltered": "",
         },
     } );
-    $.ajax({
-        url : '/admin/student_list',
-        dataType : 'json',
-        type : 'post',
-        success : function (res) {
-            //alert(res.url);
-            URL = res.url;
-        }
-    })
 
     /*
      * Insert a 'details' column to the table

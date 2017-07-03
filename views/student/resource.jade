@@ -69,7 +69,7 @@ block content
                       td #{item.teacher_name}
                       td #{item.create_time}
                       td.center
-                        button.btn.btn-success.btn-xs(type='button',style='margin-right:10px') 下载
+                        button.btn.btn-success.btn-xs(type='button',style='margin-right:10px',data-id=item.resource_id,onclick="download(this)") 下载
 
 
 
