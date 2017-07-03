@@ -1,6 +1,5 @@
 //
    Created by 胡晟 on 2017/7/3.
-
 extends ../layout_student
 
 
@@ -11,7 +10,7 @@ block scripts
 
 
 block content
-    -var data={invitation_list:[{group_apply_name:'罚抄兴趣小组',sender_name:'胡晟',sender_id:'1'},{group_apply_name:'罚抄兴趣小组',sender_name:'胡晟',sender_id:'1'},{group_apply_name:'罚抄兴趣小组',sender_name:'胡晟',sender_id:'1'},{group_apply_name:'罚抄兴趣小组',sender_name:'胡晟',sender_id:'1'},{group_apply_name:'罚抄兴趣小组',sender_name:'胡晟',sender_id:'1'},{group_apply_name:'罚抄兴趣小组',sender_name:'胡晟',sender_id:'1'},{group_apply_name:'不想罚抄小组',sender_name:'胡铮飞',sender_id:'2'}]};
+    -var data={invitation_list:[{group_apply_name:'罚抄兴趣小组1',sender_name:'胡晟1',sender_id:'1'},{group_apply_name:'罚抄兴趣小组2',sender_name:'胡晟2',sender_id:'2'},{group_apply_name:'罚抄兴趣小组3',sender_name:'胡晟3',sender_id:'3'},{group_apply_name:'罚抄兴趣小组4',sender_name:'胡晟4',sender_id:'4'},{group_apply_name:'罚抄兴趣小组5',sender_name:'胡晟5',sender_id:'5'},{group_apply_name:'罚抄兴趣小组6',sender_name:'胡晟6',sender_id:'6'},{group_apply_name:'不想罚抄小组7',sender_name:'胡铮飞7',sender_id:'7'}]};
     // page heading start
     .page-heading
         h3
@@ -35,5 +34,5 @@ block content
                             font(style='font-weight:700;color:#31708f;font-size:18px') #{item.sender_name}
                             |邀请你加入
                             font(style='font-weight:700;color:#31708f;font-size:18px') #{item.group_apply_name}
-                        button.btn.btn-primary(type='button') 同意
-                        button.btn.btn-default.reject-in(style='margin-left:10px',type='button') 拒绝
+                        button.btn.btn-primary(type='button',data-sender-id=item.sender_id,onclick="accept(this)") 同意
+                        button.btn.btn-default.reject-in(style='margin-left:10px',type='button',data-sender-id=item.sender_id,onclick="reject(this)") 拒绝
