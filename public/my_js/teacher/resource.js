@@ -36,6 +36,7 @@ $(document).ready(function() {
             "sInfoFiltered": "",
         },
     } );
+    /* 缺少触发事件
     $.ajax({
         url : '/admin/student_list',
         dataType : 'json',
@@ -45,6 +46,22 @@ $(document).ready(function() {
             URL = res.url;
         }
     })
+    */
+    document.getElementById("download_button").onclick=function () {
+        var curID = Number(this.getAttribute("data-id"));
+        $.ajax({
+            url:'/teacher/resource_download',
+            dataType:'json',
+            data:{
+                resource_id:curID
+            },
+            type:'post',
+            success:function (res) {
+                alert(res.url);
+                window.location.href = res.url;
+            }
+        });
+    }
 
     /*
      * Insert a 'details' column to the table
@@ -92,7 +109,3 @@ $(document).ready(function() {
         }
     } );
 } );
-
-
-
-
