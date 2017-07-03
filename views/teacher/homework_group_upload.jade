@@ -39,8 +39,7 @@ block scripts
 
 block content
     // page heading start
-    //-var data={homework_name:"罚抄一百遍",homework_upload_list:[{group_id:"1",group_name:'不想罚抄',group_owner:'罚抄大队长',homework_upload_time:'2017-11-5 21:22:23',score:'5',homework_message:'抄的不错 '},{group_id:"2",group_name:'就想罚抄',group_owner:'抄抄抄',homework_upload_time:'2017-11-5 06:22:23',score:'1',homework_message:'错别字太多！'}]};
-
+    - var data = {homework_id:11,homework_name:"作业名字",homework_score:"作业分数",homework_message:"作业消息",teacher_name:"教师名字",homework_start_time:"作业开始时间",homework_end_time:"作业结束时间",homework_resubmit_limit:"作业重交限制",group_list:[{group_id:202,group_name:"组名",group_owner:"组长",score:"分数",score_message:"打分评语",homework_upload_list:[{homework_upload_id:3003,homework_file_name:"作业文件名称",homework_upload_time:"作业上传时间",resubmit_limit:"重交限制"}]}]};
 
     .page-heading
         h3
@@ -85,7 +84,7 @@ block content
                                                 div
                                                     a(href='#myModal'+item.group_id, data-toggle='modal')
                                                         button.btn.btn-primary.btn-xs(type='button',style='margin-right:10px') 评分
-                                                    button.btn.btn-success.btn-xs(type='button',style='margin-right:10px') 下载
+                                                    button.btn.btn-success.btn-xs(type='button',style='margin-right:10px',data-homework-id=data.homework_id,data-group-id=item.group_id,onclick="download(this)") 下载
                         // Modal
                         each item in data.group_list
                             .modal.fade(id='myModal'+item.group_id,tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
