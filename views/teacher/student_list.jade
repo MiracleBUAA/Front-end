@@ -1,7 +1,7 @@
 //
    Created by 胡晟 on 2017/6/28.
 
-extends ../layout_student
+extends ../layout_teacher
 
 
 block styles
@@ -16,8 +16,7 @@ block scripts
     // spinner
     script(type='text/javascript', src='/js/fuelux/js/spinner.min.js')
     script(src='/js/spinner-init.js')
-    // file upload
-    script(type='text/javascript', src='/js/bootstrap-fileupload.min.js')
+
     // dynamic table
     script(type='text/javascript', language='javascript', src='/js/advanced-datatable/js/jquery.dataTables.js')
     script(type='text/javascript', src='/js/data-tables/DT_bootstrap.js')
@@ -72,12 +71,7 @@ block content
                                             td #{item.student_gender}
                                             td #{item.student_class}
 
-                                //tfoot
-                                //    tr
-                                //        th 学号
-                                //        th 姓名
-                                //        th 性别
-                                //        th 班级
+
 
     // body wrapper end
 
