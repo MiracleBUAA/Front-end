@@ -3,11 +3,11 @@ extends layout
 block sidebar
         ul.nav.nav-pills.nav-stacked.custom-nav
           li
-            a(href='' )
+            a(href='/student/course_information' )
               i.fa.fa-home
               span 课程信息
           li
-            a(href='#')
+            a(href='/student/resource')
               i.fa.fa-laptop
               span 课程资源
           li#homework_li
@@ -15,7 +15,7 @@ block sidebar
               i.fa.fa-book
               span 作业
           li
-            a(href='')
+            a(href='/student/announcement_list')
               i.fa.fa-cogs
               span 通知
 
@@ -26,11 +26,9 @@ block sidebar
               span 团队
             ul.sub-menu-list
               li
-                a(href='#')  未定义
+                a(href='/student/mygroup')  我的团队
               li
-                a(href='#')  未定义
-              li
-                a(href='#')  未定义
+                a(href='/student/invitation')  邀请
           li.menu-list
             a(href='')
               i.fa.fa-tasks
