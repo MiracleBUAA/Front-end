@@ -1,3 +1,78 @@
 //
    Created by 胡晟  on 2017/7/3.
 
+extends ../layout_teacher
+
+
+block styles
+    // dynamic table
+    link(href='/js/advanced-datatable/css/demo_page.css', rel='stylesheet')
+    link(href='/js/advanced-datatable/css/demo_table.css', rel='stylesheet')
+    link(rel='stylesheet', href='/js/data-tables/DT_bootstrap.css')
+
+
+block scripts
+
+    // spinner
+    script(type='text/javascript', src='/js/fuelux/js/spinner.min.js')
+    script(src='/js/spinner-init.js')
+
+    // dynamic table
+    script(type='text/javascript', language='javascript', src='/js/advanced-datatable/js/jquery.dataTables.js')
+    script(type='text/javascript', src='/js/data-tables/DT_bootstrap.js')
+    // dynamic table initialization
+    //script(src='/js/dynamic_table_init.js')
+
+    script(src='/my_js/teacher/group_confirm_list.js')
+
+
+
+
+block content
+    // page heading start
+    .page-heading
+        h3
+            | 已组队学生
+        ul.breadcrumb
+            li
+                a(href='#') 团队
+
+            li.active  已组队学生
+    // page heading end
+    // body wrapper start
+    .wrapper
+        .row
+            .col-sm-12
+                section.panel
+                    header.panel-heading
+                        | 团队列表
+                        span.pull-right(style='margin-bottom: -50px')
+                            button.btn.btn-default(type='button' style='height: 25px;margin-right: 10px;padding-top: 2px;font-size: inherit;')
+                                i.fa.fa-cloud-download
+                                |  下载
+
+
+                    .panel-body
+                        .adv-table
+                            table#dynamic-table.display.table.table-bordered.table-striped
+                                -var data={group_confirm_list:[{group_id:'1',group_name:'Miracle-',group_owner:'胡铮飞',group_member:[{student_id:'14211093',student_name:"胡晟",student_gender:'男',student_class:'142114'},{student_id:'14215555',student_name:"胡铮飞",student_gender:'男',student_class:'142114'}]}]};
+                                thead
+                                    tr
+                                        th 团队号
+                                        th 团队名
+                                        th 负责人
+                                        th 成员
+
+                                tbody
+                                    each item in data.group_confirm_list
+                                        tr.gradeA
+                                            td #{item.group_id}
+                                            td #{item.group_name}
+                                            td #{item.group_owner}
+                                            td
+                                                #{item.group_owner}
+                                                each sm in item.group_member
+                                                    -if (sm.student_name!=item.group_owner)
+                                                        #{sm.student_name}
+    // body wrapper end
+
