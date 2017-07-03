@@ -85,5 +85,20 @@ $(document).ready(function() {
     } );
 } );
 
-
-
+function dismiss(e) {
+    var gid = Number(e.getAttribute("data-apply-id"));
+    $.ajax({
+        url:'/student/dismiss_group',
+        type:'post',
+        dataType:'json',
+        data:{
+            group_apply_id:gid
+        },
+        error:function () {
+            alert("ERROR mygroup_homemore");
+        },
+        success:function () {
+            alert("团队已经解散！");
+        }
+    });
+}
