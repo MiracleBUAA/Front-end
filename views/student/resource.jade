@@ -1,0 +1,77 @@
+extends  ../layout_student
+
+block styles
+  // dynamic table
+  link(href='/js/advanced-datatable/css/demo_page.css', rel='stylesheet')
+  link(href='/js/advanced-datatable/css/demo_table.css', rel='stylesheet')
+  link(rel='stylesheet', href='/js/data-tables/DT_bootstrap.css')
+  link(href='/css/style.css', rel='stylesheet')
+  link(href='/css/style-responsive.css', rel='stylesheet')
+
+  // file upload
+  link(rel='stylesheet', type='text/css', href='/css/bootstrap-fileupload.min.css')
+
+
+block scripts
+  // spinner
+  script(type='text/javascript', src='/js/fuelux/js/spinner.min.js')
+  script(src='/js/spinner-init.js')
+  // file upload
+  script(type='text/javascript', src='/js/bootstrap-fileupload.min.js')
+  // dynamic table
+  script(type='text/javascript', language='javascript', src='/js/advanced-datatable/js/jquery.dataTables.js')
+  script(type='text/javascript', src='/js/data-tables/DT_bootstrap.js')
+  // dynamic table initialization
+  //script(src='/js/dynamic_table_init.js')
+
+  script(src='/my_js/student/resource.js')
+
+
+
+
+block content
+  // page heading start
+  .page-heading
+    h3
+      | 课程资源
+    ul.breadcrumb
+      li
+        a(href='#') 未定义
+
+      li.active  未定义
+  // page heading end
+  // body wrapper start
+  .wrapper
+    .row
+      .col-sm-12
+        section.panel
+          header.panel-heading
+            | 资源列表
+
+          .panel-body
+            .adv-table
+              table#dynamic-table.display.table.table-bordered.table-striped
+                //-var data=[{resource_id:'1',resource_title:'罚抄内容',resource_type:'奇葩',teacher_name:'林广艳',create_time:'2017-01-02 20:21:22'},{resource_id:'2',resource_title:'接着罚抄',resource_type:'奇葩',teacher_name:'林广艳',create_time:'2017-01-02 20:21:22'}]
+
+                thead
+                  tr
+                    th 标题
+                    th 类别
+                    th 发布人
+                    th 发布时间
+                    th 操作
+
+                tbody
+                  each item in data
+                    tr.gradeA
+                      td #{item.resource_title}
+                      td #{item.resource_type}
+                      td #{item.teacher_name}
+                      td #{item.create_time}
+                      td.center
+                        button.btn.btn-success.btn-xs(type='button',style='margin-right:10px') 下载
+
+
+
+  // body wrapper end
+
