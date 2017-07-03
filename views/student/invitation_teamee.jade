@@ -1,6 +1,5 @@
 //
    Created by 胡晟 on 2017/7/3.
-
 extends ../layout_student
 
 
@@ -24,7 +23,6 @@ block scripts
     script(type='text/javascript', src='/js/data-tables/DT_bootstrap.js')
     // dynamic table initialization
     //script(src='/js/dynamic_table_init.js')
-
     script(src='/my_js/student/invitation_teamee.js')
 
 
@@ -69,8 +67,7 @@ block content
                                             td #{item.student_gender}
                                             td #{item.student_class}
                                             td.center
-                                                button.btn.btn-success.btn-xs(type='button',style='margin-right:10px') 邀请
+                                                button.btn.btn-success.btn-xs(type='button',style='margin-right:10px',data-sid=item.student_id,data-sna=item.student_name,onclick="invite(this)") 邀请
 
 
     // body wrapper end
-
