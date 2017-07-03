@@ -335,9 +335,26 @@ router.post('/homework_set_score',function (req,res,next) {
     });
 });
 
+//给前端返回一个group_list
+router.post('/get_group_list',function (req,res,next){
+    console.log(req.body);
+    var teacher = check_Cookie(req,res);
+    var group_url = URL + '/homework_group_upload?course_id=' + teacher.course_id
+        + '&homework_id=' + req.body.homework_id;
+    console.log(group_url);
+    request(group_url,function (error,response,body) {
+        var dataJson = eval("(" + body + ")");
+        console.log(dataJson.data);
+        if(!error && response.statusCode == 200){
+            res.json({
+                group_list:dataJson.data.group_list
+            })
+        }
+    });
+});
+
 //20.	教师——学生提交的作业下载
 router.post('/homework_group_download',function (req,res,next){
-    //文件上传使用ajax自己解决跳转
     console.log(req.body);
     var url = URL + '/homework_group_download?homework_upload_id=' + req.body.homework_upload_id
     console.log("URL:"+url);
@@ -346,7 +363,6 @@ router.post('/homework_group_download',function (req,res,next){
         url:url
     })
 });
-
 
 //23.	教师——通知列表
 // router.get('/announcement_list',function (req,res,next) {

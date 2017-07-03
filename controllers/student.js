@@ -212,10 +212,18 @@ router.get('/mygroup',function (req,res,next) {
         if(!error && response.statusCode == 200){
             //已加入团队（不管是否批准）
             if(dataJson.errorNo == 0) {
-
+                res.render('student/mygroup_homemore',{
+                    data : dataJson.data,
+                    title:'Ottcs学生版',
+                    username:student.uid
+                })
             }else if(dataJson.errorNo == 3){
                 //未加入团队
-
+                res.render('student/mygroup_homeless',{
+                    data : dataJson.data,
+                    title:'Ottcs学生版',
+                    username:student.uid
+                })
             }
         }
     });
