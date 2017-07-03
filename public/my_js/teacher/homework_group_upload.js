@@ -84,3 +84,21 @@ $(document).ready(function() {
     } );
 } );
 
+function download() {
+    $.ajax({
+        url: "/teacher/homework_group_download",
+        data: {
+            homework_upload_id: "homework_upload_id"
+        },
+        type: "POST",
+        dataType: "json",
+        success: function (response) {
+            alert(response.url);
+            window.open(response.url);
+        },
+        error: function (response) {
+            alert(response.url);
+            window.open(response.url);
+        }
+    });
+}

@@ -323,6 +323,7 @@ router.post('/homework_set_score',function (req,res,next) {
         + '&group_id=' +  req.body.group_id
         + '&score=' + req.body.score
         + '&score_message=' + AsciiToUnicode(req.body.score_message)
+    console.log(url);
 
     request.post({url:url}, function(error, response, body) {
         console.log(response.statusCode);
@@ -337,19 +338,16 @@ router.post('/homework_set_score',function (req,res,next) {
 });
 
 //20.	教师——学生提交的作业下载
-// router.get('/homework_group_download',function (req,res,next){
-//     //文件上传使用ajax自己解决跳转
-//     var teacher = check_Cookie(req,res);
-//     var params = _url.parse(req.url, true).query;
-//     console.log(params);
-//     var url = URL + '/homework_group_download?homework_id='
-//         + '&homework_id=' + params.homework_group_download;
-//     console.log("URL:"+url);
-//
-//     res.json({
-//         url:url
-//     })
-// });
+router.post('/homework_group_download',function (req,res,next){
+    //文件上传使用ajax自己解决跳转
+    console.log(req.body);
+    var url = URL + '/homework_group_download?homework_upload_id=' + req.body.homework_upload_id
+    console.log("URL:"+url);
+
+    res.json({
+        url:url
+    })
+});
 
 
 //23.	教师——通知列表
