@@ -1,0 +1,39 @@
+//
+   Created by 胡晟 on 2017/7/3.
+
+extends ../layout_student
+
+
+block styles
+
+block scripts
+    script(src='/my_js/student/invitation_teamer.js')
+
+
+block content
+    -var data={invitation_list:[{group_apply_name:'罚抄兴趣小组',sender_name:'胡晟',sender_id:'1'},{group_apply_name:'罚抄兴趣小组',sender_name:'胡晟',sender_id:'1'},{group_apply_name:'罚抄兴趣小组',sender_name:'胡晟',sender_id:'1'},{group_apply_name:'罚抄兴趣小组',sender_name:'胡晟',sender_id:'1'},{group_apply_name:'罚抄兴趣小组',sender_name:'胡晟',sender_id:'1'},{group_apply_name:'罚抄兴趣小组',sender_name:'胡晟',sender_id:'1'},{group_apply_name:'不想罚抄小组',sender_name:'胡铮飞',sender_id:'2'}]};
+    // page heading start
+    .page-heading
+        h3
+            | 查看作业
+        ul.breadcrumb
+            li
+                a(href='#') 作业
+
+            li.active  查看作业
+    // page heading end
+    // body wrapper start
+    .wrapper
+        -each item in data.invitation_list
+            .col-md-6
+                section.panel
+                    header.panel-heading
+                        | 邀请
+
+                    .panel-body
+                        p
+                            font(style='font-weight:700;color:#31708f;font-size:18px') #{item.sender_name}
+                            |邀请你加入
+                            font(style='font-weight:700;color:#31708f;font-size:18px') #{item.group_apply_name}
+                        button.btn.btn-primary(type='button') 同意
+                        button.btn.btn-default.reject-in(style='margin-left:10px',type='button') 拒绝
