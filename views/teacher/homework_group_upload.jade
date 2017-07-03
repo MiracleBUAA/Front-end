@@ -58,6 +58,8 @@ block content
                 section.panel
                     header.panel-heading
                         | 已提交的团队
+                        span.pull-right(style='margin-bottom: -50px')
+                            button.btn.btn-success.btn-xs(type='button') 下载全部
                     .panel-body
                         .adv-table
                             table#dynamic-table.display.table.table-bordered.table-striped
@@ -67,17 +69,17 @@ block content
                                         th 团队号
                                         th 团队名
                                         th 负责人
-                                        th 提交时间
+                                        th 文件个数
                                         th 分数
                                         th 操作
 
                                 tbody
-                                    each item in data.homework_upload_list
+                                    each item in data.group_list
                                         tr.gradeA
                                             td #{item.group_id}
                                             td #{item.group_name}
                                             td #{item.group_owner}
-                                            td #{item.homework_upload_time}
+                                            td #{item.homework_upload_list.length}
                                             td #{item.score}
                                             td.center(style='width:150px;')
                                                 div
@@ -85,7 +87,7 @@ block content
                                                         button.btn.btn-primary.btn-xs(type='button',style='margin-right:10px') 评分
                                                     button.btn.btn-success.btn-xs(type='button',style='margin-right:10px') 下载
                         // Modal
-                        each item in data.homework_upload_list
+                        each item in data.group_list
                             .modal.fade(id='myModal'+item.group_id,tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
                                 .modal-dialog
                                     .modal-content
@@ -94,7 +96,8 @@ block content
                                                 button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
                                                 h4.modal-title Edit Media Gallery
                                             .modal-body.row
-                                                    input(name='homework_id',value=item.homework_id,type='hidden')
+                                                    input(name='homework_id',value=data.homework_id,type='hidden')
+                                                    input(name='group_id',value=item.group_id,type='hidden')
                                                     .form-group.col-md-2
                                                         label  分数
                                                         input.form-control(name='score',value=item.score)
