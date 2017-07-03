@@ -1,0 +1,36 @@
+//
+   Created by 胡晟 on 2017/7/3.
+
+extends ../layout_student
+
+
+block styles
+
+block scripts
+    script(src='/my_js/student/invitation_teamer.js')
+
+
+block content
+    // page heading start
+    .page-heading
+        h3
+            | 查看作业
+        ul.breadcrumb
+            li
+                a(href='#') 作业
+
+            li.active  查看作业
+    // page heading end
+    // body wrapper start
+    .wrapper
+        .col-md-6
+            section.panel
+                header.panel-heading
+                    | 邀请
+                    span.tools.pull-right
+                        a.fa.fa-chevron-down(href='javascript:;')
+                        a.fa.fa-times(href='javascript:;')
+                .panel-body
+                    p Add the
+                    button.btn.btn-primary(type='button') Primary button
+                    button.btn.btn-default(type='button') Button
