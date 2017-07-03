@@ -8,3 +8,8 @@ $(document).ready(function () {
     document.getElementById("group_li").className += " nav-active";
     document.getElementById("invitation_li").className += " active";
 });
+
+
+$('.reject-in').click(function () {
+    $(this).parents(".panel").parent().remove();
+});

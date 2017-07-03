@@ -11,6 +11,7 @@ block scripts
 
 
 block content
+    -var data={invitation_list:[{group_apply_name:'罚抄兴趣小组',sender_name:'胡晟',sender_id:'1'},{group_apply_name:'罚抄兴趣小组',sender_name:'胡晟',sender_id:'1'},{group_apply_name:'罚抄兴趣小组',sender_name:'胡晟',sender_id:'1'},{group_apply_name:'罚抄兴趣小组',sender_name:'胡晟',sender_id:'1'},{group_apply_name:'罚抄兴趣小组',sender_name:'胡晟',sender_id:'1'},{group_apply_name:'罚抄兴趣小组',sender_name:'胡晟',sender_id:'1'},{group_apply_name:'不想罚抄小组',sender_name:'胡铮飞',sender_id:'2'}]};
     // page heading start
     .page-heading
         h3
@@ -23,14 +24,16 @@ block content
     // page heading end
     // body wrapper start
     .wrapper
-        .col-md-6
-            section.panel
-                header.panel-heading
-                    | 邀请
-                    span.tools.pull-right
-                        a.fa.fa-chevron-down(href='javascript:;')
-                        a.fa.fa-times(href='javascript:;')
-                .panel-body
-                    p Add the
-                    button.btn.btn-primary(type='button') Primary button
-                    button.btn.btn-default(type='button') Button
+        -each item in data.invitation_list
+            .col-md-6
+                section.panel
+                    header.panel-heading
+                        | 邀请
+
+                    .panel-body
+                        p
+                            font(style='font-weight:700;color:#31708f;font-size:18px') #{item.sender_name}
+                            |邀请你加入
+                            font(style='font-weight:700;color:#31708f;font-size:18px') #{item.group_apply_name}
+                        button.btn.btn-primary(type='button') 同意
+                        button.btn.btn-default.reject-in(style='margin-left:10px',type='button') 拒绝
