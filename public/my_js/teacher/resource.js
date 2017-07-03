@@ -11,6 +11,14 @@ function getFileName(s){
 $(document).ready(function () {
     document.getElementById("resource_li").className += " active";
 
+    $("#upload_button").click(function (event) {
+
+        //stop submit the form, we will post it manually.
+        event.preventDefault();
+
+        upload();
+
+    });
 });
 
 
@@ -43,7 +51,12 @@ function download(e) {
     });
 }
 var file_flag, file_name;
+
 function upload() {
+
+    var file_data = new FormData($('#upload_form')[0]);
+    alert("1");
+
     $.ajax({
         url: '/teacher/resource_upload',
         dataType: 'json',
@@ -52,26 +65,28 @@ function upload() {
             title: file_name
         },
         type: 'post',
+
         error:function() {
             alert('URL REQUEST ERROR');
         },
         success: function (res) {
             alert(res.url);
             $.ajax({
-                type: "post",
+                type: "POST",
                 enctype: 'multipart/form-data',
-                url: res.url,
+                url : res.url,
                 data: file_data,
                 processData: false, //prevent jQuery from automatically transforming the data into a query string
                 contentType: false,
                 cache: false,
                 timeout: 600000,
                 success: function (data) {
-                    console.log("SUCCESS : ", data);
+                    alert("SUCCESS : "+ data);
                     window.location.href = "/teacher/resource";
                 },
                 error: function (e) {
-                    console.log("ERROR : ", e);
+                    console.log(e);
+                    alert("ERROR : " + e);
                     window.location.href = "/teacher/resource";
                 }
             });
