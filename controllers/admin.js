@@ -26,9 +26,9 @@ function AsciiToUnicode(content) {
 
 //访问admin主页
 router.get('/', function(req, res, next) {
-    //res.render('layout_student',{title:'Ottcs教务版'});
+    //res.render('layout_student',{title:'OCTTS教务版'});
     var admin = check_Cookie(req,res);
-    res.render('layout_admin',{title:'Ottcs教务版',username:admin.uid});
+    res.render('layout_admin',{title:'OCTTS教务版',username:admin.uid});
 });
 
 //显示信息
@@ -39,7 +39,7 @@ router.get('/course_information',function (req,res,next) {
         var dataJson = eval("(" + body + ")");
         console.log(dataJson.data.course_list);
         if(!error && response.statusCode == 200){
-            res.render('admin/course_information',{data : dataJson.data.course_list,title:'Ottcs教务版',username:admin.uid});
+            res.render('admin/course_information',{data : dataJson.data.course_list,title:'OCTTS教务版',username:admin.uid});
         }
     });
 });
@@ -83,7 +83,7 @@ router.post('/new_course',function (req,res,next) {
 //修改课程
 router.get('/course_update',function (req,res,next) {
     var admin = check_Cookie(req,res);
-    res.render('admin/course_update',{title:'Ottcs教务版',username:admin.uid});
+    res.render('admin/course_update',{title:'OCTTS教务版',username:admin.uid});
 }).post('/course_update',function (req,res,next){
     console.log(req.body);
     var admin = check_Cookie(req,res);
@@ -130,14 +130,14 @@ router.get('/course_end',function (req,res,next) {
 
 //上传学生名单
 router.get('/student_list',function (req,res,next) {
-    // res.render('admin/student_list',{title:'Ottcs教务版'});
+    // res.render('admin/student_list',{title:'OCTTS教务版'});
     var admin = check_Cookie(req,res);
     var url = URL+ "/student_list";
     request(url,function (error,response,body) {
         var dataJson = eval("(" + body + ")");
         console.log(dataJson.data.student_list[1]);
         if(!error && response.statusCode == 200){
-            res.render('admin/student_list',{data : dataJson.data.student_list,title:'Ottcs教务版',username:admin.uid});
+            res.render('admin/student_list',{data : dataJson.data.student_list,title:'OCTTS教务版',username:admin.uid});
         }
     });
 }).post('/student_list',function (req,res,next){

@@ -28,14 +28,14 @@ function AsciiToUnicode(content) {
 
 //访问teacher主页
 router.get('/', function(req, res, next) {
-    //res.render('layout_teacher',{title:'Ottcs教师版'});
+    //res.render('layout_teacher',{title:'OCTTS教师版'});
     var teacher = check_Cookie(req,res);
-    res.render('layout_teacher',{title:'Ottcs教师版',username:teacher.uid});
+    res.render('layout_teacher',{title:'OCTTS教师版',username:teacher.uid});
 });
 
 //课程信息
 router.get('/course_information',function (req,res,next) {
-    //res.render('/teacher/course_information',{title:'Ottcs教师版'});
+    //res.render('/teacher/course_information',{title:'OCTTS教师版'});
     var teacher = check_Cookie(req,res);
     var url = URL + '/course_information?course_id=' + teacher.course_id;
     console.log(url);
@@ -47,7 +47,7 @@ router.get('/course_information',function (req,res,next) {
             res.render('teacher/course_information',
                 {
                     data : dataJson.data,
-                    title:'Ottcs教师版',
+                    title:'OCTTS教师版',
                     username:teacher.uid
                 });
         }
@@ -75,7 +75,7 @@ router.get('/course_information',function (req,res,next) {
 
 //查看学生名单
 router.get('/student_list',function (req,res,next) {
-    //res.render('teacher/student_list',{title:'Ottcs教师版'});
+    //res.render('teacher/student_list',{title:'OCTTS教师版'});
     var teacher = check_Cookie(req,res);
     var url = URL + '/student_list';
     request(url,function (error,response,body) {
@@ -85,7 +85,7 @@ router.get('/student_list',function (req,res,next) {
             res.render('teacher/student_list',
                 {
                     data : dataJson.data.student_list,
-                    title:'Ottcs教师版',
+                    title:'OCTTS教师版',
                     username:teacher.uid
                 });
         }
@@ -94,7 +94,7 @@ router.get('/student_list',function (req,res,next) {
 
 //查看课程资源
 router.get('/resource',function (req,res,next) {
-    //res.render('teacher/resource',{title:'Ottcs教师版'});
+    //res.render('teacher/resource',{title:'OCTTS教师版'});
     var teacher = check_Cookie(req,res);
     var url = URL + '/resource?course_id=' + teacher.course_id;
     request(url,function (error,response,body) {
@@ -104,7 +104,7 @@ router.get('/resource',function (req,res,next) {
             res.render('teacher/resource',
                 {
                     data : dataJson.data.resource_list,
-                    title:'Ottcs教师版',
+                    title:'OCTTS教师版',
                     username:teacher.uid
                 });
         }
@@ -160,7 +160,7 @@ router.get('/resource_delete',function (req,res,next) {
 //发布作业信息
 router.get('/new_homework',function (req,res,next) {
     var teacher = check_Cookie(req,res);
-    res.render('teacher/new_homework',{title:'Ottcs教务版',username:teacher.uid});
+    res.render('teacher/new_homework',{title:'OCTTS教务版',username:teacher.uid});
 }).post('/new_homework',function (req,res,next) {
     console.log(req.body);
     var teacher = check_Cookie(req,res);
@@ -196,7 +196,7 @@ router.get('/homework_list',function (req,res,next) {
             res.render('teacher/homework_list',
                 {
                     data : dataJson.data.homework_list,
-                    title:'Ottcs教师版',
+                    title:'OCTTS教师版',
                     username:teacher.uid
                 }
             );
@@ -220,7 +220,7 @@ router.get('/homework_list',function (req,res,next) {
 //             res.render('teacher/homework_information',
 //                 {
 //                     data : dataJson.data,
-//                     title:'Ottcs教师版',
+//                     title:'OCTTS教师版',
 //                     username:teacher.uid
 //                 }
 //             );
@@ -244,7 +244,7 @@ router.get('/homework_update',function (req,res,next){
             res.render('teacher/homework_update',
                 {
                     data : dataJson.data,
-                    title:'Ottcs教师版',
+                    title:'OCTTS教师版',
                     username:teacher.uid
                 }
             );
@@ -309,7 +309,7 @@ router.get('/homework_group_upload',function (req,res,next) {
             res.render('teacher/homework_group_upload',
                 {
                     data : dataJson.data,
-                    title:'Ottcs教师版',
+                    title:'OCTTS教师版',
                     username:teacher.uid
                 }
             );
@@ -381,7 +381,7 @@ router.post('/homework_group_download',function (req,res,next){
 //             res.render('teacher/announcement_list',
 //                 {
 //                     data : dataJson.data,
-//                     title:'Ottcs教师版',
+//                     title:'OCTTS教师版',
 //                     username:teacher.uid
 //                 }
 //             );
@@ -402,7 +402,7 @@ router.get('/announcement',function (req,res,next) {
             res.render('teacher/announcement',
                 {
                     data : dataJson.data.announcement_list,
-                    title:'Ottcs教师版',
+                    title:'OCTTS教师版',
                     username:teacher.uid
                 }
             );
@@ -461,7 +461,7 @@ router.get('/group_confirm_list',function (req,res,next) {
             res.render('teacher/group_confirm_list',
                 {
                     data : dataJson.data,
-                    title:'Ottcs教师版',
+                    title:'OCTTS教师版',
                     username:teacher.uid
                 }
             );
@@ -482,7 +482,7 @@ router.get('/group_apply_list',function (req,res,next) {
             res.render('teacher/group_apply_list',
                 {
                     data : dataJson.data,
-                    title:'Ottcs教师版',
+                    title:'OCTTS教师版',
                     username:teacher.uid
                 }
             );
@@ -543,7 +543,7 @@ router.get('/student_not_in_group',function (req,res,next) {
             res.render('teacher/student_not_in_group',
                 {
                     data : dataJson.data,
-                    title:'Ottcs教师版',
+                    title:'OCTTS教师版',
                     username:teacher.uid
                 }
             );
@@ -575,7 +575,7 @@ router.get('/old_course',function (req,res,next) {
             res.render('teacher/old_course',
                 {
                     data : dataJson.data,
-                    title:'Ottcs教师版',
+                    title:'OCTTS教师版',
                     username:teacher.uid
                 }
             );
@@ -598,7 +598,7 @@ router.get('/group_form',function (req,res,next) {
             res.render('teacher/group_form',
                 {
                     data : dataJson.data,
-                    title:'Ottcs教师版',
+                    title:'OCTTS教师版',
                     username:teacher.uid
                 }
             );
@@ -619,7 +619,7 @@ router.get('/student_form',function (req,res,next) {
             res.render('teacher/student_form',
                 {
                     data : dataJson.data,
-                    title:'Ottcs教师版',
+                    title:'OCTTS教师版',
                     username:teacher.uid
                 }
             );

@@ -28,10 +28,10 @@ function AsciiToUnicode(content) {
 
 //访问student主页
 router.get('/', function(req, res, next) {
-    //res.render('layout_student',{title:'Ottcs学生版'});
+    //res.render('layout_student',{title:'OCTTS学生版'});
     var student = check_Cookie(req,res);
     res.render('layout_student',{
-        title:'Ottcs学生版',
+        title:'OCTTS学生版',
         username:student.uid,
         urank: student.urank
     });
@@ -39,7 +39,7 @@ router.get('/', function(req, res, next) {
 
 //34.	学生——查看课程信息
 router.get('/course_information',function (req,res,next) {
-    //res.render('/student/course_information',{title:'Ottcs学生版'});
+    //res.render('/student/course_information',{title:'OCTTS学生版'});
     var student = check_Cookie(req,res);
     var url = URL + '/course_information?course_id=' + student.course_id;
     request(url,function (error,response,body) {
@@ -49,7 +49,7 @@ router.get('/course_information',function (req,res,next) {
             res.render('student/course_information',
                 {
                     data : dataJson.data,
-                    title:'Ottcs学生版',
+                    title:'OCTTS学生版',
                     username:student.uid,
                     urank: student.urank
                 });
@@ -59,7 +59,7 @@ router.get('/course_information',function (req,res,next) {
 
 //35.	学生——查看课程资源
 router.get('/resource',function (req,res,next) {
-    //res.render('student/resource',{title:'Ottcs学生版'});
+    //res.render('student/resource',{title:'OCTTS学生版'});
     var student = check_Cookie(req,res);
     var url = URL + '/resource?course_id=' + student.course_id;
     request(url,function (error,response,body) {
@@ -69,7 +69,7 @@ router.get('/resource',function (req,res,next) {
             res.render('student/resource',
                 {
                     data : dataJson.data.resource_list,
-                    title:'Ottcs学生版',
+                    title:'OCTTS学生版',
                     username:student.uid,
                     urank: student.urank
                 });
@@ -100,7 +100,7 @@ router.get('/homework_list',function (req,res,next) {
             res.render('student/homework_list',
                 {
                     data : dataJson.data.homework_list,
-                    title:'Ottcs学生版',
+                    title:'OCTTS学生版',
                     username:student.uid,
                     urank: student.urank
                 }
@@ -132,7 +132,7 @@ router.get('/homework_information',function (req,res,next) {
                 res.render('student/homework_information',
                     {
                         data : dataJson.data,
-                        title:'Ottcs学生版',
+                        title:'OCTTS学生版',
                         username:student.uid,
                         urank: student.urank
                     }
@@ -206,7 +206,7 @@ router.get('/announcement_list',function (req,res,next) {
             res.render('student/announcement',
                 {
                     data : dataJson.data.announcement_list,
-                    title:'Ottcs学生版',
+                    title:'OCTTS学生版',
                     username:student.uid,
                     urank: student.urank
                 }
@@ -232,7 +232,7 @@ router.get('/mygroup',function (req,res,next) {
             if(dataJson.errorNo == 0) {
                 res.render('student/mygroup_homemore',{
                     data : dataJson.data,
-                    title:'Ottcs学生版',
+                    title:'OCTTS学生版',
                     username:student.uid,
                     urank: student.urank
                 })
@@ -240,7 +240,7 @@ router.get('/mygroup',function (req,res,next) {
                 //未加入团队
                 res.render('student/mygroup_homeless',{
                     data : dataJson.data,
-                    title:'Ottcs学生版',
+                    title:'OCTTS学生版',
                     username:student.uid,
                     urank: student.urank
                 })
@@ -265,7 +265,7 @@ router.get('/invitation',function (req,res,next) {
                 //团队负责人
                 res.render('student/invitation_teamee',{
                     data : dataJson.data,
-                    title:'Ottcs学生版',
+                    title:'OCTTS学生版',
                     username:student.uid,
                     urank: student.urank
                 })
@@ -273,7 +273,7 @@ router.get('/invitation',function (req,res,next) {
                 //未加入团队
                 res.render('student/invitation_teamer',{
                     data : dataJson.data,
-                    title:'Ottcs学生版',
+                    title:'OCTTS学生版',
                     username:student.uid,
                     urank: student.urank
                 })
@@ -319,7 +319,7 @@ router.post('/new_group',function (req,res,next) {
 //         if(!error && response.statusCode == 200){
 //             res.render('student/student_not_in_group',{
 //                 data : dataJson.data.student_list,
-//                 title:'Ottcs学生版',
+//                 title:'OCTTS学生版',
 //                 username:student.uid,
 //                 urank: student.urank
 //             })
@@ -428,7 +428,7 @@ router.get('/group_rate',function (req,res,next) {
         if(!error && response.statusCode == 200){
             res.render('student/group_rate',{
                 data : dataJson.data,
-                title:'Ottcs学生版',
+                title:'OCTTS学生版',
                 username:student.uid,
                 urank: student.urank
             })
