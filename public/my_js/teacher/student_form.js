@@ -84,3 +84,17 @@ $(document).ready(function() {
         }
     } );
 } );
+
+function downstudent() {
+    $.ajax({
+        url:'/teacher/student_form_download',
+        type:'get',
+        dataType:'json',
+        error:function(){
+            alert('ERROR download student form');
+        },
+        success:function () {
+            ;
+        }
+    });
+}
