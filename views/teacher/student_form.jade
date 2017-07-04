@@ -1,6 +1,5 @@
 //
    Created by 胡晟 on 2017/7/4.
-
 extends ../layout_teacher
 
 
@@ -22,7 +21,6 @@ block scripts
     script(type='text/javascript', src='/js/data-tables/DT_bootstrap.js')
     // dynamic table initialization
     //script(src='/js/dynamic_table_init.js')
-
     script(src='/my_js/teacher/student_form.js')
 
 
@@ -47,7 +45,7 @@ block content
                     header.panel-heading
                         | 名单
                         span.pull-right(style='margin-bottom: -50px')
-                            button.btn.btn-default(type='button' style='height: 25px;margin-right: 10px;padding-top: 2px;font-size: inherit;',onclick="downlist()")
+                            button.btn.btn-default(type='button' style='height: 25px;margin-right: 10px;padding-top: 2px;font-size: inherit;',onclick="downstudent()")
                                 i.fa.fa-cloud-download
                                 |  下载
                     .panel-body
@@ -74,4 +72,3 @@ block content
 
 
     // body wrapper end
-
