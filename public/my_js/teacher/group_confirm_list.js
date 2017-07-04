@@ -83,4 +83,16 @@ $(document).ready(function() {
         }
     } );
 } );
+function downlist() {
+    $.ajax({
+        url:'/teacher/group_download',
+        type:'get',
+        dataType:'json',
+        error:function () {
+            alert("ERROR download group list");
+        },
+        success:function () {
 
+        }
+    })
+}
