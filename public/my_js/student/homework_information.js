@@ -25,16 +25,18 @@ $(document).ready(function () {
     // 时间约束
     var _end=$("#end").html();
     var end_time=new Date(_end);
+    var _start=$("#start").html();
+    var start_time=new Date(_start);
+
     var now = new Date().getTime();
 
     if (now-end_time>0){
-        $("#end").html(_end+"<font color='red'> (已结束)</font>");
         $("#upl").html('');
         $('.dele').prop("disabled", true);
-
+        $("#status").html("<span style='margin-right:25px;' class='label label-danger label-mini'>作业已结束</span>")
     }
     else
-        $("#end").html(_end+"<font color='green'> (进行中)</font>");
+        $("#status").html("<span style='margin-right:25px;' class='label label-success label-mini'>作业进行中</span>")
 
 
 

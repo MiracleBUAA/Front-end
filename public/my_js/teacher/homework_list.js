@@ -26,7 +26,7 @@ function fnFormatDetails ( oTable, nTr )
 $(document).ready(function() {
 
     $('#dynamic-table').dataTable( {
-        "aaSorting": [[ 1, "desc" ]],
+        "aaSorting": [[ 2, "desc" ]],
         "oLanguage": {
             "sSearch": "检索：",
             "sInfo": "_START_ ~ _END_ &nbsp;&nbsp;(共计_TOTAL_ 个)",
@@ -84,3 +84,42 @@ $(document).ready(function() {
     } );
 } );
 
+
+
+
+// 时间
+$(document).ready(function() {
+    var tb=document.getElementById("dynamic-table");
+
+    for(var k=1;k<tb.rows.length;k++){
+
+        var _start=tb.rows[k].cells[1].innerHTML;
+        var _end=tb.rows[k].cells[2].innerHTML;
+
+        var end_time=new Date(_end);
+        var start_time=new Date(_start);
+        var now = new Date().getTime();
+
+        console.log(_start);
+
+        y=tb.rows[k].cells[3];
+
+        if (now-end_time>0){
+
+
+            y.innerHTML="<span style='margin-right:25px;' class='label label-danger label-mini'>已结束</span>"
+        }
+        else
+        if (now-start_time<0){
+            y.innerHTML="<span style='margin-right:25px;' class='label label-warning label-mini'>未开始</span>"
+
+
+        }
+        else
+            y.innerHTML="<span style='margin-right:25px;' class='label label-success label-mini'>进行中</span>"
+
+    }
+
+
+
+});

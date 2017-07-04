@@ -76,12 +76,14 @@ block content
                 section.panel
                     header.panel-heading
                         | #{data.homework_name}
+                        span#status.pull-right(style='margin-bottom: -50px')
+
                     .panel-body
                         .row
                             .form-horizontal.adminex-form.col-md-5
                                 .form-group
                                     label.col-md-4.col-sm-4.control-label 开始时间
-                                    .ajust.col-md-6.col-sm-6 #{data.homework_start_time}
+                                    .ajust.col-md-6.col-sm-6#start #{data.homework_start_time}
                                 .form-group
                                     label.col-md-4.col-sm-4.control-label 作业分值
                                     .ajust.col-md-6.col-sm-6 #{data.homework_score}

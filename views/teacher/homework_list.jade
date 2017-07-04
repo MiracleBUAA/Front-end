@@ -64,7 +64,9 @@ block content
                                         th 标题
                                         th 开始时间
                                         th 截止时间
+                                        th 状态
                                         th 发布人
+
                                         th 操作
 
                                 tbody
@@ -73,7 +75,9 @@ block content
                                             td #{item.homework_title}
                                             td #{item.homework_start_time}
                                             td #{item.homework_end_time}
+                                            td.center
                                             td #{item.teacher_name}
+
                                             td.center
                                                 div
                                                     -var edit='/teacher/homework_update?homework_id='+item.homework_id;
