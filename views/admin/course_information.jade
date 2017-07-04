@@ -51,7 +51,7 @@ block content
                                     i &nbsp;结束学期
                                 td
                                   button.btn.btn-success(type="button", onclick="goto_list(this)" disabled="true")
-                                    span.glyphicon.glyphicon-download
+                                    span.glyphicon.glyphicon-upload
                                     i &nbsp;上传学生名单
                                 td(style="display:none") #{i.course_id}
                               - else
@@ -66,7 +66,7 @@ block content
                                     i &nbsp;结束学期
                                 td
                                   button.btn.btn-success(type="button", onclick="goto_list(this)")
-                                    span.glyphicon.glyphicon-download
+                                    span.glyphicon.glyphicon-upload
                                     i &nbsp;上传学生名单
                                 td(style="display:none") #{i.course_id}
                           tr
@@ -78,8 +78,6 @@ block content
 
         div#pop(style="display: none;position: absolute;top:2%;left: 20%;right: 20%;height: 700px;padding: 20px;border: 5px solid silver;border-radius: 5px;background-color: white;z-index:1002;overflow: auto; ")
           section.panel
-            header.panel-heading
-              | Basic Forms
             .panel-body
               form(role="form")
                 .form-group
