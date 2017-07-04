@@ -1,0 +1,77 @@
+//
+   Created by 12638 on 2017/7/4.
+
+extends ../layout_teacher
+
+
+block styles
+    // dynamic table
+    link(href='/js/advanced-datatable/css/demo_page.css', rel='stylesheet')
+    link(href='/js/advanced-datatable/css/demo_table.css', rel='stylesheet')
+    link(rel='stylesheet', href='/js/data-tables/DT_bootstrap.css')
+
+
+block scripts
+
+    // spinner
+    script(type='text/javascript', src='/js/fuelux/js/spinner.min.js')
+    script(src='/js/spinner-init.js')
+
+    // dynamic table
+    script(type='text/javascript', language='javascript', src='/js/advanced-datatable/js/jquery.dataTables.js')
+    script(type='text/javascript', src='/js/data-tables/DT_bootstrap.js')
+    // dynamic table initialization
+    //script(src='/js/dynamic_table_init.js')
+
+    script(src='/my_js/teacher/student_list.js')
+
+
+
+
+block content
+    // page heading start
+    .page-heading
+        h3
+            | 学生名单
+        ul.breadcrumb
+            li
+                a(href='#') 课程信息
+
+            li.active  学生名单
+    // page heading end
+    // body wrapper start
+    .wrapper
+        .row
+            .col-sm-12
+                section.panel
+                    header.panel-heading
+                        | 名单
+                        span.pull-right(style='margin-bottom: -50px')
+                            button.btn.btn-default(type='button' style='height: 25px;margin-right: 10px;padding-top: 2px;font-size: inherit;',onclick="downlist()")
+                                i.fa.fa-cloud-download
+                                |  下载
+                    .panel-body
+                        .adv-table
+                            table#dynamic-table.display.table.table-bordered.table-striped
+                                -var data={student_score_list:[{student_id:'14211093',student_name:'胡晟',student_gender:'男',student_class:'142114',score:'100'},{student_id:'14211121',student_name:'胡铮飞',student_gender:'男',student_class:'142114',score:'80'}]}
+                                thead
+                                    tr
+                                        th 学号
+                                        th 姓名
+                                        th 性别
+                                        th 班级
+                                        th 成绩
+
+                                tbody
+                                    each item in data.student_score_list
+                                        tr.gradeA
+                                            td #{item.student_id}
+                                            td #{item.student_name}
+                                            td #{item.student_gender}
+                                            td #{item.student_class}
+                                            td #{item.score}
+
+
+
+    // body wrapper end
+
