@@ -84,3 +84,17 @@ $(document).ready(function() {
         }
     } );
 } );
+
+function downgroup() {
+    $.ajax({
+        url:'/teacher/group_form_download',
+        type:'get',
+        dataType:'json',
+        error:function () {
+            alert('ERROR group form');
+        },
+        success:function () {
+            ;
+        }
+    })
+}
