@@ -91,8 +91,8 @@ function downlist() {
         error:function () {
             alert("ERROR download group list");
         },
-        success:function () {
-
+        success:function (res) {
+            window.open(res.url);
         }
     })
 }

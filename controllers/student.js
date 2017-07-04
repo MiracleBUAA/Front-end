@@ -122,16 +122,22 @@ router.get('/homework_information',function (req,res,next) {
     request(url,function (error,response,body) {
         var dataJson = eval("(" + body + ")");
         console.log(dataJson);
-        console.log(dataJson.data.group_list);
         if(!error && response.statusCode == 200){
-            res.render('student/homework_information',
-                {
-                    data : dataJson.data,
-                    title:'Ottcs学生版',
-                    username:student.uid,
-                    urank: student.urank
-                }
-            );
+            console.log(dataJson.data.group_list.length);
+            if(dataJson.data.group_list.length == 0){
+                console.log('11');
+                res.redirect('/student/mygroup');
+            }
+            if(student.urank == 2){
+                res.render('student/homework_information',
+                    {
+                        data : dataJson.data,
+                        title:'Ottcs学生版',
+                        username:student.uid,
+                        urank: student.urank
+                    }
+                );
+            }
         }
     });
 });

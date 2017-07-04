@@ -116,9 +116,13 @@ router.post('/resource_upload',function (req,res,next) {
     console.log(req.body);
     var teacher = check_Cookie(req,res);
     var url = URL + '/resource_upload?uid=' + teacher.uid
-        + '&course_id=' + teacher.course_id
-        + '&resource_type=' + req.body.resource_type
-        + '&title=' + req.body.title
+        + '&course_id=' + teacher.course_id;
+    if(req.body.resource_type == '')
+        url += '&resource_type=' + '默认';
+    else{
+        url += '&resource_type=' + req.body.resource_type
+    }
+    url += '&title=' + req.body.title
     console.log(url);
     res.json({
         url : url
@@ -454,7 +458,7 @@ router.get('/group_confirm_list',function (req,res,next) {
 
     request(url,function (error,response,body) {
         var dataJson = eval("(" + body + ")");
-        console.log(dataJson);
+        console.log(dataJson.data.group_confirm_list);
         if(!error && response.statusCode == 200){
             res.render('teacher/group_confirm_list',
                 {
@@ -550,25 +554,15 @@ router.get('/student_not_in_group',function (req,res,next) {
 });
 
 //29.	教师——下载团队信息
-// router.get('/group_download',function (req,res,next) {
-//     var teacher = check_Cookie(req,res);
-//     var url = URL + '/group_download?course_id=' + teacher.course_id
-//     console.log(url);
-//
-//     request(url,function (error,response,body) {
-//         var dataJson = eval("(" + body + ")");
-//         console.log(dataJson);
-//         if(!error && response.statusCode == 200){
-//             res.render('teacher/student_not_in_group',
-//                 {
-//                     data : dataJson.data,
-//                     title:'Ottcs教师版',
-//                     username:teacher.uid
-//                 }
-//             );
-//         }
-//     })
-// })
+router.get('/group_download',function (req,res,next) {
+    var teacher = check_Cookie(req,res);
+    var url = URL + '/group_download?course_id=' + teacher.course_id
+    console.log(url);
+
+    res.json({
+        url:url
+    });
+})
 
 //30.	教师——查看以往学期
 //31.	教师——下载以往学期资源
