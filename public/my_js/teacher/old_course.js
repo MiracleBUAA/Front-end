@@ -15,10 +15,9 @@ function fnFormatDetails ( oTable, nTr )
     var aData = oTable.fnGetData( nTr );
     var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
     sOut += '<tr><td>开始时间:</td><td>'+aData[6]+' '+'</td></tr>';
-    sOut += '<tr><td>结束时间:</td><td>'+aData[7]+' '+'</td></tr>';
-    sOut += '<tr><td>团队限制:</td><td>'+aData[8]+' '+'</td></tr>';
-    sOut += '<tr><td>教师信息:</td><td>'+aData[9]+' '+'</td></tr>';
-    sOut += '<tr><td>课程信息:</td><td>'+aData[10]+' '+'</td></tr>';
+    sOut += '<tr><td>团队限制:</td><td>'+aData[7]+' '+'</td></tr>';
+    sOut += '<tr><td>教师信息:</td><td>'+aData[8]+' '+'</td></tr>';
+    sOut += '<tr><td>课程信息:</td><td>'+aData[9]+' '+'</td></tr>';
 
     sOut += '</table>';
 

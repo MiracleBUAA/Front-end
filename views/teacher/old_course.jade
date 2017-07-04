@@ -46,7 +46,7 @@ block content
                     .panel-body
                         .adv-table
                             table#hidden-table-info.display.table.table-bordered
-                                //-var data={old_course_list:[{course_id:'2',course_name:" 春季实践",course_year:'2014',course_start_time:'2014-7-4',course_end_time:'2014-7-10',course_hour:'40',course_location:'工训316',course_credit:'3',team_limit_information:'6-9人',teacher_information:'朱福',course_information:'dwtewtwet'},{course_id:'1',course_name:"夏季实践",course_year:'2017',course_start_time:'2017-7-4',course_end_time:'2017-7-10',course_hour:'40',course_location:'工训317',course_credit:'2',team_limit_information:'6-8ren',teacher_information:'linguangyan',course_information:'dwtewtwet'}]};
+                                -var data={course_list:[{course_id:'2',course_name:" 春季实践",course_year:'2014',course_start_time:'2014-7-4',course_end_time:'2014-7-10',course_hour:'40',course_location:'工训316',course_credit:'3',team_limit_information:'6-9人',teacher_information:'朱福',course_information:'dwtewtwet'},{course_id:'1',course_name:"夏季实践",course_year:'2017',course_start_time:'2017-7-4',course_end_time:'2017-7-10',course_hour:'40',course_location:'工训317',course_credit:'2',team_limit_information:'6-8ren',teacher_information:'linguangyan',course_information:'dwtewtwet'}]};
                                 thead
                                     tr
                                         th 课程名
@@ -55,7 +55,6 @@ block content
                                         th 学时
                                         th 上课地点
                                         th(style='display:none') 开始时间
-                                        th(style='display:none') 结束时间
                                         th(style='display:none') 团队限制
                                         th(style='display:none') 教师信息
                                         th(style='display:none') 课程信息
@@ -68,7 +67,6 @@ block content
                                             td #{item.course_hour}
                                             td #{item.course_location}
                                             td(style='display:none') #{item.course_start_time}
-                                            td(style='display:none') #{item.course_end_time}
                                             td(style='display:none') #{item.team_limit_information}
                                             td(style='display:none') #{item.teacher_information}
                                             td(style='display:none') #{item.course_information}
