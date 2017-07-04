@@ -20,12 +20,12 @@ block content
     // page heading start
     .page-heading
         h3
-            | 查看通知
+            | 发布通知
         ul.breadcrumb
             li
                 a(href='#') 通知
 
-            li.active  查看通知
+            li.active  发布通知
     // page heading end
     // body wrapper start
     .wrapper
@@ -35,20 +35,20 @@ block content
         .modal.fade(id='myModal',tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
             .modal-dialog
                 .modal-content
-                    form(role="form")
+                    form(action='/teacher/new_announcement',method='post')
                         .modal-header
                             button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
                             h4.modal-title 新通知
                         .modal-body.row
                             .form-group.col-md-2
                                 label  标题
-                                input#tit.form-control
+                                input#tit.form-control(name='announcement_title')
                             .form-group.col-md-12
                                 label  内容
-                                textarea#det.form-control(rows='4')
+                                textarea#det.form-control(rows='4',name='announcement_message')
                         .modal-footer
                             button.btn.btn-default(type='button', data-dismiss='modal') 关闭
-                            button#bubble.btn.btn-success.btn-sm(type='button',onclick="send()") 提交
+                            button#bubble.btn.btn-success.btn-sm(type='submit') 确认发布
         .row
             .col-sm-12
                 .timeline
