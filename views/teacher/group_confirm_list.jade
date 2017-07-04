@@ -53,7 +53,7 @@ block content
                     .panel-body
                         .adv-table
                             table#dynamic-table.display.table.table-bordered.table-striped
-                                -var data={group_confirm_list:[{group_id:'1',group_name:'Miracle-',group_owner:'胡铮飞',group_member:[{student_id:'14211093',student_name:"胡晟",student_gender:'男',student_class:'142114'},{student_id:'14215555',student_name:"胡铮飞",student_gender:'男',student_class:'142114'}]}]};
+                                //-var data={group_confirm_list:[{group_id:'1',group_name:'Miracle-',group_owner:'胡铮飞',group_member:[{student_id:'14211093',student_name:"胡晟",student_gender:'男',student_class:'142114'},{student_id:'14215555',student_name:"胡铮飞",student_gender:'男',student_class:'142114'}]}]};
                                 thead
                                     tr
                                         th 团队号
@@ -66,7 +66,7 @@ block content
                                         tr.gradeA
                                             td #{item.group_id}
                                             td #{item.group_name}
-                                            td #{item.group_owner}
+                                            td #{item.group_owner_name}
                                             td
                                                 #{item.group_owner}
                                                 each sm in item.group_member

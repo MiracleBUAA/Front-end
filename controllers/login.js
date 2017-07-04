@@ -29,7 +29,7 @@ router.post('/check', function(req, res, next){
                         course_id:dataJson.data.course_id,//学期标识符
                         uid:req.body.username
                     }, {
-                            maxAge: 900000
+                            maxAge: 9000000
                         }
                     );
                     res.json(200,{msg:"登录成功",url:"/student"});
@@ -40,7 +40,7 @@ router.post('/check', function(req, res, next){
                         course_id:dataJson.data.course_id,//学期标识符
                         uid:req.body.username
                     }, {
-                            maxAge: 900000
+                            maxAge: 9000000
                         }
                     );
                     res.json(200,{msg:"登录成功",url:"/teacher"});
@@ -51,7 +51,7 @@ router.post('/check', function(req, res, next){
                         course_id:dataJson.data.course_id,//学期标识符
                         uid:req.body.username
                     }, {
-                            maxAge: 900000
+                            maxAge: 9000000
                         }
                     );
                     res.json(200,{msg:"登录成功",url:"/admin"});
