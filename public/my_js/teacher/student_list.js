@@ -25,7 +25,7 @@ function fnFormatDetails ( oTable, nTr )
 $(document).ready(function() {
 
     $('#dynamic-table').dataTable( {
-        "aaSorting": [[ 4, "desc" ]],
+        "aaSorting": [[ 0, "asc" ]],
         "oLanguage": {
             "sSearch": "检索：",
             "sInfo": "_START_ ~ _END_ &nbsp;&nbsp;(共计_TOTAL_ 人)",
@@ -34,6 +34,8 @@ $(document).ready(function() {
             "sInfoEmpty": "共计 0",
             "sInfoFiltered": "",
         },
+        "aLengthMenu": [ 200,100,50,25],
+        "iDisplayLength": 200,
     } );
     $.ajax({
         url : '/admin/student_list',
