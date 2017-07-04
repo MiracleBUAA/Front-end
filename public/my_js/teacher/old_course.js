@@ -61,7 +61,7 @@ $(document).ready(function() {
         "aoColumnDefs": [
             { "bSortable": false, "aTargets": [ 0 ] }
         ],
-        "aaSorting": [[1, 'asc']],
+        "aaSorting": [[2, 'asc']],
         "oLanguage": {
             "sSearch": "检索：",
             "sInfo": "_START_ ~ _END_ &nbsp;&nbsp;(共计_TOTAL_ 个)",
