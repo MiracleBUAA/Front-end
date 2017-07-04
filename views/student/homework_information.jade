@@ -139,7 +139,7 @@ block content
                                                         td #{item.homework_upload_time}
                                                         -if (urank==2)
                                                             td
-                                                                -var del='/student/homework_delete?homework_upload_id='+item.homework_upload_id;
+                                                                -var del='/student/homework_delete?homework_upload_id='+item.homework_upload_id+"&homework_id="+data.homework_id;
                                                                 button.btn.btn-danger.btn-xs(type='button',onclick="window.location.href="+"'"+del+"'",style='margin-right:10px',)
                                                                     i.fa.fa-trash-o
                                                                     |删除

@@ -188,7 +188,8 @@ router.get('/homework_delete',function (req,res,next) {
         if(error) console.log(error);
         if (!error && response.statusCode == 200) {
             //返回到作业列表界面
-            res.redirect('/student/homework_list');
+            var homework_information= '/student/homework_information?homework_id=' + params.homework_id
+            res.redirect(homework_information);
         }
     });
 });
