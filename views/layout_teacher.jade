@@ -44,13 +44,15 @@ block sidebar
               li#ungroup_li
                 a(href='/teacher/student_not_in_group')  未组队学生
           li.menu-list
+                a(href='#')  未组队学生
+          li.menu-list#score_li
             a(href='')
               i.fa.fa-tasks
               span 成绩统计
             ul.sub-menu-list
-              li
+              li#group_score_li
                 a(href='#')  历次作业
-              li
+              li#individual_score_li
                 a(href='#')  个人总成绩
           li
             a(href='#')
