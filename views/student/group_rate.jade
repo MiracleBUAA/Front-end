@@ -1,6 +1,5 @@
 //
    Created by 胡晟 on 2017/7/4.
-
 extends ../layout_student
 
 
@@ -55,7 +54,7 @@ block content
                                                         .spinner-buttons.input-group-btn
                                                             button.btn.spinner-up.btn-primary.btn-sm(type='button')
                                                                 i.fa.fa-plus
-                                                        input.spinner-input.form-control(style='height:30px',type='text', maxlength='3', readonly='')
+                                                        input.spinner-input.form-control(style='height:30px',type='text', maxlength='3', readonly='',data-rec=item.student_id)
                                                         .spinner-buttons.input-group-btn
                                                             button.btn.spinner-down.btn-warning.btn-sm(type='button')
                                                                 i.fa.fa-minus
@@ -63,8 +62,7 @@ block content
                                                 #{item.student_rate}
                                         td
                                             -if (urank==2 && item.student_rate=='')
-                                                button.btn.btn-primary.btn-sm(type='button',style='margin-right:10px')
+                                                button.btn.btn-primary.btn-sm(type='button',style='margin-right:10px',data-id=item.student_id,onclick="send(this)")
                                                     i.fa.fa-trash-o
                                                     | 确认
-
 
