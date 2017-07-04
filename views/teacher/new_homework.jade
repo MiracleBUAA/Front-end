@@ -65,18 +65,18 @@ block content
         .square-widget
           .widget-container
             .stepy-tab
-            form#default.form-horizontal(action='/teacher/new_homework', method='post')
+            form#default.form-horizontal(name='form1',action='/teacher/new_homework', method='post')
               fieldset(title='要求')
                 legend 填写基本要求
                 .form-group
                   label.col-md-2.col-sm-2.control-label 作业标题
                   .col-md-6.col-sm-6
-                    input.form-control(type='text', placeholder='标题' name='homework_title')
+                    input.form-control(required="required",type='text', placeholder='标题' name='homework_title')
                 .form-group
                   label.col-md-2.col-sm-2.control-label 开始时间
                   .col-md-4
                     .input-group.date.form_datetime-component
-                      input.form-control(type='text', readonly='', size='16' name='homework_start_time')
+                      input#start.form-control(required="required",onchange="OnChange()",type='text', readonly='', size='16' name='homework_start_time')
                       span.input-group-btn
                         button.btn.btn-primary.date-set(type='button')
                           i.fa.fa-calendar
@@ -84,7 +84,7 @@ block content
                   label.col-md-2.col-sm-2.control-label 截止时间
                   .col-md-4
                     .input-group.date.form_datetime-component
-                      input.form-control(type='text', readonly='', size='16' name='homework_end_time')
+                      input#end.form-control(required="required",onchange="OnChange()",type='text', readonly='', size='16' name='homework_end_time')
                       span.input-group-btn
                         button.btn.btn-primary.date-set(type='button')
                           i.fa.fa-calendar
@@ -93,21 +93,21 @@ block content
                 .form-group
                   label.col-md-2.col-sm-2.control-label 作业分值
                   .col-md-6.col-sm-6
-                    input.form-control(type='text', placeholder='分值' name='homework_score')
+                    input.form-control(required="required",type='text', placeholder='分值' name='homework_score')
                 .form-group
                   label.col-md-2.col-sm-2.control-label 允许提交次数
                   .col-md-6.col-sm-6
-                    input.form-control(type='text', placeholder='提交次数' name='resubmit_limit')
+                    input.form-control(required="required",type='text', placeholder='提交次数' name='resubmit_limit')
                 .form-group
                   label.col-md-2.col-sm-2.control-label 要求以及指导
                   .col-md-6.col-sm-6
-                    textarea.form-control(rows='5', cols='60' name='homework_message')
+                    textarea.form-control(required="required",rows='5', cols='60' name='homework_message')
               fieldset(title='完成')
                 legend 请点击确认
                 .form-group
                   .col-md-12
                     p 点击“确认发布”后，全体学生可以看到此作业。
-              button.btn.btn-info.finish(type='submit')
+              button#sub.btn.btn-info.finish(type='submit')
                 |确认发布
 
 
