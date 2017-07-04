@@ -141,3 +141,24 @@ function getDateDiff(dateTimeStamp){
         result="刚刚发布";
     return result;
 }
+
+function send() {
+    var _tit = $("#tit").val();
+    var _det = $("#det").val();
+    $.ajax({
+                url: "/teacher/new_announcement",
+                data: {
+                    announcement_title: _tit,
+                    announcement_message: _det
+                },
+                dataType: 'json',
+                type: 'post',
+                error:function () {
+                    alert("ERROR new announcement");
+                },
+                success: function (response) {
+                    window.location.href = response.url;
+                }
+            });
+}
+
