@@ -1,6 +1,5 @@
 //
    Created by 胡晟 on 2017/7/4.
-
 extends ../layout_teacher
 
 block styles
@@ -49,7 +48,7 @@ block content
                                 textarea#det.form-control(rows='4')
                         .modal-footer
                             button.btn.btn-default(type='button', data-dismiss='modal') 关闭
-                            button#bubble.btn.btn-success.btn-sm(type='button') 提交
+                            button#bubble.btn.btn-success.btn-sm(type='button',onclick="send()") 提交
         .row
             .col-sm-12
                 .timeline
