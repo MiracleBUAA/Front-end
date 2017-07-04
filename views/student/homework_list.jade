@@ -65,7 +65,6 @@ block content
                                         th 开始时间
                                         th 截止时间
                                         th 发布人
-                                        th 得分
                                         th 操作
 
                                 tbody
@@ -75,7 +74,6 @@ block content
                                             td #{item.homework_start_time}
                                             td #{item.homework_end_time}
                                             td #{item.teacher_name}
-                                            td #{item.score}
                                             td.center(style='width:100px;')
                                                 -var edit='/student/homework_information?homework_id='+item.homework_id;
                                                 button.btn.btn-success.btn-xs(type='button',onclick="window.location.href="+"'"+edit+"'",style='margin-right:10px',)
