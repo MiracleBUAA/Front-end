@@ -1,0 +1,77 @@
+//
+   Created by 胡晟 on 2017/7/4.
+
+extends ../layout_teacher
+
+
+block styles
+    // dynamic table
+    link(href='/js/advanced-datatable/css/demo_page.css', rel='stylesheet')
+    link(href='/js/advanced-datatable/css/demo_table.css', rel='stylesheet')
+    link(rel='stylesheet', href='/js/data-tables/DT_bootstrap.css')
+
+
+block scripts
+
+    // spinner
+    script(type='text/javascript', src='/js/fuelux/js/spinner.min.js')
+    script(src='/js/spinner-init.js')
+
+    // dynamic table
+    script(type='text/javascript', language='javascript', src='/js/advanced-datatable/js/jquery.dataTables.js')
+    script(type='text/javascript', src='/js/data-tables/DT_bootstrap.js')
+    // dynamic table initialization
+    //script(src='/js/dynamic_table_init.js')
+    script(src='/my_js/teacher/group_form_download.js')
+
+
+
+
+block content
+    // page heading start
+    .page-heading
+        h3
+            | 历次作业
+        ul.breadcrumb
+            li
+                a(href='#') 成绩
+
+            li.active  历次作业
+    // page heading end
+    // body wrapper start
+    .wrapper
+        .row
+            .col-sm-12
+                section.panel
+                    header.panel-heading
+                        | 列表
+                        span.pull-right(style='margin-bottom: -50px')
+                            button.btn.btn-default(type='button' style='height: 25px;margin-right: 10px;padding-top: 2px;font-size: inherit;',onclick="downlist()")
+                                i.fa.fa-cloud-download
+                                |  下载
+
+
+                    .panel-body
+                        .adv-table
+                            table#dynamic-table.display.table.table-bordered.table-striped
+                                -var data={group_list:[{group_id:'1',group_name:'超',total_score:'9',homework_score_list:[{homework_id:'1',homework_name:'chao',score:'5'},{homework_id:'2',homework_name:'csdfdaso',score:'4'}]}]};
+                                thead
+                                    tr
+                                        th 团队号
+                                        th 团队名
+                                        -var i=0;
+                                        each item in data.group_list[0].homework_score_list
+                                            -i=i+1;
+                                            th  #{i}.#{item.homework_name}
+                                        th 总成绩
+
+
+                                tbody
+                                    each item in data.group_list
+                                        tr.gradeA
+                                            td #{item.group_id}
+                                            td #{item.group_name}
+                                            each sm in item.homework_score_list
+                                                td #{sm.score}
+                                            td #{item.total_score}
+    // body wrapper end
