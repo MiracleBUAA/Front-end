@@ -421,9 +421,7 @@ router.get('/announcement',function (req,res,next) {
         if(error) console.log(error);
         if (!error && response.statusCode == 200) {
             //返回到通知列表界面
-            res.json({
-                url: '/teacher/announcement'
-            });
+            res.redirect('/teacher/announcement');
         }
     });
 });
