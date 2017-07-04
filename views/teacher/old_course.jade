@@ -1,0 +1,75 @@
+//
+   Created by 胡晟 on 2017/7/4.
+
+extends ../layout_teacher
+
+
+block styles
+    // dynamic table
+    link(href='/js/advanced-datatable/css/demo_page.css', rel='stylesheet')
+    link(href='/js/advanced-datatable/css/demo_table.css', rel='stylesheet')
+    link(rel='stylesheet', href='/js/data-tables/DT_bootstrap.css')
+
+
+block scripts
+
+    // spinner
+    script(type='text/javascript', src='/js/fuelux/js/spinner.min.js')
+    script(src='/js/spinner-init.js')
+
+    // dynamic table
+    script(type='text/javascript', language='javascript', src='/js/advanced-datatable/js/jquery.dataTables.js')
+    script(type='text/javascript', src='/js/data-tables/DT_bootstrap.js')
+    // dynamic table initialization
+    //script(src='/js/dynamic_table_init.js')
+    script(src='/my_js/teacher/old_course.js')
+
+
+block content
+    // page heading start
+    .page-heading
+        h3
+            | 过往课程资源
+        ul.breadcrumb
+            li
+                a(href='#') 过往学期
+
+            li.active 过往课程资源
+    // page heading end
+    // body wrapper start
+    .wrapper
+        .row
+            .col-sm-12
+                section.panel
+                    header.panel-heading
+                        | 列表
+                    .panel-body
+                        .adv-table
+                            table#hidden-table-info.display.table.table-bordered
+                                -var data={old_course_list:[{course_id:'2',course_name:" 春季实践",course_year:'2014',course_start_time:'2014-7-4',course_end_time:'2014-7-10',course_hour:'40',course_location:'工训316',course_credit:'3',team_limit_information:'6-9人',teacher_information:'朱福',course_information:'dwtewtwet'},{course_id:'1',course_name:"夏季实践",course_year:'2017',course_start_time:'2017-7-4',course_end_time:'2017-7-10',course_hour:'40',course_location:'工训317',course_credit:'2',team_limit_information:'6-8ren',teacher_information:'linguangyan',course_information:'dwtewtwet'}]};
+                                thead
+                                    tr
+                                        th 课程名
+                                        th 年份
+                                        th 学分
+                                        th 学时
+                                        th 上课地点
+                                        th(style='display:none') 开始时间
+                                        th(style='display:none') 结束时间
+                                        th(style='display:none') 团队限制
+                                        th(style='display:none') 教师信息
+                                        th(style='display:none') 课程信息
+                                tbody
+                                    -each item in data.old_course_list
+                                        tr.gradeA
+                                            td #{item.course_name}
+                                            td #{item.course_year}
+                                            td #{item.course_credit}
+                                            td #{item.course_hour}
+                                            td #{item.course_location}
+                                            td(style='display:none') #{item.course_start_time}
+                                            td(style='display:none') #{item.course_end_time}
+                                            td(style='display:none') #{item.team_limit_information}
+                                            td(style='display:none') #{item.teacher_information}
+                                            td(style='display:none') #{item.course_information}
+
