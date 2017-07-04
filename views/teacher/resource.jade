@@ -79,7 +79,9 @@ block content
                       td #{item.create_time}
                       td.center
                         -var del='/teacher/resource_delete?resource_id='+item.resource_id;
-                        button.btn.btn-success.btn-xs(type='button',style='margin-right:10px', data-id=item.resource_id,onclick="download(this)") 下载
+                        button.btn.btn-success.btn-xs(type='button',style='margin-right:10px', data-id=item.resource_id,onclick="download(this)")
+                          i.fa.fa-cloud-download
+                          |下载
                         button.btn.btn-danger.btn-xs(type='button',onclick="window.location.href=" + "'" + del + "'",style='margin-right:10px')
                           i.fa.fa-trash-o
                           | 删除

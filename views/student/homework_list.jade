@@ -78,7 +78,9 @@ block content
                                             td #{item.score}
                                             td.center(style='width:100px;')
                                                 -var edit='/student/homework_information?homework_id='+item.homework_id;
-                                                input.btn.btn-info.btn-xs(type='button',onclick="window.location.href="+"'"+edit+"'",style='margin-right:10px',value='详情')
+                                                button.btn.btn-success.btn-xs(type='button',onclick="window.location.href="+"'"+edit+"'",style='margin-right:10px',)
+                                                    i.fa.fa-eye
+                                                    |详情
 
 
 

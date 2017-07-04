@@ -74,16 +74,16 @@ block content
                                             td #{item.homework_start_time}
                                             td #{item.homework_end_time}
                                             td #{item.teacher_name}
-                                            td.center(style='width:300px;')
+                                            td.center
                                                 div
                                                     -var edit='/teacher/homework_update?homework_id='+item.homework_id;
                                                     -var check='/teacher/homework_group_upload?homework_id='+item.homework_id;
                                                     -var del='/teacher/homework_delete?homework_id='+item.homework_id;
                                                     button.btn.btn-success.btn-xs(type='button',onclick="window.location.href="+"'"+edit+"'",style='margin-right:10px',)
-                                                        i.fa.fa-eye
+                                                        i.fa.fa-edit
                                                         |查看/编辑
                                                     button.btn.btn-primary.btn-xs(type='button',onclick="window.location.href="+"'"+check+"'",style='margin-right:10px')
-                                                        i.fa
+                                                        i.fa.fa-eye
                                                         |批改
                                                     button.btn.btn-danger.btn-xs(type='button',onclick="window.location.href="+"'"+del+"'",style='margin-right:10px')
                                                         i.fa.fa-trash-o

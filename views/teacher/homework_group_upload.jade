@@ -58,7 +58,9 @@ block content
                     header.panel-heading
                         | 已提交的团队
                         span.pull-right(style='margin-bottom: -50px')
-                            button.btn.btn-success.btn-xs(type='button',data-homework-id=data.homework_id,onclick="download_all(this)") 下载全部
+                            button.btn.btn-success.btn-xs(type='button',data-homework-id=data.homework_id,onclick="download_all(this)")
+                                i.fa.fa-cloud-download
+                                | 下载全部
                     .panel-body
                         .adv-table
                             table#dynamic-table.display.table.table-bordered.table-striped
@@ -80,11 +82,15 @@ block content
                                             td #{item.group_owner}
                                             td #{item.homework_upload_list.length}
                                             td #{item.score}
-                                            td.center(style='width:150px;')
+                                            td.center
                                                 div
                                                     a(href='#myModal'+item.group_id, data-toggle='modal')
-                                                        button.btn.btn-primary.btn-xs(type='button',style='margin-right:10px') 评分
-                                                    button.btn.btn-success.btn-xs(type='button',style='margin-right:10px',data-homework-id=data.homework_id,data-group-id=item.group_id,onclick="download(this)") 下载
+                                                        button.btn.btn-primary.btn-xs(type='button',style='margin-right:10px')
+                                                            i.fa.fa-comment-o
+                                                            |评分
+                                                    button.btn.btn-success.btn-xs(type='button',style='margin-right:10px',data-homework-id=data.homework_id,data-group-id=item.group_id,onclick="download(this)")
+                                                        i.fa.fa-cloud-download
+                                                        |下载
                         // Modal
                         each item in data.group_list
                             .modal.fade(id='myModal'+item.group_id,tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
@@ -102,7 +108,7 @@ block content
                                                         input.form-control(name='score',value=item.score)
                                                     .form-group.col-md-12
                                                         label  评语
-                                                        textarea.form-control(name='score_message',rows='4')=item.homework_message
+                                                        textarea.form-control(name='score_message',rows='4' )=item.score_message
                                             .modal-footer
                                                 button.btn.btn-default(type='button', data-dismiss='modal') 关闭
                                                 button.btn.btn-success.btn-sm(type='submit') 保存提交

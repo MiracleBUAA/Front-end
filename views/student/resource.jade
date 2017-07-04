@@ -33,12 +33,12 @@ block content
   // page heading start
   .page-heading
     h3
-      | 课程资源
+      | 查看资源
     ul.breadcrumb
       li
-        a(href='#') 未定义
+        a(href='#') 课程资源
 
-      li.active  未定义
+      li.active  查看资源
   // page heading end
   // body wrapper start
   .wrapper
@@ -69,7 +69,9 @@ block content
                       td #{item.teacher_name}
                       td #{item.create_time}
                       td.center
-                        button.btn.btn-success.btn-xs(type='button',style='margin-right:10px',data-id=item.resource_id,onclick="download(this)") 下载
+                        button.btn.btn-success.btn-xs(type='button',style='margin-right:10px',data-id=item.resource_id,onclick="download(this)")
+                          i.fa.fa-cloud-download
+                          |下载
 
 
 

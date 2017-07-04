@@ -140,7 +140,9 @@ block content
                                                         -if (urank==2)
                                                             td
                                                                 -var del='/student/homework_delete?homework_upload_id='+item.homework_upload_id;
-                                                                input.btn.btn-danger.btn-xs(type='button',onclick="window.location.href="+"'"+del+"'",style='margin-right:10px',value='删除 ')
+                                                                button.btn.btn-danger.btn-xs(type='button',onclick="window.location.href="+"'"+del+"'",style='margin-right:10px',)
+                                                                    i.fa.fa-trash-o
+                                                                    |删除
 
     // body wrapper end
 
