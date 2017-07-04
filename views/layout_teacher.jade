@@ -4,7 +4,7 @@ block sidebar
         ul.nav.nav-pills.nav-stacked.custom-nav
           li.menu-list#course_li
             a(href='' )
-              i.fa.fa-home
+              i.fa.fa-info-circle
               span 课程信息
             ul.sub-menu-list
               li#course_info_li
@@ -14,11 +14,11 @@ block sidebar
 
           li#resource_li
             a(href='/teacher/resource')
-              i.fa.fa-laptop
+              i.fa.fa-cloud
               span 课程资源
           li.menu-list#homework_li
             a(href='')
-              i.fa.fa-book
+              i.fa.fa-tasks
               span 作业
             ul.sub-menu-list
               li#new_homework_li
@@ -28,13 +28,13 @@ block sidebar
 
           li#announcement_li
             a(href='/teacher/announcement')
-              i.fa.fa-cogs
+              i.fa.fa-envelope
               span 通知
 
 
           li.menu-list#group_li
             a(href='')
-              i.fa.fa-envelope
+              i.fa.fa-group
               span 团队
             ul.sub-menu-list
               li#grouped_li
@@ -45,7 +45,7 @@ block sidebar
                 a(href='/teacher/student_not_in_group')  未组队学生
           li.menu-list#score_li
             a(href='')
-              i.fa.fa-tasks
+              i.fa.fa-signal
               span 成绩统计
             ul.sub-menu-list
               li#group_score_li
@@ -55,5 +55,5 @@ block sidebar
 
           li#older_li
             a(href='/teacher/old_course')
-              i.fa.fa-tasks
+              i.fa.fa-list-ol
               span 过往学期
