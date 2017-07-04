@@ -7,7 +7,7 @@
 //  页面侧边栏选中
 $(document).ready(function () {
     document.getElementById("score_li").className += " nav-active";
-    document.getElementById("group_score_li").className += " active";
+    document.getElementById("individual_score_li").className += " active";
 });
 
 
@@ -30,7 +30,7 @@ $(document).ready(function() {
         "aaSorting": [[ 4, "desc" ]],
         "oLanguage": {
             "sSearch": "检索：",
-            "sInfo": "_START_ ~ _END_ &nbsp;&nbsp;(共计_TOTAL_ 个)",
+            "sInfo": "_START_ ~ _END_ &nbsp;&nbsp;(共计_TOTAL_ 人)",
             "sLengthMenu" : "每页 _MENU_ ",
             "sZeroRecords": "没有匹配的结果",
             "sInfoEmpty": "共计 0",
@@ -84,17 +84,3 @@ $(document).ready(function() {
         }
     } );
 } );
-
-function downgroup() {
-    $.ajax({
-        url:'/teacher/group_form_download',
-        type:'get',
-        dataType:'json',
-        error:function () {
-            alert('ERROR group form');
-        },
-        success:function () {
-            ;
-        }
-    })
-}
