@@ -47,7 +47,7 @@ block content
                                         td #{item.student_id}
                                         td #{item.student_name}
                                         td
-                                            -if (urank==2 && item.student_rate=='0')
+                                            -if (urank==2 && item.student_rate==0)
 
                                                 .spinner-s
                                                     .input-group(style='width:120px;')
@@ -61,8 +61,10 @@ block content
                                             -else
                                                 #{item.student_rate}
                                         td
-                                            -if (urank==2 && item.student_rate=='0')
+                                            -if (urank==2 && item.student_rate==0)
                                                 button.btn.btn-success.btn-sm(type='button',style='margin-right:10px',data-id=item.student_id,onclick="send(this)")
                                                     i.fa.fa-check-square-o
                                                     |&nbsp;确认
+                                            -else
+                                                span.label.label-success.label-mini 已评分
 
