@@ -10,16 +10,12 @@ block scripts
 
     // spinner
     script(type='text/javascript', src='/js/fuelux/js/spinner.min.js')
-    script(src='/js/spinner-init.js')
-
 
     script(src='/my_js/student/group_rate.js')
 
-
-
-
 block content
-    -var data={rate_list:[{student_id:'14211093',student_name:'胡晟',student_rate:'1.2'},{student_id:'14215555',student_name:'胡铮飞',student_rate:'0.8'}]};
+    -var urank=2;
+    -var data={rate_list:[{student_id:'14211093',student_name:'胡晟',student_rate:''},{student_id:'14215555',student_name:'胡铮飞',student_rate:'8'}]};
     // page heading start
     .page-heading
         h3
@@ -44,11 +40,31 @@ block content
                                     th 学号
                                     th 姓名
                                     th 成绩
-                                    th 操作
+                                    -if (urank==2)
+                                        th 操作
                             tbody
                                 each item in data.rate_list
                                     tr
                                         td #{item.student_id}
                                         td #{item.student_name}
-                                        td #{item.student_rate}
                                         td
+                                            -if (urank==2 && item.student_rate=='')
+
+                                                .spinner-s
+                                                    .input-group(style='width:120px;')
+                                                        .spinner-buttons.input-group-btn
+                                                            button.btn.spinner-up.btn-primary.btn-sm(type='button')
+                                                                i.fa.fa-plus
+                                                        input.spinner-input.form-control(style='height:30px',type='text', maxlength='3', readonly='')
+                                                        .spinner-buttons.input-group-btn
+                                                            button.btn.spinner-down.btn-warning.btn-sm(type='button')
+                                                                i.fa.fa-minus
+                                            -else
+                                                #{item.student_rate}
+                                        td
+                                            -if (urank==2 && item.student_rate=='')
+                                                button.btn.btn-primary.btn-sm(type='button',style='margin-right:10px')
+                                                    i.fa.fa-trash-o
+                                                    | 确认
+
+

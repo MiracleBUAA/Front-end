@@ -7,3 +7,6 @@ $(document).ready(function () {
     document.getElementById("group_li").className += " nav-active";
     document.getElementById("rate_li").className += " active";
 });
+
+//spinner
+$('.spinner-s').spinner({value: 10, step: 2, min: 4, max: 12});
