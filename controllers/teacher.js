@@ -565,10 +565,90 @@ router.get('/group_download',function (req,res,next) {
 })
 
 //30.	教师——查看以往学期
+router.get('/old_course',function (req,res,next) {
+    var teacher = check_Cookie(req,res);
+    var url = URL + '/old_course'
+    console.log(url);
+
+    request(url,function (error,response,body) {
+        var dataJson = eval("(" + body + ")");
+        console.log(dataJson);
+        if(!error && response.statusCode == 200){
+            res.render('teacher/old_course',
+                {
+                    data : dataJson.data,
+                    title:'Ottcs教师版',
+                    username:teacher.uid
+                }
+            );
+        }
+    });
+});
+
 //31.	教师——下载以往学期资源
+
 //32.	教师——获取团队成绩报表（待定）
+router.get('/group_form',function (req,res,next) {
+    var teacher = check_Cookie(req,res);
+    var url = URL + '/group_form?course_id=' + teacher.course_id
+    console.log(url);
+
+    request(url,function (error,response,body) {
+        var dataJson = eval("(" + body + ")");
+        console.log(dataJson);
+        if(!error && response.statusCode == 200){
+            res.render('teacher/group_form',
+                {
+                    data : dataJson.data,
+                    title:'Ottcs教师版',
+                    username:teacher.uid
+                }
+            );
+        }
+    });
+});
+
 //33.	教师——获取个人成绩报表（待定）
+router.get('/student_form',function (req,res,next) {
+    var teacher = check_Cookie(req,res);
+    var url = URL + '/student_form?course_id=' + teacher.course_id
+    console.log(url);
 
+    request(url,function (error,response,body) {
+        var dataJson = eval("(" + body + ")");
+        console.log(dataJson);
+        if(!error && response.statusCode == 200){
+            res.render('teacher/student_form',
+                {
+                    data : dataJson.data,
+                    title:'Ottcs教师版',
+                    username:teacher.uid
+                }
+            );
+        }
+    });
+});
 
+//51.	教师——下载团队成绩报表
+router.get('/group_form_download',function (req,res,next) {
+    var teacher = check_Cookie(req,res);
+    var url = URL + '/group_form_download?course_id=' + teacher.course_id
+    console.log(url);
+
+    res.json({
+        url:url
+    });
+})
+
+//51.	教师——下载团队成绩报表
+router.get('/student_form_download',function (req,res,next) {
+    var teacher = check_Cookie(req,res);
+    var url = URL + '/student_form_download?course_id=' + teacher.course_id
+    console.log(url);
+
+    res.json({
+        url:url
+    });
+})
 
 module.exports = router;

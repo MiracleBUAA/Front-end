@@ -29,7 +29,7 @@ function send(e) {
             alert("ERROR group rate!");
         },
         success:function () {
-            ;
+
         }
     })
 }

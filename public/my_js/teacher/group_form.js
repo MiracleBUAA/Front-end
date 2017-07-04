@@ -93,8 +93,8 @@ function downgroup() {
         error:function () {
             alert('ERROR group form');
         },
-        success:function () {
-            ;
+        success:function (res) {
+            window.open(res.url);
         }
     })
 }

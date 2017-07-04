@@ -93,8 +93,8 @@ function downstudent() {
         error:function(){
             alert('ERROR download student form');
         },
-        success:function () {
-            ;
+        success:function (res) {
+            window.open(res.url);
         }
     });
 }

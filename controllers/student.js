@@ -415,4 +415,46 @@ router.post('/dismiss_group',function (req,res,next) {
     }
 });
 
+//49.	学生——获取组内评分（负责人）
+router.get('/group_rate',function (req,res,next) {
+    var student = check_Cookie(req,res);
+    var url = URL + '/group_rate?uid=' + student.uid
+        + '&course_id=' + student.course_id
+    console.log(url);
+
+    request(url,function (error,response,body) {
+        var dataJson = eval("(" + body + ")");
+        console.log(dataJson);
+        if(!error && response.statusCode == 200){
+            res.render('student/group_rate',{
+                data : dataJson.data,
+                title:'Ottcs学生版',
+                username:student.uid,
+                urank: student.urank
+            })
+        }
+    });
+});
+
+//56.	学生——传输组内评分（负责人）
+router.post('/group_rate',function (req,res,next) {
+    console.log(req.body);
+    var student = check_Cookie(req,res);
+    var url = URL + '/group_rate?uid=' + student.uid
+        + '&student_id=' + req.body.student_id
+        + '&student_rate=' + req.body.student_rate;
+    console.log(url);
+
+    request.post({url:url}, function(error, response, body) {
+        console.log(response.statusCode);
+        if(error) console.log(error);
+        if (!error && response.statusCode == 200) {
+            res.json({
+                url:'/student/group_rate'
+            });
+        }
+    });
+});
+
+
 module.exports = router;
