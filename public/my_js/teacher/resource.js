@@ -101,7 +101,7 @@ document.getElementById("upload_file").onchange = function () {
 $(document).ready(function() {
 
     $('#dynamic-table').dataTable( {
-        "aaSorting": [[ 4, "desc" ]],
+        "aaSorting": [[ 3, "desc" ]],
         "oLanguage": {
             "sSearch": "检索：",
             "sInfo": "_START_ ~ _END_ &nbsp;&nbsp;(共计_TOTAL_ 个)",

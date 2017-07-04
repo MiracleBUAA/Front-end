@@ -41,7 +41,7 @@ document.getElementById("bubble").addEventListener("click",function (){
             dataType: 'json',
             type: 'post',
             error:function () {
-                alert("error");
+                //alert("error");
             },
             success: function (res) {
                 // var x = document.createElement("tr");
@@ -79,7 +79,7 @@ document.getElementById("bubble").addEventListener("click",function (){
             dataType: 'json',
             type: 'post',
             error:function () {
-                alert('error');
+                //alert('error');
             },
             success: function (res) {
                 // var bo = document.getElementById("term");
@@ -122,7 +122,7 @@ function end_course(e){
         type: 'GET',
         dataType: 'json',
         error:function () {
-            alert('error');
+            //alert('error');
         },
         success: function (res) {
             window.location.href = res.url;
