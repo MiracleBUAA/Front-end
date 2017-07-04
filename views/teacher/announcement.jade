@@ -29,9 +29,11 @@ block content
     // page heading end
     // body wrapper start
     .wrapper
-        span.pull-right(style='margin-right:50px')
+        span.pull-right(style='margin-right:50px;margin-bottom:20px')
             a(href='#myModal' , data-toggle='modal')
-                button.btn.btn-primary(type='button',style='margin-right:10px') 发布新通知
+                button.btn.btn-primary(type='button',style='margin-right:10px')
+                    i.fa.fa-plus-square
+                    |&nbsp;发布新通知
         .modal.fade(id='myModal',tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
             .modal-dialog
                 .modal-content
@@ -40,7 +42,7 @@ block content
                             button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
                             h4.modal-title 新通知
                         .modal-body.row
-                            .form-group.col-md-2
+                            .form-group.col-md-4
                                 label  标题
                                 input#tit.form-control(name='announcement_title')
                             .form-group.col-md-12
@@ -48,7 +50,7 @@ block content
                                 textarea#det.form-control(rows='4',name='announcement_message')
                         .modal-footer
                             button.btn.btn-default(type='button', data-dismiss='modal') 关闭
-                            button#bubble.btn.btn-success.btn-sm(type='submit') 确认发布
+                            button#bubble.btn.btn-success(type='submit') 确认发布
         .row
             .col-sm-12
                 .timeline
@@ -65,7 +67,7 @@ block content
                                             span.timeline-date #{item.announcement_update_time}
                                             h1.red.ti
                                             p #{item.teacher_name}
-                                            p(style='font-weight:800') #{item.announcement_title}
+                                            p(style='font-weight:800') 标题：#{item.announcement_title}
                                             p #{item.announcement_message}
                         -else
                             article.timeline-item
@@ -78,7 +80,7 @@ block content
                                             h1.green.ti
                                             p #{item.teacher_name}
 
-                                            p(style='font-weight:800') #{item.announcement_title}
+                                            p(style='font-weight:800') 标题：#{item.announcement_title}
                                             p #{item.announcement_message}
 
     // body wrapper end

@@ -51,7 +51,8 @@ block content
                         | 团队成员
                         span.pull-right(style='margin-bottom: -50px')
                             -if (data.group_status==0)
-                                button.btn.btn-danger(type='button',style='height: 24px;margin-right: 10px;padding-top: 2px;font-size: inherit;',data-apply-id=data.group_id,onclick="dismiss(this)") 解散
+                                -if (urank==2)
+                                    button.btn.btn-danger(type='button',style='height: 24px;margin-right: 10px;padding-top: 2px;font-size: inherit;',data-apply-id=data.group_id,onclick="dismiss(this)") 解散
                                 span.label.label-warning.label-mini(style='margin-right:25px;') 未批准
                             -else
                                 span.label.label-success.label-mini(style='margin-right:25px;') 已批准

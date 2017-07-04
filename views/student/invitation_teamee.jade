@@ -89,7 +89,10 @@ block content
                                             td #{item.student_gender}
                                             td #{item.student_class}
                                             td.center
-                                                button.btn.btn-success.btn-xs(type='button',style='margin-right:10px',data-sid=item.student_id,data-sna=item.student_name,onclick="invite(this)") 邀请
+                                                button.btn.btn-success.btn-xs(type='button',style='margin-right:10px',data-sid=item.student_id,data-sna=item.student_name,onclick="invite(this)")
+                                                    i.fa.fa-user
+                                                    |&nbsp;邀请
+
 
 
     // body wrapper end

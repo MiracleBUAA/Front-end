@@ -303,6 +303,14 @@ router.post('/new_group',function (req,res,next) {
         if(error) console.log(error);
         if (!error && response.statusCode == 200) {
             //返回到我的团队界面
+            var _uid = student.uid;
+            var _course_id = student.course_id;
+            res.clearCookie('student');
+            res.cookie('student',{
+                  uid:_uid,
+                  urank:2,
+                  course_id:_course_id
+            });
             res.redirect('/student/mygroup');
         }
     });
@@ -426,6 +434,9 @@ router.get('/group_rate',function (req,res,next) {
     request(url,function (error,response,body) {
         var dataJson = eval("(" + body + ")");
         console.log(dataJson);
+        if(dataJson.errorNo == 1){
+            res.redirect('/student/mygroup');
+        }
         if(!error && response.statusCode == 200){
             res.render('student/group_rate',{
                 data : dataJson.data,

@@ -34,5 +34,6 @@ block content
                             font(style='font-weight:700;color:#31708f;font-size:18px') #{item.sender_name}
                             |邀请你加入
                             font(style='font-weight:700;color:#31708f;font-size:18px') #{item.group_apply_name}
+                            |团队
                         button.btn.btn-primary(type='button',data-sender-id=item.sender_id,onclick="accept(this)") 同意
                         button.btn.btn-default.reject-in(style='margin-left:10px',type='button',data-sender-id=item.sender_id,onclick="reject(this)") 拒绝
