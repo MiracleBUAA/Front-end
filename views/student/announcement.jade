@@ -50,6 +50,7 @@ block content
                                             span.timeline-icon
                                             span.timeline-date #{item.announcement_update_time}
                                             h1.red.ti
+                                            p #{item.teacher_name}
                                             p(style='font-weight:800') #{item.announcement_title}
                                             p #{item.announcement_message}
                         -else
@@ -61,6 +62,8 @@ block content
                                             span.timeline-icon
                                             span.timeline-date #{item.announcement_update_time}
                                             h1.green.ti
+                                            p #{item.teacher_name}
+
                                             p(style='font-weight:800') #{item.announcement_title}
                                             p #{item.announcement_message}
 
