@@ -1,5 +1,5 @@
 //
-   Created by lenovo on 2017/7/1.
+   Created by 胡晟 on 2017/7/4.
 
 extends ../layout_student
 
@@ -11,7 +11,6 @@ block scripts
         $(document).ready(function () {
             $('.ti').each(function (index, el) {
                 var da= this.previousSibling.innerHTML;
-                console.log(da);
                 var x = new Date(da);
                 var times = getDateDiff(x);
                 this.innerHTML = times;
@@ -34,10 +33,6 @@ block content
         .row
             .col-sm-12
                 .timeline
-                    //article.timeline-item.alt
-                    //    .text-right
-                    //        .time-show.first
-                    //            a.btn.btn-primary(href='#') Today
                     -var i=0;
                     -each item in data
                         -i=i+1;
@@ -63,7 +58,6 @@ block content
                                             span.timeline-date #{item.announcement_update_time}
                                             h1.green.ti
                                             p #{item.teacher_name}
-
                                             p(style='font-weight:800') #{item.announcement_title}
                                             p #{item.announcement_message}
 

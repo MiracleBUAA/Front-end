@@ -11,7 +11,6 @@ $(document).ready(function () {
 
 
 
-
 //JavaScript函数：
 var minute = 1000 * 60;
 var hour = minute * 60;
@@ -31,20 +30,20 @@ function getDateDiff(dateTimeStamp){
     var hourC =diffValue/hour;
     var minC =diffValue/minute;
     if(monthC>=1){
-        result="发表于" + parseInt(monthC) + "个月前";
+        result="发布于" + parseInt(monthC) + "个月前";
     }
     else if(weekC>=1){
-        result="发表于" + parseInt(weekC) + "周前";
+        result="发布于" + parseInt(weekC) + "周前";
     }
     else if(dayC>=1){
-        result="发表于"+ parseInt(dayC) +"天前";
+        result="发布于"+ parseInt(dayC) +"天前";
     }
     else if(hourC>=1){
-        result="发表于"+ parseInt(hourC) +"个小时前";
+        result="发布于"+ parseInt(hourC) +"个小时前";
     }
     else if(minC>=1){
-        result="发表于"+ parseInt(minC) +"分钟前";
+        result="发布于"+ parseInt(minC) +"分钟前";
     }else
-        result="刚刚发表";
+        result="刚刚发布";
     return result;
 }

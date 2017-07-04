@@ -4,8 +4,8 @@
 
 //  页面侧边栏选中
 $(document).ready(function () {
-    document.getElementById("older_li").className += " nav-active";
-    document.getElementById("older_info_li").className += " active";
+    document.getElementById("older_li").className += " active";
+
 });
 
 
