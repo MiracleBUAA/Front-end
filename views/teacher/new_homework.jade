@@ -42,6 +42,9 @@ block scripts
   script(src='/js/jquery.validate.min.js')
   script(src='/js/jquery.stepy.js')
 
+  // spinner
+  script(type='text/javascript', src='/js/fuelux/js/spinner.min.js')
+
 
 
   script(src='/my_js/teacher/new_homework.js')
@@ -93,11 +96,20 @@ block content
                 .form-group
                   label.col-md-2.col-sm-2.control-label 作业分值
                   .col-md-6.col-sm-6
-                    input.form-control(required="required",type='text', placeholder='分值' name='homework_score')
-                .form-group
+                    //input.form-control(required="required",type='text', placeholder='分值' name='homework_score')
+                    .spinner-s
+                      .input-group(style='width:150px;')
+                        input.spinner-input.form-control(name='homework_score',type='text', maxlength='3', readonly='')
+                        .spinner-buttons.input-group-btn
+                          button.btn.btn-default.spinner-up(type='button')
+                            i.fa.fa-angle-up
+                          button.btn.btn-default.spinner-down(type='button')
+                            i.fa.fa-angle-down
+
+                .form-group(style='display:none')
                   label.col-md-2.col-sm-2.control-label 允许提交次数
                   .col-md-6.col-sm-6
-                    input.form-control(required="required",type='text', placeholder='提交次数' name='resubmit_limit')
+                    input.form-control(value=10,required="required",type='text', placeholder='提交次数' name='resubmit_limit')
                 .form-group
                   label.col-md-2.col-sm-2.control-label 要求以及指导
                   .col-md-6.col-sm-6

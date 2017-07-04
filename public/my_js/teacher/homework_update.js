@@ -35,3 +35,7 @@ function OnChange () {
         $('#sub').html("保存修改");
     }
 }
+
+
+//spinner
+$('.spinner-s').spinner({value: 10, step: 1, min: 1, max: 40});

@@ -36,3 +36,6 @@ function OnChange () {
     }
 }
 
+
+//spinner
+$('.spinner-s').spinner({value: 10, step: 1, min: 1, max: 40});
