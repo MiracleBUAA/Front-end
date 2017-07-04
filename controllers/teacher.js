@@ -640,7 +640,7 @@ router.get('/group_form_download',function (req,res,next) {
     });
 })
 
-//51.	教师——下载团队成绩报表
+//52.	教师——下载个人成绩报表
 router.get('/student_form_download',function (req,res,next) {
     var teacher = check_Cookie(req,res);
     var url = URL + '/student_form_download?course_id=' + teacher.course_id
