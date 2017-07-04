@@ -11,7 +11,7 @@ block scripts
 
 
 block content
-    -var data = {group_confirm_list:[{group_apply_id:'1',group_apply_name:'不想罚抄',group_apply_owner:'胡晟',group_apply_member:[{student_id:'14211093',student_name:'胡晟',student_gender:'男',student_class:'142114'},{student_id:'14215555',student_name:'胡铮飞',student_gender:'男',student_class:'142114'}]},{group_apply_id:'1',group_apply_name:'不想罚抄',group_apply_owner:'胡晟',group_apply_member:[{student_id:'14211093',student_name:'胡晟',student_gender:'男',student_class:'142114'},{student_id:'14215555',student_name:'胡铮飞',student_gender:'男',student_class:'142114'}]}]}
+    //-var data = {group_apply_list:[{group_apply_id:'1',group_apply_name:'不想罚抄',group_apply_owner:'胡晟',group_apply_member:[{student_id:'14211093',student_name:'胡晟',student_gender:'男',student_class:'142114'},{student_id:'14215555',student_name:'胡铮飞',student_gender:'男',student_class:'142114'}]},{group_apply_id:'1',group_apply_name:'不想罚抄',group_apply_owner:'胡晟',group_apply_member:[{student_id:'14211093',student_name:'胡晟',student_gender:'男',student_class:'142114'},{student_id:'14215555',student_name:'胡铮飞',student_gender:'男',student_class:'142114'}]}]}
     // page heading start
     .page-heading
         h3
@@ -24,13 +24,13 @@ block content
     // page heading end
     // body wrapper start
     .wrapper
-        -each item in data.group_confirm_list
+        -each item in data.group_apply_list
             .col-md-6
                 section.panel
                     header.panel-heading
-                        font(style='font-weight:700;color:#31708f;font-size:18px') #{item.group_apply_owner}
+                        font(style='font-weight:700;color:#31708f;font-size:18px') #{item.group_owner_name}
                         | 刚刚创立了
-                        font(style='font-weight:700;color:#31708f;font-size:18px') #{item.group_apply_name}
+                        font(style='font-weight:700;color:#31708f;font-size:18px') #{item.group_name}
                         |团队
 
                     .panel-body
@@ -44,7 +44,7 @@ block content
                                     th 性别
                                     th 班级
                             tbody
-                                each sm in item.group_apply_member
+                                each sm in item.group_member
                                     tr
                                         td #{sm.student_id}
                                         td #{sm.student_name}
@@ -52,5 +52,5 @@ block content
                                         td #{sm.student_class}
 
 
-                        button.btn.btn-primary(type='button',data-id=item.group_apply_id,onclick="accept(this)") 批准
-                        button.btn.btn-default.reject-in(style='margin-left:10px',type='button',data-id=item.group_apply_id,onclick="reject(this)") 拒绝
+                        button.btn.btn-primary.accept-in(type='button',data-id=item.group_id,onclick="accept(this)") 批准
+                        button.btn.btn-default.reject-in(style='margin-left:10px',type='button',data-id=item.group_id,onclick="reject(this)") 拒绝

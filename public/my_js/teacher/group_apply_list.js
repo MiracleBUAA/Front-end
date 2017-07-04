@@ -14,11 +14,15 @@ $('.reject-in').click(function () {
     $(this).parents(".panel").parent().remove();
 });
 
+$('.accept-in').click(function () {
+    $(this).parents(".panel").parent().remove();
+});
+
 function accept(e) {
     var curID = Number(e.getAttribute("data-id"));
     
     $.ajax({
-        url:'teacher/group_confirm',
+        url:'/teacher/group_confirm',
         type:'post',
         dataType:'json',
         data:{
@@ -27,7 +31,7 @@ function accept(e) {
         error:function () {
             alert("ERROR accept");
         },
-        success:function () {
+        success:function (res) {
 
         }
     })
@@ -36,7 +40,7 @@ function reject(e) {
     var curID = Number(e.getAttribute("data-id"));
 
     $.ajax({
-        url:'teacher/group_reject',
+        url:'/teacher/group_reject',
         type:'post',
         dataType:'json',
         data:{

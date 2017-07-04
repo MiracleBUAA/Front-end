@@ -308,24 +308,24 @@ router.post('/new_group',function (req,res,next) {
 });
 
 //40.	学生——负责人查看未组队学生信息
-router.get('/student_not_in_group',function (req,res,next) {
-    var student = check_Cookie(req,res);
-    var url = URL + '/invitation?course_id=' + student.course_id
-    console.log(url);
-
-    request(url,function (error,response,body) {
-        var dataJson = eval("(" + body + ")");
-        console.log(dataJson);
-        if(!error && response.statusCode == 200){
-            res.render('student/student_not_in_group',{
-                data : dataJson.data.student_list,
-                title:'Ottcs学生版',
-                username:student.uid,
-                urank: student.urank
-            })
-        }
-    });
-});
+// router.get('/student_not_in_group',function (req,res,next) {
+//     var student = check_Cookie(req,res);
+//     var url = URL + '/invitation?course_id=' + student.course_id
+//     console.log(url);
+//
+//     request(url,function (error,response,body) {
+//         var dataJson = eval("(" + body + ")");
+//         console.log(dataJson);
+//         if(!error && response.statusCode == 200){
+//             res.render('student/student_not_in_group',{
+//                 data : dataJson.data.student_list,
+//                 title:'Ottcs学生版',
+//                 username:student.uid,
+//                 urank: student.urank
+//             })
+//         }
+//     });
+// });
 
 //41.	学生——负责人发出邀请
 router.post('/send_invitation',function (req,res,next) {
@@ -341,7 +341,9 @@ router.post('/send_invitation',function (req,res,next) {
         if(error) console.log(error);
         if (!error && response.statusCode == 200) {
             //返回到邀请界面
-            res.redirect('/student/invitation');
+            res.json({
+                url:'/student/invitation'
+            });
         }
     });
 });

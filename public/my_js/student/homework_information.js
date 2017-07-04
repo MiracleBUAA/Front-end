@@ -49,7 +49,7 @@ function fire_ajax_submit() {
     $("#upload_button").prop("disabled", true);
 
     var homeworkID = Number(document.getElementById("upload_form").getAttribute("data-homework-id"));
-    var groupID = Number(document.getElementById("upload_form").getAttribute("data-homework-id"));
+    var groupID = Number(document.getElementById("upload_form").getAttribute("data-group-id"));
 
     $.ajax({
         type: 'post',

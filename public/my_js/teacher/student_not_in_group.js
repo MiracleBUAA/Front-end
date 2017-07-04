@@ -36,15 +36,6 @@ $(document).ready(function() {
             "sInfoFiltered": "",
         },
     } );
-    $.ajax({
-        url : '/admin/student_list',
-        dataType : 'json',
-        type : 'post',
-        success : function (res) {
-            //alert(res.url);
-            URL = res.url;
-        }
-    })
 
     /*
      * Insert a 'details' column to the table

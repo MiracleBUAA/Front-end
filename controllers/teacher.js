@@ -479,7 +479,7 @@ router.get('/group_apply_list',function (req,res,next) {
 
     request(url,function (error,response,body) {
         var dataJson = eval("(" + body + ")");
-        console.log(dataJson);
+        console.log(dataJson.data.group_apply_list);
         if(!error && response.statusCode == 200){
             res.render('teacher/group_apply_list',
                 {
@@ -515,7 +515,7 @@ router.post('/group_confirm',function (req,res,next) {
 //27.	教师——拒绝学生团队
 router.post('/group_reject',function (req,res,next) {
     var teacher = check_Cookie(req,res);
-    var url = URL + '/group_confirm?uid=' + teacher.uid
+    var url = URL + '/group_reject?uid=' + teacher.uid
         + '&course_id=' + teacher.course_id
         + '&group_apply_id=' + req.body.group_apply_id
     console.log(url);

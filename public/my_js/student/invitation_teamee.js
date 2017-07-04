@@ -94,11 +94,12 @@ function invite(e) {
         data:{
             receiver_id:sid
         },
-        error:function () {
-            alert("ERROR invitation_teamee");
+        error:function (res) {
+            alert("你已经邀请过此同学啦！");
         },
-        success:function () {
-            alert("Invitation for ["+sid+","+sna+"] is done!");
+        success:function (res) {
+            alert("邀请["+sid+","+sna+"]成功！");
+            window.location.href=res.url;
         }
     });
 }
