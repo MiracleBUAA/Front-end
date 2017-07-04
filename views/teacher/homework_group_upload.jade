@@ -99,13 +99,16 @@ block content
                                         form(action='/teacher/homework_set_score', method='post')
                                             .modal-header
                                                 button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
-                                                h4.modal-title Edit Media Gallery
+                                                h4.modal-title 评价作业
                                             .modal-body.row
                                                     input(name='homework_id',value=data.homework_id,type='hidden')
                                                     input(name='group_id',value=item.group_id,type='hidden')
-                                                    .form-group.col-md-2
+                                                    .form-group.col-md-4
                                                         label  分数
-                                                        input.form-control(name='score',value=item.score)
+                                                        -if (item.score=='未评分')
+                                                            input.form-control(name='score',placeholder="满分为"+data.homework_score+"分")
+                                                        -else
+                                                            input.form-control(name='score',value=item.score,placeholder="满分"+data.homework_score+"分")
                                                     .form-group.col-md-12
                                                         label  评语
                                                         textarea.form-control(name='score_message',rows='4' )=item.score_message
