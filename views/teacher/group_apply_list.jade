@@ -1,0 +1,56 @@
+//
+   Created by 胡晟 on 2017/7/4.
+
+extends ../layout_teacher
+
+
+block styles
+
+block scripts
+    script(src='/my_js/teacher/group_apply_list.js')
+
+
+block content
+    -var data = {group_confirm_list:[{group_apply_id:'1',group_apply_name:'不想罚抄',group_apply_owner:'胡晟',group_apply_member:[{student_id:'14211093',student_name:'胡晟',student_gender:'男',student_class:'142114'},{student_id:'14215555',student_name:'胡铮飞',student_gender:'男',student_class:'142114'}]},{group_apply_id:'1',group_apply_name:'不想罚抄',group_apply_owner:'胡晟',group_apply_member:[{student_id:'14211093',student_name:'胡晟',student_gender:'男',student_class:'142114'},{student_id:'14215555',student_name:'胡铮飞',student_gender:'男',student_class:'142114'}]}]}
+    // page heading start
+    .page-heading
+        h3
+            | 待审批团队
+        ul.breadcrumb
+            li
+                a(href='#') 团队
+
+            li.active  待审批团队
+    // page heading end
+    // body wrapper start
+    .wrapper
+        -each item in data.group_confirm_list
+            .col-md-6
+                section.panel
+                    header.panel-heading
+                        font(style='font-weight:700;color:#31708f;font-size:18px') #{item.group_apply_owner}
+                        | 刚刚创立了
+                        font(style='font-weight:700;color:#31708f;font-size:18px') #{item.group_apply_name}
+                        |团队
+
+                    .panel-body
+
+
+                        table.table.table-hover
+                            thead
+                                tr
+                                    th 学号
+                                    th 姓名
+                                    th 性别
+                                    th 班级
+                            tbody
+                                each sm in item.group_apply_member
+                                    tr
+                                        td #{sm.student_id}
+                                        td #{sm.student_name}
+                                        td #{sm.student_gender}
+                                        td #{sm.student_class}
+
+
+                        button.btn.btn-primary(type='button',data-sender-id=item.group_apply_id,onclick="accept(this)") 批准
+                        button.btn.btn-default.reject-in(style='margin-left:10px',type='button',data-sender-id=item.group_apply_id,onclick="reject(this)") 拒绝
