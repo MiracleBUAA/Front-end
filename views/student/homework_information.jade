@@ -95,7 +95,7 @@ block content
                             .form-horizontal.adminex-form.col-md-7
                                 .form-group
                                     label.col-md-4.col-sm-4.control-label 截止时间
-                                    .ajust.col-md-6.col-sm-6 #{data.homework_end_time}
+                                    .ajust.col-md-6.col-sm-6#end #{data.homework_end_time}
                                 .form-group
                                     label.col-md-4.col-sm-4.control-label 得分
                                     .ajust.col-md-6.col-sm-6 #{data.group_list[0].score}
@@ -113,7 +113,7 @@ block content
                                         //-var urank=2;
                                         // 2:负责人     1:普通人
                                         -if (urank==2)
-                                            span.pull-right(style='margin-bottom: -50px')
+                                            span#upl.pull-right(style='margin-bottom: -50px')
                                                 form#upload_form.form-group(method='post' enctype="multipart/form-data",data-homework-id=data.homework_id,data-group-id=data.group_list[0].group_id)
                                                     button#upload_button.btn.btn-default(type='submit' style='height: 25px;margin-right: 10px;padding-top: 2px;font-size: inherit;')
                                                         i.fa.fa-cloud-upload
@@ -140,7 +140,7 @@ block content
                                                         -if (urank==2)
                                                             td
                                                                 -var del='/student/homework_delete?homework_upload_id='+item.homework_upload_id+"&homework_id="+data.homework_id;
-                                                                button.btn.btn-danger.btn-xs(type='button',onclick="window.location.href="+"'"+del+"'",style='margin-right:10px',)
+                                                                button.dele.btn.btn-danger.btn-xs(type='button',onclick="window.location.href="+"'"+del+"'",style='margin-right:10px',)
                                                                     i.fa.fa-trash-o
                                                                     |删除
 
