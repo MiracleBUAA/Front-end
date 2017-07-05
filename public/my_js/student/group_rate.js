@@ -28,8 +28,8 @@ function send(e) {
         error:function () {
             alert("ERROR group rate!");
         },
-        success:function () {
-
+        success:function (res) {
+            window.location.href = res.url;
         }
     })
 }
