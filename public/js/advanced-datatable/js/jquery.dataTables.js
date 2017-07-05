@@ -4710,11 +4710,11 @@
 			{
 				if ( DataTable.ext.sErrMode == 'alert' )
 				{
-					alert( sAlert );
+					//alert( sAlert );
 				}
 				else
 				{
-					throw new Error(sAlert);
+					//throw new Error(sAlert);
 				}
 				return;
 			}
